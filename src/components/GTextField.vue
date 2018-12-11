@@ -81,25 +81,25 @@ export default {
   computed: {
     classes() {
       return {
-        [`pp-text-field-${this.size}`]: true,
-        'pp-text-field-horizontal': this.horizontal,
-        'pp-text-field-active': this.active,
-        'pp-text-field-complete': this.complete,
-        'pp-text-field-invalid': this.errors.has(this.name),
-        'pp-text-field-success': this.success,
-        'pp-text-field-prepended': this.prepend,
-        'pp-text-field-raised': this.raised,
+        [`g-text-field-${this.size}`]: true,
+        'g-text-field-horizontal': this.horizontal,
+        'g-text-field-active': this.active,
+        'g-text-field-complete': this.complete,
+        'g-text-field-invalid': this.errors.has(this.name),
+        'g-text-field-success': this.success,
+        'g-text-field-prepended': this.prepend,
+        'g-text-field-raised': this.raised,
       };
     },
 
     prependClasses() {
       return {
-        [`pp-text-field-prepend-${this.size}`]: true,
-        'pp-text-field-prepend-horizontal': this.horizontal,
-        'pp-text-field-prepend-active': this.active,
-        'pp-text-field-prepend-complete': this.complete,
-        'pp-text-field-prepend-invalid': this.errors.has(this.name),
-        'pp-text-field-prepend-success': this.success,
+        [`g-text-field-prepend-${this.size}`]: true,
+        'g-text-field-prepend-horizontal': this.horizontal,
+        'g-text-field-prepend-active': this.active,
+        'g-text-field-prepend-complete': this.complete,
+        'g-text-field-prepend-invalid': this.errors.has(this.name),
+        'g-text-field-prepend-success': this.success,
       };
     },
   },

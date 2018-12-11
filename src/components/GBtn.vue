@@ -49,13 +49,13 @@ export default {
   computed: {
     classes() {
       return {
-        'pp-btn-disabled': this.disabled,
-        'pp-btn-flat': this.flat,
-        'pp-btn-icon': this.icon,
-        'pp-btn-circle': this.circle,
-        [`pp-btn-${this.color}`]: true,
-        [`pp-btn-${this.size}`]: true,
-        [`pp-btn-bg-shade-${this.bgShade}`]: true,
+        'g-btn-disabled': this.disabled,
+        'g-btn-flat': this.flat,
+        'g-btn-icon': this.icon,
+        'g-btn-circle': this.circle,
+        [`g-btn-${this.color}`]: true,
+        [`g-btn-${this.size}`]: true,
+        [`g-btn-bg-shade-${this.bgShade}`]: true,
         rounded: !this.rounded,
         'rounded-full': this.rounded,
         block: this.block,
