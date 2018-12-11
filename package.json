@@ -1,7 +1,6 @@
 {
   "name": "@garethfuller/glue",
   "version": "0.1.0",
-  "private": true,
   "main": "./dist/glue.common.js",
   "files": [
     "dist/*",
