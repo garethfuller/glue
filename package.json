@@ -1,6 +1,6 @@
 {
   "name": "@garethfuller/glue",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./dist/glue.common.js",
   "files": [
     "dist/*",
@@ -12,7 +12,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name glue ./src/build.js",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "publish": "npm publish --access public"
   },
   "dependencies": {
     "vue": "^2.5.17"
