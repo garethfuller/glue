@@ -12,7 +12,7 @@
           <slot name="prepend"></slot>
         </div>
         <input
-          class="w-full rounded bg-grey-lightest border border-transparent"
+          class="w-full rounded bg-grey-lighter border border-transparent leading-none"
           :type="type"
           :value="value"
           :placeholder="placeholder"
@@ -39,6 +39,8 @@
 <script>
 export default {
   name: 'GTextField',
+
+  inject: ['$validator'],
 
   props: {
     type: { type: String, default: 'text' },
@@ -123,4 +125,138 @@ export default {
 </script>
 
 <style lang="css" scoped>
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    @apply text-grey-dark;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   @apply text-grey-dark;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   @apply text-grey-dark;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   @apply text-grey-dark;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   @apply text-grey-dark;
+}
+
+::placeholder { /* Most modern browsers support this now. */
+   @apply text-grey-dark;
+}
+
+.g-text-field-prepend {
+  position: absolute;
+  display: block;
+  z-index: 10;
+}
+
+.g-text-field-small {
+  @apply text-sm;
+
+  & input {
+    @apply text-sm py-2 px-4;
+  }
+}
+
+.g-text-field-medium {
+  @apply text-base;
+
+  & input {
+    @apply text-base py-3 px-4;
+  }
+}
+
+.g-text-field-large {
+  @apply text-lg;
+
+  & input {
+    @apply text-lg py-4 px-4;
+  }
+}
+
+.g-text-field-active {
+  & input {
+    @apply border-grey-lighter bg-transparent;
+  }
+
+  & label {
+    @apply text-red;
+  }
+}
+
+.g-text-field-complete {
+  & input {
+    @apply bg-white-dark border-white-dark text-grey-darkest;
+  }
+}
+
+.g-text-field-invalid {
+  & input {
+    @apply border-red text-red-light bg-transparent;
+
+    & ::placeholder {
+      @apply text-red-light;
+    }
+  }
+}
+
+.g-text-field-horizontal {
+  display: flex;
+  flex-direction: column;
+
+  & > .g-text-field-input-group {
+    display: flex;
+    text-align: left;
+    @apply flex-col;
+
+    @screen sm {
+      @apply flex-row;
+    }
+
+    & > .g-text-field-input {
+      flex: 68%;
+    }
+
+    & > label {
+      align-self: start;
+      flex: 32%;
+      @apply mr-1;
+
+      @screen sm {
+        align-self: center;
+      }
+    }
+  }
+
+  & > .g-text-field-error {
+    width: 100%;
+    align-self: flex-start;
+
+    @screen sm {
+      width: 68%;
+      align-self: flex-end;
+    }
+  }
+}
+
+.g-text-field-raised {
+  & > input {
+    @apply bg-white shadow;
+  }
+
+  &.g-text-field-active {
+    & > input {
+      @apply bg-white border-white;
+    }
+  }
+
+  &.g-text-field-complete {
+    & > input {
+      @apply bg-white border-white text-grey-darkest;
+    }
+  }
+}
 </style>
