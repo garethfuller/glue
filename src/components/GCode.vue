@@ -30,8 +30,16 @@
 </template>
 
 <script>
+import GBtn from './GBtn.vue'
+import GDot from './GDot.vue'
+
 export default {
   name: 'Gcode',
+
+  components: {
+    GBtn,
+    GDot
+  },
 
   props: {
     langs: { type: Array, default: () => ['ruby', 'javascript', 'bash'] },
