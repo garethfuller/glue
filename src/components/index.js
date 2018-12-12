@@ -6,3 +6,4 @@ export { default as GCardContent } from './g_card/GCardContent.vue';
 export { default as GCardTitle } from './g_card/GCardTitle.vue';
 export { default as GLoadingAnimation } from './GLoadingAnimation.vue';
 export { default as GChip } from './GChip.vue';
+export { default as GDot } from './GDot.vue';

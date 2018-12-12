@@ -3,12 +3,12 @@
     <div class="header w-full block rounded-t shadow-lg px-2 py-1">
       <div class="contents flex justify-between">
         <div class="fake-controls">
-          <pp-dot color="red" class="mr-2" />
-          <pp-dot color="orange" class="mr-2" />
-          <pp-dot color="green" class="" />
+          <g-dot color="red" class="mr-2" />
+          <g-dot color="orange" class="mr-2" />
+          <g-dot color="green" class="" />
         </div>
         <div class="nav text-white">
-          <pp-btn
+          <g-btn
             v-for="lang in langs"
             :key="lang"
             flat
@@ -17,7 +17,7 @@
             :class="['ml-2', { active: isActive(lang) }]"
             @click.native="changeLangTo(lang)">
             {{ labelFor(lang) }}
-          </pp-btn>
+          </g-btn>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'pp-code-snippet',
+  name: 'Gcode',
 
   props: {
     langs: { type: Array, default: () => ['ruby', 'javascript', 'bash'] },
