@@ -41,7 +41,7 @@ export default {
     },
 
     cardIconSrc() {
-      return require(`~/assets/images/icons/credit_cards/${this.cardBrand}_dark.svg`);
+      return `https://s3-eu-west-1.amazonaws.com/garethfuller/images/icons/credit_cards/${this.cardBrand}_dark.svg`
     },
 
     cardBrand() {
