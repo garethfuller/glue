@@ -30,15 +30,15 @@
 </template>
 
 <script>
-import GBtn from './GBtn.vue'
-import GDot from './GDot.vue'
+import GBtn from './GBtn.vue';
+import GDot from './GDot.vue';
 
 export default {
-  name: 'Gcode',
+  name: 'GCode',
 
   components: {
     GBtn,
-    GDot
+    GDot,
   },
 
   props: {

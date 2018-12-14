@@ -8,28 +8,30 @@ export default {
   name: 'GDot',
 
   props: {
-    color: { type: String, default: 'green', validator: (value) => {
-      return ['green', 'orange', 'red'].indexOf(value) !== -1
-    }},
-    radius: { type: Number, default: 5 }
+    color: {
+      type: String,
+      default: 'green',
+      validator: value => ['green', 'orange', 'red'].indexOf(value) !== -1,
+    },
+    radius: { type: Number, default: 5 },
   },
 
   computed: {
     classes() {
       return {
         [`g-dot-${this.color}`]: true,
-      }
+      };
     },
-    
+
     styles() {
       return {
-        width: `${this.radius*2}px`,
-        height: `${this.radius*2}px`,
-        borderRadius: `${this.radius}px`
-      }
-    }
-  }
-}
+        width: `${this.radius * 2}px`,
+        height: `${this.radius * 2}px`,
+        borderRadius: `${this.radius}px`,
+      };
+    },
+  },
+};
 </script>
 
 <style lang="css" scoped>
