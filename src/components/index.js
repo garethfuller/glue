@@ -18,5 +18,5 @@ export { default as GGridItem } from './g_grid/GGridItem.vue';
 export { default as GMenu } from './g_menu/GMenu.vue';
 export { default as GMenuItem } from './g_menu/GMenuItem.vue';
 export { default as GPopover } from './GPopover.vue';
-export { default as GSnackBar } from './g_snackbar/GSnackBar.vue';
-export { default as GSnackBarList } from './g_snackbar/GSnackBarList.vue';
+export { default as GSnackbar } from './g_snackbar/GSnackbar.vue';
+export { default as GSnackbarList } from './g_snackbar/GSnackbarList.vue';

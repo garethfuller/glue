@@ -7,10 +7,8 @@
 </template>
 
 <script>
-import GSnackBar from './GSnackbar.vue';
-
 export default {
-  name: 'GSnackBarList',
+  name: 'GSnackbarList',
 
   components: {
     GSnackBar,
