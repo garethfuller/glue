@@ -10,10 +10,6 @@
 export default {
   name: 'GSnackbarList',
 
-  components: {
-    GSnackBar,
-  },
-
   props: {
     snackbars: { type: Array },
   },
