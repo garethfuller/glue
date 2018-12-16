@@ -9,6 +9,10 @@
       <g-text-field v-model="textInput" placeholder="Your name" />
 
       <g-select v-model="token" :items="items" class="mt-4" required label="Token" />
+
+      <g-switch v-model="switchVal" color="red" round class="mt-4"/>
+      <g-switch v-model="switchVal" color="red" size="small" round class="mt-4"/>
+      <g-switch v-model="switchVal" color="red" size="large" round class="mt-4"/>
     </div>
 
   </div>
@@ -24,6 +28,7 @@ export default {
       textInput: '',
       token: 'BTC',
       items: ['BTC', 'ETH', 'BCH'],
+      switchVal: false
     };
   },
 };
