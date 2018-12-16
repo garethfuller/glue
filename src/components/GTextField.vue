@@ -62,6 +62,7 @@ export default {
     prepend: { type: Boolean, default: false },
     append: { type: Boolean, default: false },
     raised: { type: Boolean, default: false },
+    uppercase: { type: Boolean, default: false },
     validations: { type: String, default: '' },
     validateOn: { type: String, default: 'blur' },
     attrs: { type: Object, default: () => ({}) },
@@ -111,8 +112,9 @@ export default {
         'rounded-r': !this.append,
         'border-t border-b': this.append && this.prepend,
         'border-t border-b border-l': this.append && !this.prepend,
-        'border-t border-b border-r': !this.append && this.prepend
-      }
+        'border-t border-b border-r': !this.append && this.prepend,
+        uppercase: this.uppercase,
+      };
     },
 
     prependClasses() {
@@ -146,7 +148,7 @@ export default {
     focus() {
       this.active = true;
       this.complete = false;
-      this.$emit('focus')
+      this.$emit('focus');
     },
 
     blur() {
@@ -185,7 +187,6 @@ export default {
     @apply text-grey-darker;
   }
 }
-
 
 
 .g-text-field-small {

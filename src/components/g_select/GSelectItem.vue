@@ -25,9 +25,9 @@ export default {
     classes() {
       return {
         [`g-select-item-${this.size}`]: true,
-      }
-    }
-  }
+      };
+    },
+  },
 };
 </script>
 

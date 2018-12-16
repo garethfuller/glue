@@ -23,37 +23,37 @@ export default {
 
   data() {
     return {
-      internalVal: false
-    }
+      internalVal: false,
+    };
   },
 
   created() {
-    this.internalVal = this.value
+    this.internalVal = this.value;
   },
 
   computed: {
     classes() {
       return {
-        [`g-switch-${this.size}`]: true
-      }
+        [`g-switch-${this.size}`]: true,
+      };
     },
 
     sliderClasses() {
       return {
-        'round': this.round,
+        round: this.round,
         [`slider-${this.color}`]: true,
-        [`slider-${this.size}`]: true
-      }
-    }
+        [`slider-${this.size}`]: true,
+      };
+    },
   },
 
   methods: {
     clickHandler(e) {
-      this.internalVal = !this.internalVal
-      this.$emit('input', this.internalVal)
-    }
-  }
-}
+      this.internalVal = !this.internalVal;
+      this.$emit('input', this.internalVal);
+    },
+  },
+};
 </script>
 
 <style lang="css" scoped>

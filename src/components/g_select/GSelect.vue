@@ -59,25 +59,25 @@ export default {
       active: false,
       complete: false,
       success: false,
-    }
+    };
   },
 
   watch: {
     value(newVal) {
-      this.inputValue = newVal
-    }
+      this.inputValue = newVal;
+    },
   },
 
   created() {
-    this.inputValue = this.value
+    this.inputValue = this.value;
   },
 
   computed: {
     inputAttrs() {
-      const attrs = {}
-      if (!this.filterable) attrs.readonly = 'readonly'
+      const attrs = {};
+      if (!this.filterable) attrs.readonly = 'readonly';
 
-      return attrs
+      return attrs;
     },
 
     classes() {
@@ -89,30 +89,29 @@ export default {
         'g-select-invalid': this.errors.has(this.name),
         'g-select-success': this.success,
         'g-select-raised': this.raised,
-      }
+      };
     },
 
     inputClasses() {
-      return {}
+      return {};
     },
 
     chevronClasses() {
       return {
-        'chevron-active': this.showItems
-      }
+        'chevron-active': this.showItems,
+      };
     },
 
     inputLabel() {
       if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return this.items[0];
-      console.log(this.items.find(item => item[this.itemValue] === this.inputValue));
       return this.items.find(item => item[this.itemValue] === this.inputValue)[this.itemText];
-    }
+    },
   },
 
   methods: {
     itemSelected(item) {
-      this.$emit('input', this.valueFor(item))
-      this.showItems = false
+      this.$emit('input', this.valueFor(item));
+      this.showItems = false;
     },
 
     textFor(item) {
@@ -126,12 +125,12 @@ export default {
     },
 
     closeItems() {
-      this.showItems = false
+      this.showItems = false;
     },
 
     focusHandler() {
-      this.showItems = true
-    }
+      this.showItems = true;
+    },
   },
 };
 </script>

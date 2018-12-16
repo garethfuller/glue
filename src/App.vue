@@ -44,23 +44,23 @@ export default {
         { value: 'sm', label: 'Small' },
         { value: 'md', label: 'Medium' },
         { value: 'lg', label: 'Large' },
-      ]
+      ],
     };
   },
 
   computed: {
     codeSnippet() {
       return {
-        html: this.htmlSnippet
-      }
+        html: this.htmlSnippet,
+      };
     },
 
     htmlSnippet() {
       return `<script src="https://cdn.jsdelivr.net/gh/coinponent/coinponent@1.0.2/dist/coinponent.js"><\/script>
 <coin-ponent api-key="YOUR_API_KEY" allow-refresh></coin-ponent>
-      `
-    }
-  }
+      `;
+    },
+  },
 };
 </script>
 

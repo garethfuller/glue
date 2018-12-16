@@ -53,12 +53,12 @@ export default {
       ruby: 'Ruby',
       javascript: 'Javascript',
       bash: 'Bash',
-      html: 'HTML'
+      html: 'HTML',
     },
   }),
 
   created() {
-    this.internalLang = this.lang
+    this.internalLang = this.lang;
   },
 
   computed: {
