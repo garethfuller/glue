@@ -23,3 +23,4 @@ export { default as GSnackbarList } from './g_snackbar/GSnackbarList.vue';
 export { default as GSelect } from './g_select/GSelect.vue';
 export { default as GSelectItem } from './g_select/GSelectItem.vue';
 export { default as GSwitch } from './GSwitch.vue';
+export { default as GCode } from './GCode.vue';

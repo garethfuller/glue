@@ -10,20 +10,20 @@
         <div class="nav text-white">
           <g-btn
             v-for="lang in langs"
-            :key="lang"
+            :key="internalLang"
             flat
             color="white"
             size="small"
-            :class="['ml-2', { active: isActive(lang) }]"
-            @click.native="changeLangTo(lang)">
-            {{ labelFor(lang) }}
+            :class="['ml-2', { active: isActive(internalLang) }]"
+            @click.native="changeLangTo(internalLang)">
+            {{ labelFor(internalLang) }}
           </g-btn>
         </div>
       </div>
     </div>
     <div class="code-container rounded-b">
       <pre v-highlightjs="selectedCodeSnippet">
-        <code :class="lang" class="rounded-b p-4 pb-6"></code>
+        <code :class="internalLang" class="rounded-b p-4 pb-6"></code>
       </pre>
     </div>
   </div>
@@ -42,32 +42,38 @@ export default {
   },
 
   props: {
-    langs: { type: Array, default: () => ['ruby', 'javascript', 'bash'] },
+    langs: { type: Array, default: () => ['ruby', 'javascript', 'bash', 'html'] },
+    lang: { type: String, default: 'bash' },
     code: { type: Object, required: true },
   },
 
   data: () => ({
-    lang: 'bash',
+    internalLang: '',
     langLabels: {
       ruby: 'Ruby',
       javascript: 'Javascript',
       bash: 'Bash',
+      html: 'HTML'
     },
   }),
 
+  created() {
+    this.internalLang = this.lang
+  },
+
   computed: {
     selectedCodeSnippet() {
-      return this.code[this.lang];
+      return this.code[this.internalLang];
     },
   },
 
   methods: {
     changeLangTo(lang) {
-      this.lang = lang;
+      this.internalLang = lang;
     },
 
     isActive(lang) {
-      return this.lang === lang;
+      return this.internalLang === lang;
     },
 
     labelFor(lang) {

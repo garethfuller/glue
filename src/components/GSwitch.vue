@@ -28,7 +28,6 @@ export default {
   },
 
   created() {
-    console.log(this.round);
     this.internalVal = this.value
   },
 
