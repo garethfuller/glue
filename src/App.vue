@@ -31,7 +31,7 @@ export default {
       textInput: '',
       token: 'BTC',
       items: ['BTC', 'ETH', 'BCH'],
-      switchVal: false
+      switchVal: true
     };
   },
 

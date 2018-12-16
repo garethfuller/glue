@@ -1,6 +1,6 @@
 <template lang="html">
   <label :class="['g-switch', classes]">
-    <input type="checkbox" :name="name" :value="internalVal" @click="clickHandler">
+    <input type="checkbox" :name="name" :value="internalVal" :checked="internalVal" @click="clickHandler">
     <span :class="['slider', sliderClasses]"></span>
   </label>
 </template>
