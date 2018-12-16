@@ -103,7 +103,7 @@ export default {
     },
 
     inputLabel() {
-      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return this.items[0];
+      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return this.value;
       return this.items.find(item => item[this.itemValue] === this.inputValue)[this.itemText];
     },
   },

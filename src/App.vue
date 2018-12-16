@@ -19,6 +19,8 @@
         label="Token"
       />
 
+      <g-select v-model="fiat" :items="['USD', 'EUR', 'GBP']" class="mt-4" label="Fiat"/>
+
       <g-switch v-model="switchVal" color="red" round class="mt-4"/>
       <g-switch v-model="switchVal" color="red" size="small" round class="mt-4"/>
       <g-switch v-model="switchVal" color="red" size="large" round class="mt-4"/>
@@ -45,6 +47,7 @@ export default {
         { value: 'md', label: 'Medium' },
         { value: 'lg', label: 'Large' },
       ],
+      fiat: 'USD'
     };
   },
 
