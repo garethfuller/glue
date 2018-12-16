@@ -6,7 +6,14 @@
     </div>
     <div class="card-number">
       <span class="mr-1" v-for="n in 3" :key="n">
-        <g-icon name="ion-md-medical" size="small" color="white-dark" class="number-mask mr-1" v-for="n in 4" :key="n"/>
+        <g-icon
+          name="fas fa-star-of-life"
+          size="small"
+          color="white-dark"
+          class="number-mask mr-1"
+          v-for="n in 4"
+          :key="n"
+        />
       </span>
       <span class="last4">{{ card.last4 }}</span>
     </div>
@@ -41,7 +48,7 @@ export default {
     },
 
     cardIconSrc() {
-      return `https://s3-eu-west-1.amazonaws.com/garethfuller/images/icons/credit_cards/${this.cardBrand}_dark.svg`
+      return `https://s3-eu-west-1.amazonaws.com/garethfuller/images/icons/credit_cards/${this.cardBrand}_dark.svg`;
     },
 
     cardBrand() {

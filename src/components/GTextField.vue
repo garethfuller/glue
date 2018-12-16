@@ -1,18 +1,22 @@
 <template lang="html">
   <div :class="['g-text-field', classes]">
     <div class="g-text-field-input-group">
-      <label v-if="label.length > 0" :for="name">{{ label }}
+      <label v-if="label" :for="name">{{ label }}
         <span v-if="required">*</span>
       </label>
       <label v-else :for="name">
         <slot name="label"></slot>
       </label>
-      <div class="g-text-field-input">
-        <div v-if="prepend" :class="['g-text-field-prepend', prependClasses]">
+      <div class="g-text-field-input flex">
+        <div v-if="prepend"
+          :class="[
+            `g-text-field-prepend bg-grey-lighter border-t border-b border-l
+            border-grey-lighter rounded-l`,
+            prependClasses]">
           <slot name="prepend"></slot>
         </div>
         <input
-          class="w-full rounded bg-grey-lighter border border-transparent leading-none"
+          :class="['w-full bg-grey-lighter border-grey-lighter leading-none', inputClasses]"
           :type="type"
           :value="value"
           :placeholder="placeholder"
@@ -26,6 +30,11 @@
           @blur="blur"
           @focus="focus"
         />
+        <div v-if="append"
+          :class="[`g-text-field-append bg-grey-lighter border-grey-lighter
+          border-t border-b border-r rounded-r`, appendClasses]">
+          <slot name="append"></slot>
+        </div>
       </div>
     </div>
     <div
@@ -45,12 +54,13 @@ export default {
   props: {
     type: { type: String, default: 'text' },
     value: { type: String, default: '' },
-    label: { type: String, default: '' },
+    label: { type: String, default: null },
     name: { type: String, default: '' },
     placeholder: { type: String, default: '' },
     horizontal: { type: Boolean, default: false },
     required: { type: Boolean, default: false },
     prepend: { type: Boolean, default: false },
+    append: { type: Boolean, default: false },
     raised: { type: Boolean, default: false },
     validations: { type: String, default: '' },
     validateOn: { type: String, default: 'blur' },
@@ -94,6 +104,17 @@ export default {
       };
     },
 
+    inputClasses() {
+      return {
+        'rounded border': !this.append && !this.prepend,
+        'rounded-l': !this.prepend,
+        'rounded-r': !this.append,
+        'border-t border-b': this.append && this.prepend,
+        'border-t border-b border-l': this.append && !this.prepend,
+        'border-t border-b border-r': !this.append && this.prepend
+      }
+    },
+
     prependClasses() {
       return {
         [`g-text-field-prepend-${this.size}`]: true,
@@ -102,6 +123,17 @@ export default {
         'g-text-field-prepend-complete': this.complete,
         'g-text-field-prepend-invalid': this.errors.has(this.name),
         'g-text-field-prepend-success': this.success,
+      };
+    },
+
+    appendClasses() {
+      return {
+        [`g-text-field-append-${this.size}`]: true,
+        'g-text-field-append-horizontal': this.horizontal,
+        'g-text-field-append-active': this.active,
+        'g-text-field-append-complete': this.complete,
+        'g-text-field-append-invalid': this.errors.has(this.name),
+        'g-text-field-append-success': this.success,
       };
     },
   },
@@ -114,6 +146,7 @@ export default {
     focus() {
       this.active = true;
       this.complete = false;
+      this.$emit('focus')
     },
 
     blur() {
@@ -147,11 +180,13 @@ export default {
    @apply text-grey-dark;
 }
 
-.g-text-field-prepend {
-  position: absolute;
-  display: block;
-  z-index: 10;
+.g-text-field-input-group {
+  & label {
+    @apply text-grey-darker;
+  }
 }
+
+
 
 .g-text-field-small {
   @apply text-sm;
@@ -183,13 +218,13 @@ export default {
   }
 
   & label {
-    @apply text-red;
+    @apply text-black;
   }
 }
 
 .g-text-field-complete {
   & input {
-    @apply bg-white-dark border-white-dark text-grey-darkest;
+    @apply bg-grey-lighter border-grey-lighter text-grey-darkest;
   }
 }
 
@@ -258,5 +293,33 @@ export default {
       @apply bg-white border-white text-grey-darkest;
     }
   }
+}
+
+/* APPEND & PREPEND */
+.g-text-field-prepend-small {
+  @apply text-sm py-2 px-4;
+}
+.g-text-field-prepend-medium {
+  @apply text-base py-3 px-4;
+}
+.g-text-field-prepend-large {
+  @apply text-lg py-4 px-4;
+}
+
+.g-text-field-append-small {
+  @apply text-sm py-2 px-4;
+}
+.g-text-field-append-medium {
+  @apply text-base py-3 px-4;
+}
+.g-text-field-append-large {
+  @apply text-lg py-4 px-4;
+}
+
+.g-text-field-prepend-active {
+  @apply bg-transparent;
+}
+.g-text-field-append-active {
+  @apply bg-transparent;
 }
 </style>

@@ -1,0 +1,7 @@
+.fade-in-up-enter-active, .fade-in-up-leave-active {
+  transition: all .5s ease;
+}
+.fade-in-up-enter, .fade-in-up-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}

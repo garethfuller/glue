@@ -20,3 +20,5 @@ export { default as GMenuItem } from './g_menu/GMenuItem.vue';
 export { default as GPopover } from './GPopover.vue';
 export { default as GSnackbar } from './g_snackbar/GSnackbar.vue';
 export { default as GSnackbarList } from './g_snackbar/GSnackbarList.vue';
+export { default as GSelect } from './g_select/GSelect.vue';
+export { default as GSelectItem } from './g_select/GSelectItem.vue';

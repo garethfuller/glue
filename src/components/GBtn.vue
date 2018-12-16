@@ -4,9 +4,9 @@
     :class="['g-btn font-medium', classes]"
     v-bind="additionalAttrs"
     @click="clickHandler">
-    <div class="g-btn-contents leading-none">
+    <span class="g-btn-contents leading-none">
       <slot></slot>
-    </div>
+    </span>
   </component>
 </template>
 
@@ -94,6 +94,8 @@ export default {
 
 <style lang="css" scoped>
 .g-btn {
+  padding: 0;
+  margin: 0;
   border: none;
   text-decoration: none;
   display: inline-block;
@@ -103,10 +105,12 @@ export default {
   -moz-transition: all .2s ease;
   -o-transition: all .2s ease;
   -ms-transition: all .2s ease;
+
   &:active, &:focus {
     outline: none;
   }
 }
+
 .g-btn-contents {
   width: 100%;
   height: 100%;
@@ -114,152 +118,189 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .g-btn-small {
-  @apply .text-sm;
-  @apply .py-1;
-  @apply .px-2;
+  & .g-btn-contents {
+    @apply text-sm py-1 px-2;
+  }
 }
+
 .g-btn-medium {
-  @apply .text-base;
-  @apply .py-3;
-  @apply .px-4;
+  & .g-btn-contents {
+    @apply .text-base py-3 px-4;
+  }
 }
+
 .g-btn-large {
-  @apply .text-lg;
-  @apply .py-4;
-  @apply .px-6;
+  & .g-btn-contents {
+    @apply text-lg py-4 px-6;
+  }
 }
+
 .g-btn:hover {
   cursor: pointer;
   transform: translateY(-1px);
   @apply .shadow-md;
 }
+
 .g-btn:active {
   @apply .shadow-none;
   transform: translateY(.5px);
 }
+
 .g-btn.g-btn-flat:hover {
   cursor: pointer;
   transform: translateY(0px) !important;
   box-shadow: none !important;
 }
+
 .g-btn.g-btn-flat:active {
   transform: translateY(0px) !important;
   box-shadow: none !important;
 }
+
 .g-btn.g-btn-flat.g-btn-default:hover {
   @apply .bg-white-dark;
 }
+
 .g-btn.g-btn-flat.g-btn-default:active {
   @apply .bg-grey-lightest;
 }
+
 .g-btn.g-btn-flat.g-btn-primary:hover {
   background-color: rgba($red-lightest, .2)
 }
+
 .g-btn.g-btn-flat.g-btn-primary:active {
   background-color: rgba($red-lightest, .4)
 }
+
 .g-btn.g-btn-flat.g-btn-secondary:hover {
   background-color: rgba($orange-lightest, .2)
 }
+
 .g-btn.g-btn-flat.g-btn-secondary:active {
   background-color: rgba($orange-lightest, .4)
 }
+
 .g-btn.g-btn-flat.g-btn-green:hover {
   background-color: rgba($green-lightest, .2)
 }
+
 .g-btn.g-btn-flat.g-btn-green:active {
   background-color: rgba($green-lightest, .4)
 }
+
 .g-btn.g-btn-flat.g-btn-blue:hover {
   background-color: rgba($red-lightest, .2)
 }
+
 .g-btn.g-btn-flat.g-btn-blue:active {
   background-color: rgba($red-lightest, .4)
 }
+
 .g-btn.g-btn-flat.g-btn-red:hover {
   background-color: rgba($red-lightest, .2)
 }
+
 .g-btn.g-btn-flat.g-btn-red:active {
   background-color: rgba($red-lightest, .4)
 }
+
 .g-btn.g-btn-flat.g-btn-white:hover {
   background-color: rgba(white, .3);
 }
+
 .g-btn.g-btn-flat.g-btn-white:active {
   background-color: rgba(white, .1);
 }
+
 .g-btn.g-btn-flat.g-btn-grey:hover {
   @apply .bg-white-dark;
 }
+
 .g-btn.g-btn-flat.g-btn-grey:active {
   @apply .bg-grey-lightest;
 }
+
 .g-btn-default {
   @apply .bg-white;
   @apply .text-red;
   @apply .shadow;
 }
+
 .g-btn-flat.g-btn-default {
   @apply .bg-transparent;
   @apply .text-black;
   @apply .shadow-none;
 }
+
 .g-btn-primary {
   @apply .bg-red;
   @apply .text-white;
   @apply .shadow;
 }
+
 .g-btn-flat.g-btn-primary {
   @apply .bg-transparent;
   @apply .text-blue;
   @apply .shadow-none;
 }
+
 .g-btn-secondary {
   @apply .bg-orange;
   @apply .text-white;
   @apply .shadow;
 }
+
 .g-btn-flat.g-btn-secondary {
   @apply .bg-transparent;
   @apply .text-orange;
   @apply .shadow-none;
 }
+
 .g-btn-blue {
   @apply .bg-blue;
   @apply .text-white;
   @apply .shadow;
 }
+
 .g-btn-flat.g-btn-blue {
   @apply .bg-transparent;
   @apply .text-blue;
   @apply .shadow-none;
 }
+
 .g-btn-red {
   @apply .bg-red;
   @apply .text-white;
   @apply .shadow;
 }
+
 .g-btn-flat.g-btn-red {
   @apply .bg-transparent;
   @apply .text-red;
   @apply .shadow-none;
 }
+
 .g-btn-green {
   @apply .bg-green;
   @apply .text-white;
   @apply .shadow;
 }
+
 .g-btn-flat.g-btn-green {
   @apply .bg-transparent;
   @apply .text-green;
   @apply .shadow-none;
 }
+
 .g-btn-flat.g-btn-white {
   @apply .bg-transparent;
   @apply .text-white;
   @apply .shadow-none;
 }
+
 .g-btn-flat.g-btn-white-dark {
   @apply .bg-transparent .text-black .shadow-none;
   &:hover {
@@ -271,23 +312,28 @@ export default {
     transform: translateY(0px) !important;
   }
 }
+
 .g-btn-flat.g-btn-grey {
   @apply .bg-transparent .text-grey .shadow-none;
 }
+
 .g-btn-disabled {
   opacity: 0.5;
   @apply .shadow-none;
 }
+
 .g-btn-disabled:hover {
   @apply .shadow-none;
   cursor: not-allowed;
   transform: translateY(0px) !important;
 }
+
 .g-btn-disabled:active {
   @apply .shadow-none;
   cursor: not-allowed;
   transform: translateY(0px) !important;
 }
+
 .g-btn-circle.g-btn-small {
   @apply .text-sm .rounded-full .w-6 .h-6;
   & > .g-btn-contents {
@@ -296,6 +342,7 @@ export default {
     align-items: center;
   }
 }
+
 .g-btn-circle.g-btn-medium {
   @apply .text-base .rounded-full .w-8 .h-8;
   & > .g-btn-contents {
@@ -304,6 +351,7 @@ export default {
     align-items: center;
   }
 }
+
 .g-btn-circle.g-btn-large {
   @apply .text-lg .rounded-full .w-12 .h-12;
   & > .g-btn-contents {

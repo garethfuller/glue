@@ -1,6 +1,7 @@
 import * as components from './components';
 import * as mixins from './mixins';
 import * as directives from './directives';
+import './assets/css/main.css'
 
 const Glue = {
   install(Vue) {
@@ -13,7 +14,7 @@ const Glue = {
     });
 
     Object.keys(directives).forEach((directive) => {
-      Vue.component(directives[directive].name, directives[directive].directive);
+      Vue.directive(directives[directive].name, directives[directive].directive);
     });
   },
 };
