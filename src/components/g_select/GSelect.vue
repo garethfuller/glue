@@ -1,7 +1,7 @@
 <template lang="html">
   <div v-g-click-outside="closeItems" :class="['g-select', classes]">
     <g-text-field
-      v-model="inputValue"
+      v-model="inputLabel"
       :label="label"
       :attrs="inputAttrs"
       :required="required"
@@ -80,7 +80,6 @@ export default {
       return attrs
     },
 
-
     classes() {
       return {
         [`g-select-${this.size}`]: true,
@@ -101,6 +100,12 @@ export default {
       return {
         'chevron-active': this.showItems
       }
+    },
+
+    inputLabel() {
+      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return this.items[0];
+      console.log(this.items.find(item => item[this.itemValue] === this.inputValue));
+      return this.items.find(item => item[this.itemValue] === this.inputValue)[this.itemText];
     }
   },
 

@@ -9,7 +9,15 @@
     <div class="flex w-1/4 flex-col">
       <g-text-field v-model="textInput" placeholder="Your name" />
 
-      <g-select v-model="token" :items="items" class="mt-4" required label="Token" />
+      <g-select
+        v-model="token"
+        :items="selectOptions"
+        item-text="label"
+        item-value="value"
+        class="mt-4"
+        required
+        label="Token"
+      />
 
       <g-switch v-model="switchVal" color="red" round class="mt-4"/>
       <g-switch v-model="switchVal" color="red" size="small" round class="mt-4"/>
@@ -29,9 +37,14 @@ export default {
   data() {
     return {
       textInput: '',
-      token: 'BTC',
-      items: ['BTC', 'ETH', 'BCH'],
-      switchVal: true
+      token: 'lg',
+      switchVal: true,
+      selectOptions: [
+        { value: 'none', label: 'None' },
+        { value: 'sm', label: 'Small' },
+        { value: 'md', label: 'Medium' },
+        { value: 'lg', label: 'Large' },
+      ]
     };
   },
 
