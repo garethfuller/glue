@@ -7,7 +7,15 @@
 
     <h1 class="my-8">Inputs</h1>
     <div class="flex w-1/4 flex-col">
-      <g-text-field v-model="textInput" placeholder="Your name" />
+      <g-text-field
+        v-model="textInput"
+        placeholder="Your name"
+        label="Name"
+        name="name"
+        horizontal
+        required
+        validations="required"
+      />
 
       <g-select
         v-model="token"

@@ -240,41 +240,18 @@ export default {
 }
 
 .g-text-field-horizontal {
-  display: flex;
-  flex-direction: column;
+  & .g-text-field-input-group {
 
-  & > .g-text-field-input-group {
-    display: flex;
-    text-align: left;
-    @apply flex-col;
+    & .g-text-field-input {
 
-    @screen sm {
-      @apply flex-row;
     }
 
-    & > .g-text-field-input {
-      flex: 68%;
-    }
+    & label {
 
-    & > label {
-      align-self: start;
-      flex: 32%;
-      @apply mr-1;
-
-      @screen sm {
-        align-self: center;
-      }
     }
   }
 
-  & > .g-text-field-error {
-    width: 100%;
-    align-self: flex-start;
-
-    @screen sm {
-      width: 68%;
-      align-self: flex-end;
-    }
+  & .g-text-field-error {
   }
 }
 
