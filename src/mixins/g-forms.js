@@ -2,8 +2,12 @@ const GForms = {
   methods: {
     errorHandler(err) {
       if (Object.keys(err).length > 0) {
-        console.error(err);
-        this.serverToVeeErrors(err).forEach(error => this.$validator.errors.add(...error));
+        this.serverToVeeErrors(err).forEach(error => {
+          this.errors.add({
+            field: error[0],
+            msg: error[1],
+          })
+        });
       }
     },
 
