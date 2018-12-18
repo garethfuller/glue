@@ -35,6 +35,8 @@
 export default {
   name: 'GSelect',
 
+  inject: ['$validator'],
+
   props: {
     value: { type: String },
     label: { type: String, default: null },
