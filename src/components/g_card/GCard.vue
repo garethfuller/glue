@@ -16,6 +16,12 @@ export default {
   props: {
     loading: { type: Boolean, default: false },
   },
+
+  computed: {
+    classes() {
+      return {}
+    }
+  }
 };
 </script>
 
