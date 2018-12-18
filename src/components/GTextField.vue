@@ -215,7 +215,7 @@ export default {
 
 .g-text-field-active {
   & input {
-    @apply border-grey-lighter bg-transparent;
+    @apply border-grey-light bg-transparent;
   }
 
   & label {
