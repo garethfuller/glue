@@ -5,7 +5,8 @@
     v-bind="additionalAttrs"
     @click="clickHandler">
     <span class="g-btn-contents leading-none">
-      <slot></slot>
+      <g-loading-animation v-if="loading" :color="loadingAnimationColor" />
+      <slot v-else></slot>
     </span>
   </component>
 </template>
@@ -63,10 +64,6 @@ export default {
     },
 
     loadingAnimationColor() {
-      if (this.color === 'default') {
-        if (this.flat) return 'black';
-        return 'primary';
-      }
       if (this.flat) return this.color;
       return 'white';
     },
