@@ -59,7 +59,7 @@ export default {
         [`g-btn-bg-shade-${this.bgShade}`]: true,
         rounded: !this.rounded,
         'rounded-full': this.rounded,
-        block: this.block,
+        'block w-full': this.block,
       };
     },
 

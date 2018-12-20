@@ -184,7 +184,7 @@ export default {
 
 .g-text-field-input-group {
   & label {
-    @apply text-grey-darker;
+    @apply text-grey-darker font-medium;
   }
 }
 

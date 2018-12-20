@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="g-card-title p-4">
-    <h3 :class="['heading-m flex items-center w-full', classes]">
+    <h3 :class="['m-0 flex items-center w-full', classes, headingClass]">
       <slot></slot>
     </h3>
   </div>
@@ -12,6 +12,7 @@ export default {
 
   props: {
     center: { type: Boolean, default: false },
+    headingClass: { type: String, default: 'headline' }
   },
 
   computed: {
