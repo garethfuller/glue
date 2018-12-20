@@ -37,7 +37,7 @@ export default {
   created() {
     const self = this;
     if (!this.snackbar.persistent) {
-      this.sleep(5000).then(res => self.remove(self.snackbar));
+      this.sleep(5000).then(res => self.$emit('closed', self.snackbar));
     }
   },
 
@@ -70,7 +70,7 @@ export default {
 
   methods: {
     handleClose() {
-      this.$emit('closed');
+      this.$emit('closed', this.snackbar);
     },
   },
 };
