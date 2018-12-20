@@ -18,8 +18,8 @@ export default {
   props: {
     color: {
       type: String,
-      default: 'blue',
-      validator: value => ['blue', 'red', 'green', 'white', 'white-dark', 'grey'].indexOf(value) !== -1,
+      default: 'white',
+      validator: value => ['blue', 'red', 'green', 'orange', 'white', 'white-dark', 'grey'].indexOf(value) !== -1,
     },
     size: {
       type: String,
@@ -156,30 +156,6 @@ export default {
   box-shadow: none !important;
 }
 
-.g-btn.g-btn-flat.g-btn-default:hover {
-  @apply .bg-white-dark;
-}
-
-.g-btn.g-btn-flat.g-btn-default:active {
-  @apply .bg-grey-lightest;
-}
-
-.g-btn.g-btn-flat.g-btn-primary:hover {
-  background-color: rgba($red-lightest, .2)
-}
-
-.g-btn.g-btn-flat.g-btn-primary:active {
-  background-color: rgba($red-lightest, .4)
-}
-
-.g-btn.g-btn-flat.g-btn-secondary:hover {
-  background-color: rgba($orange-lightest, .2)
-}
-
-.g-btn.g-btn-flat.g-btn-secondary:active {
-  background-color: rgba($orange-lightest, .4)
-}
-
 .g-btn.g-btn-flat.g-btn-green:hover {
   background-color: rgba($green-lightest, .2)
 }
@@ -220,82 +196,39 @@ export default {
   @apply .bg-grey-lightest;
 }
 
-.g-btn-default {
-  @apply .bg-white;
-  @apply .text-red;
-  @apply .shadow;
-}
-
-.g-btn-flat.g-btn-default {
-  @apply .bg-transparent;
-  @apply .text-black;
-  @apply .shadow-none;
-}
-
-.g-btn-primary {
-  @apply .bg-red;
-  @apply .text-white;
-  @apply .shadow;
-}
-
-.g-btn-flat.g-btn-primary {
-  @apply .bg-transparent;
-  @apply .text-blue;
-  @apply .shadow-none;
-}
-
-.g-btn-secondary {
-  @apply .bg-orange;
-  @apply .text-white;
-  @apply .shadow;
-}
-
-.g-btn-flat.g-btn-secondary {
-  @apply .bg-transparent;
-  @apply .text-orange;
-  @apply .shadow-none;
-}
-
 .g-btn-blue {
-  @apply .bg-blue;
-  @apply .text-white;
-  @apply .shadow;
+  @apply .bg-blue text-white shadow;
 }
-
 .g-btn-flat.g-btn-blue {
-  @apply .bg-transparent;
-  @apply .text-blue;
-  @apply .shadow-none;
+  @apply bg-transparent text-blue shadow-none;
 }
 
 .g-btn-red {
-  @apply .bg-red;
-  @apply .text-white;
-  @apply .shadow;
+  @apply bg-red text-white shadow;
 }
-
 .g-btn-flat.g-btn-red {
-  @apply .bg-transparent;
-  @apply .text-red;
-  @apply .shadow-none;
+  @apply .bg-transparent text-red shadow-none;
 }
 
 .g-btn-green {
-  @apply .bg-green;
-  @apply .text-white;
-  @apply .shadow;
+  @apply .bg-green text-white shadow;
 }
-
 .g-btn-flat.g-btn-green {
-  @apply .bg-transparent;
-  @apply .text-green;
-  @apply .shadow-none;
+  @apply bg-transparent text-green shadow-none;
 }
 
+.g-btn-orange {
+  @apply bg-orange text-white shadow;
+}
+.g-btn-flat.g-btn-orange {
+  @apply bg-transparent text-orange shadow-none;
+}
+
+.g-btn-white {
+  @apply bg-white text-black shadow;
+}
 .g-btn-flat.g-btn-white {
-  @apply .bg-transparent;
-  @apply .text-white;
-  @apply .shadow-none;
+  @apply bg-white text-black shadow-none;
 }
 
 .g-btn-flat.g-btn-white-dark {
