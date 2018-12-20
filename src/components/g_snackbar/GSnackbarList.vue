@@ -20,9 +20,9 @@ export default {
 
   methods: {
     closeHandler(snackbar) {
-      this.$emit('closed', snackbar)
-    }
-  }
+      this.$emit('closed', snackbar);
+    },
+  },
 };
 </script>
 

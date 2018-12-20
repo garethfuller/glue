@@ -61,7 +61,7 @@ export default {
         { value: 'md', label: 'Medium' },
         { value: 'lg', label: 'Large' },
       ],
-      fiat: 'USD'
+      fiat: 'USD',
     };
   },
 

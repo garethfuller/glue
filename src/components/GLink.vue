@@ -11,31 +11,35 @@ export default {
   props: {
     to: { type: String, default: null },
     href: { type: String, default: null },
-    color: { type: String, default: 'black', validator: (value) => {
-      return ['black', 'blue', 'orange', 'blue', 'white', 'red'].indexOf(value) !== -1
-    }},
-    size: { type: String, default: 'base', validator: (value) => {
-      return ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'].indexOf(value) !== -1
-    }}
+    color: {
+      type: String,
+      default: 'black',
+      validator: value => ['black', 'blue', 'orange', 'blue', 'white', 'red'].indexOf(value) !== -1,
+    },
+    size: {
+      type: String,
+      default: 'base',
+      validator: value => ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'].indexOf(value) !== -1,
+    },
   },
 
   computed: {
     classes() {
       return {
         [`text-${this.color} hover:text-${this.color}-darker`]: true,
-        [`text-${this.size}`]: true
-      }
-    }
+        [`text-${this.size}`]: true,
+      };
+    },
   },
 
   methods: {
     clicked(e) {
-      if (this.to) e.preventDefault()
-      this.$emit('clicked')
-      this.$router.push(this.to)
-    }
-  }
-}
+      if (this.to) e.preventDefault();
+      this.$emit('clicked');
+      this.$router.push(this.to);
+    },
+  },
+};
 </script>
 
 <style lang="css" scoped>

@@ -12,7 +12,7 @@ export default {
 
   props: {
     center: { type: Boolean, default: false },
-    headingClass: { type: String, default: 'headline' }
+    headingClass: { type: String, default: 'headline' },
   },
 
   computed: {

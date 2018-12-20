@@ -2,11 +2,11 @@ const GForms = {
   methods: {
     errorHandler(err) {
       if (Object.keys(err).length > 0) {
-        this.serverToVeeErrors(err).forEach(error => {
+        this.serverToVeeErrors(err).forEach((error) => {
           this.errors.add({
             field: error[0],
             msg: error[1],
-          })
+          });
         });
       }
     },

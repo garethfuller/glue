@@ -19,9 +19,9 @@ export default {
 
   computed: {
     classes() {
-      return {}
-    }
-  }
+      return {};
+    },
+  },
 };
 </script>
 
