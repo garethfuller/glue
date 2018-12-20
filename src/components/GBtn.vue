@@ -92,7 +92,6 @@ export default {
 <style lang="css" scoped>
 .g-btn {
   padding: 0;
-  margin: 0;
   border: none;
   text-decoration: none;
   display: inline-block;
