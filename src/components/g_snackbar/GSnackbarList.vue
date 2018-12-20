@@ -17,10 +17,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-:root {
-  --max-width: 350px;
-}
-
 .g-snackbar-list {
   z-index: 9999 !important;
   display: flex;
@@ -29,11 +25,10 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  max-width: var(--max-width);
-
+  max-width: 350px;
 }
 @screen sm {
-  .g-snackbars {
+  .g-snackbar-list {
     left: calc((100% / 2) - (350px / 2));
   }
 }
