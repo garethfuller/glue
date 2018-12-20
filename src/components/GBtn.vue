@@ -37,11 +37,6 @@ export default {
     circle: { type: Boolean, default: false },
     rounded: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
-    bgShade: {
-      type: String,
-      default: 'light',
-      validator: value => ['light', 'dark'].indexOf(value) !== -1,
-    },
     to: { type: String },
     attrs: { type: Object, default: () => ({}) },
     block: { type: Boolean, default: false },
@@ -56,7 +51,6 @@ export default {
         'g-btn-circle': this.circle,
         [`g-btn-${this.color}`]: true,
         [`g-btn-${this.size}`]: true,
-        [`g-btn-bg-shade-${this.bgShade}`]: true,
         rounded: !this.rounded,
         'rounded-full': this.rounded,
         'block w-full': this.block,
@@ -123,7 +117,7 @@ export default {
 
 .g-btn-medium {
   & .g-btn-contents {
-    @apply .text-base py-3 px-4;
+    @apply text-base py-3 px-4;
   }
 }
 
@@ -136,11 +130,11 @@ export default {
 .g-btn:hover {
   cursor: pointer;
   transform: translateY(-1px);
-  @apply .shadow-md;
+  @apply shadow-md;
 }
 
 .g-btn:active {
-  @apply .shadow-none;
+  @apply shadow-none;
   transform: translateY(.5px);
 }
 
@@ -156,35 +150,38 @@ export default {
 }
 
 .g-btn.g-btn-flat.g-btn-green:hover {
-  background-color: rgba($green-lightest, .2)
+  background-color: config('colors.green-lightest')33;
 }
-
 .g-btn.g-btn-flat.g-btn-green:active {
-  background-color: rgba($green-lightest, .4)
+  background-color: config('colors.green-lightest')66;
 }
 
 .g-btn.g-btn-flat.g-btn-blue:hover {
-  background-color: rgba($red-lightest, .2)
+  background-color: config('colors.blue-lightest')33;
 }
-
 .g-btn.g-btn-flat.g-btn-blue:active {
-  background-color: rgba($red-lightest, .4)
+  background-color: config('colors.blue-lightest')66;
 }
 
 .g-btn.g-btn-flat.g-btn-red:hover {
-  background-color: rgba($red-lightest, .2)
+  background-color: config('colors.red-lightest')33;
+}
+.g-btn.g-btn-flat.g-btn-red:active {
+  background-color: config('colors.red-lightest')66;
 }
 
-.g-btn.g-btn-flat.g-btn-red:active {
-  background-color: rgba($red-lightest, .4)
+.g-btn.g-btn-flat.g-btn-orange:hover {
+  background-color: config('colors.orange-lightest')33;
+}
+.g-btn.g-btn-flat.g-btn-orange:active {
+  background-color: config('colors.orange-lightest')66;
 }
 
 .g-btn.g-btn-flat.g-btn-white:hover {
-  background-color: rgba(white, .3);
+  background-color: rgba(255,255,255, .3);
 }
-
 .g-btn.g-btn-flat.g-btn-white:active {
-  background-color: rgba(white, .1);
+  background-color: rgba(255,255,255, .1);
 }
 
 .g-btn.g-btn-flat.g-btn-grey:hover {
@@ -227,7 +224,7 @@ export default {
   @apply bg-white text-black shadow;
 }
 .g-btn-flat.g-btn-white {
-  @apply bg-white text-black shadow-none;
+  @apply bg-transparent text-black shadow-none;
 }
 
 .g-btn-flat.g-btn-white-dark {

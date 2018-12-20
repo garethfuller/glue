@@ -13,7 +13,7 @@
       </div>
       <div v-if="persistent" class="g-snackbar-close">
         <g-btn flat circle @click.native="handleClose" size="small" color="white">
-          <g-icon name="ion-md-close" color="white" size="small"></g-icon>
+          <g-icon name="fas fa-times" size="small" color="white"></g-icon>
         </g-btn>
       </div>
     </div>
