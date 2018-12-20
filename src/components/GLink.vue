@@ -1,5 +1,5 @@
 <template lang="html">
-  <a :href="href" :class="['g-link no-underline cursor-pointer', classes]" @click="clicked">
+  <a :href="href" :class="['g-link no-underline hover:no-underline cursor-pointer', classes]" @click="clicked">
     <slot></slot>
   </a>
 </template>
@@ -22,7 +22,7 @@ export default {
   computed: {
     classes() {
       return {
-        [`text-${this.color} hover:text-${this.color}-darkest`]: true,
+        [`text-${this.color} hover:text-${this.color}-darker`]: true,
         [`text-${this.size}`]: true
       }
     }
