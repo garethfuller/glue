@@ -5,7 +5,7 @@
     leave-active-class="bounceOutUp">
     <div v-if="visible" :class="['g-snackbar rounded shadow-lg', classes]">
       <div class="g-snackbar-icon" v-if="hasIcon">
-        <g-icon class="icon" :name="snackbar.icon" color="white" size="large"></g-icon>
+        <g-icon class="icon heading-s" :name="snackbar.icon" color="white" size="large"></g-icon>
       </div>
       <div class="contents">
         <h2 class="heading-s" v-html="snackbar.title"></h2>
