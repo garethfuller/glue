@@ -10,13 +10,13 @@
       <div class="g-text-field-input flex">
         <div v-if="prepend"
           :class="[
-            `g-text-field-prepend bg-grey-lighter border-t border-b border-l
-            border-grey-lighter rounded-l`,
+            `g-text-field-prepend bg-grey-lightest border-t border-b border-l
+            border-grey-lightest rounded-l`,
             prependClasses]">
           <slot name="prepend"></slot>
         </div>
         <input
-          :class="['w-full bg-grey-lighter border-grey-lighter leading-none', inputClasses]"
+          :class="['w-full bg-grey-lightest border-grey-lightest leading-none', inputClasses]"
           :type="type"
           :value="value"
           :placeholder="placeholder"
@@ -31,7 +31,7 @@
           @focus="focus"
         />
         <div v-if="append"
-          :class="[`g-text-field-append bg-grey-lighter border-grey-lighter
+          :class="[`g-text-field-append bg-grey-lightest border-grey-lightest
           border-t border-b border-r rounded-r`, appendClasses]">
           <slot name="append"></slot>
         </div>
@@ -225,7 +225,7 @@ export default {
 
 .g-text-field-complete {
   & input {
-    @apply bg-grey-lighter border-grey-lighter text-grey-darkest;
+    @apply bg-grey-lightest border-grey-lightest text-grey-darkest;
   }
 }
 
