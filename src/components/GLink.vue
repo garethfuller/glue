@@ -1,5 +1,5 @@
 <template lang="html">
-  <a :href="href" :class="['g-link no-underline hover:no-underline cursor-pointer', classes]" @click="clicked">
+  <a :href="href" :class="['g-link no-underline hover:no-underline cursor-pointer leading-none', classes]" @click="clicked">
     <slot></slot>
   </a>
 </template>
