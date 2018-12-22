@@ -183,7 +183,7 @@ export default {
 }
 
 .g-text-field {
-  & input[type="text"] {
+  & input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
