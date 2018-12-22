@@ -12,7 +12,7 @@
             v-for="lang in langs"
             :key="internalLang"
             flat
-            color="white"
+            color="black"
             size="small"
             :class="['ml-2', { active: isActive(internalLang) }]"
             @click.native="changeLangTo(internalLang)">

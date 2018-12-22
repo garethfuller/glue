@@ -19,7 +19,7 @@ export default {
     color: {
       type: String,
       default: 'white',
-      validator: value => ['blue', 'red', 'green', 'orange', 'white', 'white-dark', 'grey'].indexOf(value) !== -1,
+      validator: value => ['blue', 'red', 'green', 'orange', 'white', 'black'].indexOf(value) !== -1,
     },
     size: {
       type: String,
@@ -58,6 +58,7 @@ export default {
     },
 
     loadingAnimationColor() {
+      if (this.color === 'white') return 'black'
       if (this.flat) return this.color;
       return 'white';
     },
@@ -178,10 +179,17 @@ export default {
 }
 
 .g-btn.g-btn-flat.g-btn-white:hover {
-  background-color: rgba(255,255,255, .3);
+  background-color: rgba(0,0,0, .1);
 }
 .g-btn.g-btn-flat.g-btn-white:active {
+  background-color: rgba(0,0,0, .05);
+}
+
+.g-btn.g-btn-flat.g-btn-black:hover {
   background-color: rgba(255,255,255, .1);
+}
+.g-btn.g-btn-flat.g-btn-black:active {
+  background-color: rgba(255,255,255, .05);
 }
 
 .g-btn.g-btn-flat.g-btn-grey:hover {
@@ -227,20 +235,11 @@ export default {
   @apply bg-transparent text-black shadow-none;
 }
 
-.g-btn-flat.g-btn-white-dark {
-  @apply .bg-transparent .text-black .shadow-none;
-  &:hover {
-    background-color: darken($white-dark, 3%);
-    transform: translateY(0px) !important;
-  }
-  &:active {
-    background-color: darken($white-dark, 5%);
-    transform: translateY(0px) !important;
-  }
+.g-btn-black {
+  @apply bg-black text-white shadow;
 }
-
-.g-btn-flat.g-btn-grey {
-  @apply .bg-transparent .text-grey .shadow-none;
+.g-btn-flat.g-btn-black {
+  @apply bg-transparent text-white shadow-none;
 }
 
 .g-btn-disabled {
