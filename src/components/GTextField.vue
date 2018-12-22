@@ -182,12 +182,17 @@ export default {
    @apply text-grey-dark;
 }
 
+.g-text-field {
+  & input[type="text"] {
+    box-shadow: none !important;
+  }
+}
+
 .g-text-field-input-group {
   & label {
     @apply text-grey-darker font-medium;
   }
 }
-
 
 .g-text-field-small {
   @apply text-sm;
