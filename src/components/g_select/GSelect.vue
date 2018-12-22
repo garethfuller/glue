@@ -16,18 +16,20 @@
         />
       </div>
     </g-text-field>
-    <transition name="fade-in-up">
-      <div v-if="showItems" class="g-select-items rounded shadow">
-        <g-select-item
-          v-for="(item, index) in items"
-          :text="textFor(item)"
-          :key="index"
-          :size="size"
-          @click.native="itemSelected(item)"
-          class=""
-        />
-      </div>
-    </transition>
+    <div class="relative">
+      <transition name="fade-in-up">
+        <div v-if="showItems" class="g-select-items rounded shadow bg-white absolute w-full z-50">
+          <g-select-item
+            v-for="(item, index) in items"
+            :text="textFor(item)"
+            :key="index"
+            :size="size"
+            @click.native="itemSelected(item)"
+            class=""
+          />
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 

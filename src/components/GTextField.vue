@@ -303,9 +303,9 @@ export default {
 }
 
 .g-text-field-prepend-active {
-  @apply bg-transparent;
+  @apply bg-transparent border-grey-light;
 }
 .g-text-field-append-active {
-  @apply bg-transparent;
+  @apply bg-transparent border-grey-light;
 }
 </style>
