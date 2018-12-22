@@ -184,7 +184,10 @@ export default {
 
 .g-text-field {
   & input[type="text"] {
-    box-shadow: none !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-shadow: none;
   }
 }
 
