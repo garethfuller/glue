@@ -22,9 +22,7 @@
       </div>
     </div>
     <div class="code-container rounded-b">
-      <pre v-highlightjs="selectedCodeSnippet">
-        <code :class="internalLang" class="rounded-b p-4"></code>
-      </pre>
+      <pre v-highlightjs="selectedCodeSnippet"><code :class="internalLang" class="rounded-b p-4"></code></pre>
     </div>
   </div>
 </template>
