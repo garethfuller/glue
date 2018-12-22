@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="g-code">
-    <div class="header w-full block rounded-t shadow-lg px-2 py-1">
+  <div :class="['g-code', classes, shadow]">
+    <div class="header w-full block rounded-t px-2 py-1">
       <div class="contents flex justify-between">
         <div class="fake-controls">
           <g-dot color="red" class="mr-2" />
@@ -43,6 +43,7 @@ export default {
     langs: { type: Array, default: () => ['ruby', 'javascript', 'bash', 'html'] },
     lang: { type: String, default: 'bash' },
     code: { type: Object, required: true },
+    shadow: { type: String, default: 'shadow-lg' }
   },
 
   data: () => ({
@@ -63,6 +64,10 @@ export default {
     selectedCodeSnippet() {
       return this.code[this.internalLang];
     },
+
+    classes() {
+      return {}
+    }
   },
 
   methods: {
