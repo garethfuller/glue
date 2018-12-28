@@ -16,7 +16,7 @@
 
     <h1 class="my-8">Inputs</h1>
     <div class="flex w-1/4 flex-col">
-      <!-- <g-text-field
+      <g-text-field
         v-model="textInput"
         placeholder="Your name"
         label="Name"
@@ -42,7 +42,7 @@
       <g-switch v-model="switchVal" color="red" size="small" round class="mt-4"/>
       <g-switch v-model="switchVal" color="red" size="large" round class="mt-4"/>
 
-      <g-code :code="codeSnippet" :langs="['html']" lang="html" /> -->
+      <g-code :code="codeSnippet" :langs="['html']" lang="html" />
 
     </div>
 
@@ -61,6 +61,22 @@
           Fiat settings
         </g-tab>
       </g-tabs>
+    </div>
+
+    <div>
+      <h1 class="my-8">Grid</h1>
+
+      <g-grid spacing="2">
+        <g-grid-item width="1/3">
+          <div class="border h-64"></div>
+        </g-grid-item>
+        <g-grid-item width="1/3">
+          <div class="border h-64"></div>
+        </g-grid-item>
+        <g-grid-item width="1/3">
+          <div class="border h-64"></div>
+        </g-grid-item>
+      </g-grid>
     </div>
 
   </div>
