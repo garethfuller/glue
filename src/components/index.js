@@ -25,3 +25,5 @@ export { default as GSelectItem } from './g_select/GSelectItem.vue';
 export { default as GSwitch } from './GSwitch.vue';
 export { default as GCode } from './GCode.vue';
 export { default as GLink } from './GLink.vue';
+export { default as GTabs } from './g_tabs/GTabs.vue';
+export { default as GTab } from './g_tabs/GTab.vue';

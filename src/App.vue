@@ -2,7 +2,7 @@
   <div id="app" class="p-8">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-    <g-snackbar-list :snackbars="[{title: 'error', type: 'error', description: 'description', persistent: true, icon: 'fas fa-exclamation-triangle'}]"/>
+    <!-- <g-snackbar-list :snackbars="[{title: 'error', type: 'error', description: 'description', persistent: true, icon: 'fas fa-exclamation-triangle'}]"/> -->
 
     <h1 class="my-8">Links</h1>
     <g-link to="/here" color="blue">Here</g-link><br>
@@ -16,7 +16,7 @@
 
     <h1 class="my-8">Inputs</h1>
     <div class="flex w-1/4 flex-col">
-      <g-text-field
+      <!-- <g-text-field
         v-model="textInput"
         placeholder="Your name"
         label="Name"
@@ -42,7 +42,25 @@
       <g-switch v-model="switchVal" color="red" size="small" round class="mt-4"/>
       <g-switch v-model="switchVal" color="red" size="large" round class="mt-4"/>
 
-      <g-code :code="codeSnippet" :langs="['html']" lang="html" />
+      <g-code :code="codeSnippet" :langs="['html']" lang="html" /> -->
+
+    </div>
+
+    <div class="mt-12 bg-white-dark p-8 w-full">
+      <g-tabs @changed="changedTabHandler" color="orange">
+        <g-tab name="Design" icon="fas fa-palette">
+          Design settings
+        </g-tab>
+        <g-tab name="Units" icon="fas fa-calculator">
+          Units settings
+        </g-tab>
+        <g-tab name="Token" icon="fas fa-coins">
+          Token settings
+        </g-tab>
+        <g-tab name="Fiat" icon="fas fa-dollar-sign">
+          Fiat settings
+        </g-tab>
+      </g-tabs>
     </div>
 
   </div>
@@ -81,6 +99,11 @@ export default {
       `;
     },
   },
+
+  methods: {
+    changedTabHandler(newTab) {
+    }
+  }
 };
 </script>
 
