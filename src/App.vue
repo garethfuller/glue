@@ -15,8 +15,36 @@
     </div>
 
     <h1 class="my-8">Inputs</h1>
+
+    <g-grid>
+      <g-grid-item width="1/5">
+        <g-text-field
+          v-model="textInput"
+          placeholder="Your name"
+          label="Name"
+          name="name"
+          horizontal
+          required
+          validations="required"
+        />
+        <g-select
+          v-model="token"
+          :items="selectOptions"
+          item-text="label"
+          item-value="value"
+          class="mt-4"
+          required
+          label="Token"
+        />
+      </g-grid-item>
+      <g-grid-item width="1/4">
+
+      </g-grid-item>
+    </g-grid>
+
     <div class="flex w-1/4 flex-col">
-      <g-text-field
+
+      <!-- <g-text-field
         v-model="textInput"
         placeholder="Your name"
         label="Name"
@@ -36,7 +64,7 @@
         label="Token"
       />
 
-      <g-select v-model="fiat" :items="['USD', 'EUR', 'GBP']" class="mt-4" label="Fiat"/>
+      <g-select v-model="fiat" :items="['USD', 'EUR', 'GBP']" class="mt-4" label="Fiat"/> -->
 
       <g-switch v-model="switchVal" color="red" round class="mt-4"/>
       <g-switch v-model="switchVal" color="red" size="small" round class="mt-4"/>

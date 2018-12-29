@@ -26,6 +26,7 @@
           v-validate="validations"
           :data-vv-validate-on="validateOn"
           ref="input"
+          size="1"
           @input="input"
           @blur="blur"
           @focus="focus"
