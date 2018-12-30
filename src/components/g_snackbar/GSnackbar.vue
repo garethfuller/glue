@@ -8,7 +8,7 @@
         <g-icon class="icon" :name="snackbar.icon" color="white" size="large"></g-icon>
       </div>
       <div class="contents">
-        <h2 class="text-lg mb-1" v-html="snackbar.title"></h2>
+        <h2 class="text-lg leading-none font-bold mb-1" v-html="snackbar.title"></h2>
         <p class="mb-2" v-html="snackbar.description"></p>
       </div>
       <div v-if="persistent" class="g-snackbar-close">
