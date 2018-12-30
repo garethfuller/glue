@@ -4,7 +4,7 @@
 
     <g-snackbar-list :snackbars="[
       {title: 'error', type: 'error', description: 'description', persistent: true, icon: 'fas fa-exclamation-triangle'},
-      {title: 'Success', type: 'success', description: 'description', persistent: true, icon: 'fas fa-check-circle'}
+      {title: 'API Key updated!', type: 'success', icon: 'fas fa-check-circle'}
     ]"/>
 
     <h1 class="my-8">Links</h1>

@@ -11,7 +11,7 @@
         <h2 class="text-lg leading-none font-bold mb-1" v-html="snackbar.title"></h2>
         <p class="mb-2" v-html="snackbar.description"></p>
       </div>
-      <div v-if="persistent" class="g-snackbar-close">
+      <div class="g-snackbar-close">
         <g-btn flat circle @click.native="handleClose" size="small" color="white">
           <g-icon name="fas fa-times" size="small" color="white"></g-icon>
         </g-btn>
