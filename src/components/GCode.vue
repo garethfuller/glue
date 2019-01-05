@@ -9,14 +9,14 @@
         </div>
         <div class="nav text-white">
           <g-btn
-            v-for="lang in langs"
-            :key="internalLang"
+            v-for="(lang, i) in langs"
+            :key="i"
             flat
             color="black"
             size="small"
-            :class="['ml-2', { active: isActive(internalLang) }]"
-            @click.native="changeLangTo(internalLang)">
-            {{ labelFor(internalLang) }}
+            :class="['ml-2', { active: isActive(lang) }]"
+            @click.native="changeLangTo(lang)">
+            {{ labelFor(lang) }}
           </g-btn>
         </div>
       </div>
