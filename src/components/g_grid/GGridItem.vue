@@ -1,5 +1,5 @@
 <template lang="html">
-  <div :class="[`g-grid-item sm:px-${spacing} px-0 mb-${spacing*2}`, classes]">
+  <div :class="[`g-grid-item sm:px-${spacing} px-0 mb-${vertSpacting} md:mb-${spacing*2}`, classes]">
     <slot></slot>
   </div>
 </template>
@@ -14,7 +14,8 @@ export default {
 
   data() {
     return {
-      spacing: '2'
+      spacing: '2',
+      vertSpacing: '2'
     }
   },
 

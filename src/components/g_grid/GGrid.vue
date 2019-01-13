@@ -9,12 +9,14 @@ export default {
   name: 'GGrid',
 
   props: {
-    spacing: { type: String, default: '2' }
+    spacing: { type: String, default: '2' },
+    vertSpacing: { type: String, default: '2' }
   },
 
   mounted() {
     this.$children.forEach(item => {
       item.spacing = this.spacing
+      item.vertSpacing = this.vertSpacing
     })
   }
 };
