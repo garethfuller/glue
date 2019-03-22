@@ -41,7 +41,8 @@
         />
       </g-grid-item>
       <g-grid-item width="1/4">
-
+        <g-checkbox v-model="checkbox" />
+        {{ checkbox }}
       </g-grid-item>
     </g-grid>
 
@@ -130,6 +131,7 @@ export default {
         { value: 'lg', label: 'Large' },
       ],
       fiat: 'USD',
+      checkbox: false
     };
   },
 

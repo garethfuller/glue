@@ -27,3 +27,4 @@ export { default as GCode } from './GCode.vue';
 export { default as GLink } from './GLink.vue';
 export { default as GTabs } from './g_tabs/GTabs.vue';
 export { default as GTab } from './g_tabs/GTab.vue';
+export { default as GCheckbox } from './GCheckbox.vue';
