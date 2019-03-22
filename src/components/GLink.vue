@@ -13,7 +13,7 @@ export default {
     href: { type: String, default: null },
     color: {
       type: String,
-      default: 'black',
+      default: 'blue',
       validator: value => ['black', 'blue', 'orange', 'blue', 'white', 'red'].indexOf(value) !== -1,
     },
     size: {
@@ -26,7 +26,7 @@ export default {
   computed: {
     classes() {
       return {
-        [`text-${this.color} hover:text-${this.color}-darker`]: true,
+        [`text-${this.color} hover:text-${this.color}-darker hover:underline`]: true,
         [`text-${this.size}`]: true,
       };
     },
