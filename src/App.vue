@@ -41,7 +41,9 @@
         />
       </g-grid-item>
       <g-grid-item width="1/4">
-        <g-checkbox v-model="checkbox" />
+        <g-checkbox v-model="checkbox">
+          the label
+        </g-checkbox>
         {{ checkbox }}
       </g-grid-item>
     </g-grid>

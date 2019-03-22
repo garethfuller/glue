@@ -2,7 +2,7 @@
   <label
   class="g-checkbox"
   @mouseover="hovered = true"
-  @mouseout="hovered = false">{{ label }}
+  @mouseout="hovered = false"><slot>{{ label }}</slot>
     <input
     type="checkbox"
     :name="name"
