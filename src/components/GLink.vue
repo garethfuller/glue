@@ -26,7 +26,7 @@ export default {
   computed: {
     classes() {
       return {
-        [`text-${this.color} hover:text-${this.color}-darker hover:underline`]: true,
+        [`text-${this.color} hover:text-${this.color}-light`]: true,
         [`text-${this.size}`]: true,
       };
     },
@@ -43,4 +43,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.g-link:hover {
+  text-decoration: underline;
+}
 </style>
