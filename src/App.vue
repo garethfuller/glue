@@ -13,7 +13,14 @@
 
     <h1 class="my-8">Btns</h1>
 
-    <g-btn flat color="green">Hello world</g-btn>
+    <g-popover on-hover>
+      <g-btn slot="activator" flat color="green">Hello world</g-btn>
+      <g-menu>
+        <g-menu-item>Business</g-menu-item>
+        <g-menu-item>Logout</g-menu-item>
+      </g-menu>
+    </g-popover>
+
 
     <g-btn color="black">Hello World!</g-btn>
     <div class="bg-black p-8">

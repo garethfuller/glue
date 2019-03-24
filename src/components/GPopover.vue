@@ -1,6 +1,13 @@
 <template lang="html">
-  <div v-click-outside="closePopover" class="g-popover relative">
-    <div class="activator" ref="activator" @click="showPopover = !showPopover">
+  <div
+    v-g-click-outside="closePopover"
+    class="g-popover relative inline-block"
+    @mouseover="handleMouseover"
+    @mouseout="handleMouseout">
+    <div
+      class="activator inline-block"
+      ref="activator"
+      @click="showPopover = !showPopover">
       <slot name="activator"></slot>
     </div>
     <transition name="popover-bottom">
@@ -23,6 +30,7 @@ export default {
       default: 'bottom',
       validator: value => ['bottom', 'top', 'left', 'right'].indexOf(value) !== -1,
     },
+    onHover: { type: Boolean, default: false }
   },
 
   data: () => ({
@@ -71,6 +79,14 @@ export default {
     closePopover() {
       this.showPopover = false;
     },
+
+    handleMouseover() {
+      if (this.onHover) this.showPopover = true
+    },
+
+    handleMouseout() {
+      if (this.onHover) this.showPopover = false
+    }
   },
 };
 </script>
