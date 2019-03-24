@@ -1,20 +1,32 @@
 <template>
-  <label
-  class="g-checkbox"
-  @mouseover="hovered = true"
-  @mouseout="hovered = false"><slot>{{ label }}</slot>
-    <input
-    type="checkbox"
-    :name="name"
-    :checked="checked"
-    @change="$emit('change', $event.target.checked)">
-    <span :class="['checkmark', checkmarkClasses]"></span>
-  </label>
+  <div>
+    <label
+      class="g-checkbox"
+      @mouseover="hovered = true"
+      @mouseout="hovered = false"><slot>{{ label }}</slot>
+        <input
+        type="checkbox"
+        :name="name"
+        :checked="checked"
+        v-validate="validations"
+        :data-vv-validate-on="validateOn"
+        v-bind="attrs"
+        @change="$emit('change', $event.target.checked)">
+        <span :class="['checkmark', checkmarkClasses]"></span>
+    </label>
+    <div
+      v-show="errors.has(name)"
+      class="g-text-field-error text-red text-sm absolute">
+      {{ errors.first(name) }}
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'GCheckbox',
+
+  inject: ['$validator'],
 
   model: {
     prop: 'checked',
@@ -31,6 +43,9 @@ export default {
       default: 'medium',
       validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1,
     },
+    validations: { type: String, default: '' },
+    validateOn: { type: String, default: 'change' },
+    attrs: { type: Object, default: () => ({}) },
   },
 
   data () {

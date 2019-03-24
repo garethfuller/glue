@@ -41,7 +41,11 @@
         />
       </g-grid-item>
       <g-grid-item width="1/4">
-        <g-checkbox v-model="checkbox">
+        <g-checkbox
+          name="terms_acceptance"
+          validations="required"
+          v-model="checkbox"
+          :attrs="{ 'data-vv-as': 'terms acceptance' }">
           the label
         </g-checkbox>
         {{ checkbox }}
