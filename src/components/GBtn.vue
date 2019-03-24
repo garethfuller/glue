@@ -151,31 +151,31 @@ export default {
 }
 
 .g-btn.g-btn-flat.g-btn-green:hover {
-  background-color: config('colors.green-lightest')33;
+  background-color: config('colors.green-lightest')B3;
 }
 .g-btn.g-btn-flat.g-btn-green:active {
-  background-color: config('colors.green-lightest')66;
+  background-color: config('colors.green-lightest')80;
 }
 
 .g-btn.g-btn-flat.g-btn-blue:hover {
-  background-color: config('colors.blue-lightest')33;
+  background-color: config('colors.blue-lightest')B3;
 }
 .g-btn.g-btn-flat.g-btn-blue:active {
-  background-color: config('colors.blue-lightest')66;
+  background-color: config('colors.blue-lightest')80;
 }
 
 .g-btn.g-btn-flat.g-btn-red:hover {
-  background-color: config('colors.red-lightest')33;
+  background-color: config('colors.red-lightest')B3;
 }
 .g-btn.g-btn-flat.g-btn-red:active {
-  background-color: config('colors.red-lightest')66;
+  background-color: config('colors.red-lightest')80;
 }
 
 .g-btn.g-btn-flat.g-btn-orange:hover {
-  background-color: config('colors.orange-lightest')33;
+  background-color: config('colors.orange-lightest')B3;
 }
 .g-btn.g-btn-flat.g-btn-orange:active {
-  background-color: config('colors.orange-lightest')66;
+  background-color: config('colors.orange-lightest')80;
 }
 
 .g-btn.g-btn-flat.g-btn-white:hover {

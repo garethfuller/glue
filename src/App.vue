@@ -12,6 +12,9 @@
     <g-link href="/here" color="red">Here</g-link>
 
     <h1 class="my-8">Btns</h1>
+
+    <g-btn flat color="green">Hello world</g-btn>
+
     <g-btn color="black">Hello World!</g-btn>
     <div class="bg-black p-8">
       <g-btn flat color="black">Hello World!</g-btn>
