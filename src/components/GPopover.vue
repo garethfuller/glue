@@ -11,7 +11,11 @@
       <slot name="activator"></slot>
     </div>
     <transition name="popover-bottom">
-      <div v-show="showPopover" :class="['g-popover-contents bg-white absolute shadow-lg rounded mt-1', contentClasses]" :style="contentStyles">
+      <div
+        ref="contents"
+        v-show="showPopover"
+        :class="['g-popover-contents bg-white absolute shadow-lg rounded mt-1', contentClasses]"
+        :style="contentStyles">
         <slot></slot>
       </div>
     </transition>
@@ -25,12 +29,10 @@ export default {
   props: {
     width: { type: Number, default: 200 },
     height: { type: Number, default: 200 },
-    position: {
-      type: String,
-      default: 'bottom',
-      validator: value => ['bottom', 'top', 'left', 'right'].indexOf(value) !== -1,
-    },
-    onHover: { type: Boolean, default: false }
+    onHover: { type: Boolean, default: false },
+    top: { type: Boolean, default: false },
+    left: { type: Boolean, default: false },
+    right: { type: Boolean, default: false },
   },
 
   data: () => ({
@@ -40,12 +42,36 @@ export default {
   }),
 
   mounted() {
-    const position = this.$refs.activator.getBoundingClientRect();
-    this.popoverXPosition = this.width / 2 - position.width / 2;
-    this.popoverYPosition = this.height + position.height / 2;
+    const activatorPosition = this.$refs.activator.getBoundingClientRect()
+
+    if (this.right) {
+      this.popoverXPosition = 0
+    } else if (this.left) {
+      this.popoverXPosition = this.width - activatorPosition.width
+    } else {
+      this.popoverXPosition = (this.width / 2) - (activatorPosition.width / 2);
+    }
+
+    if (this.top) {
+      this.popoverYPosition = ((this.height / 2) + activatorPosition.height) - 10;
+    } else {
+      this.popoverYPosition = activatorPosition.height + 5;
+    }
   },
 
   computed: {
+    position() {
+      if (this.top) {
+        if (this.left) return 'top-left'
+        if (this.right) return 'top-right'
+        return 'top'
+      } else {
+        if (this.left) return 'bottom-left'
+        if (this.right) return 'bottom-right'
+        return 'bottom'
+      }
+    },
+
     contentClasses() {
       return {
         [`g-popover-contents-${this.position}`]: true,
@@ -61,16 +87,16 @@ export default {
     },
 
     contentPostiton() {
-      switch (this.position) {
-        case 'bottom':
-          return {
-            left: `-${this.popoverXPosition}px`,
-          };
-        case 'top':
-          return {
-            left: `-${this.popoverXPosition}px`,
-            top: `-${this.popoverYPosition}px`,
-          };
+      if (this.top) {
+        return {
+          left: `-${this.popoverXPosition}px`,
+          top: `-${this.popoverYPosition}px`,
+        };
+      } else {
+        return {
+          left: `-${this.popoverXPosition}px`,
+          top: `${this.popoverYPosition}px`,
+        };
       }
     },
   },
@@ -110,6 +136,34 @@ export default {
   width: 0;
 }
 
+.g-popover-contents-bottom-left:after {
+  border-right: solid 10px transparent;
+  border-left: solid 10px transparent;
+  border-bottom: solid 10px white;
+  transform: translateX(-50%);
+  position: absolute;
+  z-index: 10;
+  content: '';
+  top: -10px;
+  right: 10%;
+  height: 0;
+  width: 0;
+}
+
+.g-popover-contents-bottom-right:after {
+  border-right: solid 10px transparent;
+  border-left: solid 10px transparent;
+  border-bottom: solid 10px white;
+  transform: translateX(-50%);
+  position: absolute;
+  z-index: 10;
+  content: '';
+  top: -10px;
+  left: 10%;
+  height: 0;
+  width: 0;
+}
+
 .g-popover-contents-top:after {
   border-right: solid 10px transparent;
   border-left: solid 10px transparent;
@@ -119,6 +173,32 @@ export default {
   content: '';
   top: 100%;
   left: 50%;
+  height: 0;
+  width: 0;
+}
+
+.g-popover-contents-top-left:after {
+  border-right: solid 10px transparent;
+  border-left: solid 10px transparent;
+  border-top: solid 10px white;
+  transform: translateX(-50%);
+  position: absolute;
+  content: '';
+  top: 100%;
+  right: 10%;
+  height: 0;
+  width: 0;
+}
+
+.g-popover-contents-top-right:after {
+  border-right: solid 10px transparent;
+  border-left: solid 10px transparent;
+  border-top: solid 10px white;
+  transform: translateX(-50%);
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 10%;
   height: 0;
   width: 0;
 }
