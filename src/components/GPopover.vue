@@ -53,9 +53,9 @@ export default {
     }
 
     if (this.top) {
-      this.popoverYPosition = ((this.height / 2) + activatorPosition.height) - 10;
+      this.popoverYPosition = ((this.height / 2) + (activatorPosition.height / 2));
     } else {
-      this.popoverYPosition = activatorPosition.height + 5;
+      this.popoverYPosition = activatorPosition.height - 5;
     }
   },
 
@@ -122,7 +122,7 @@ export default {
   z-index: 999;
 }
 
-.g-popover-contents-bottom:after {
+/* .g-popover-contents-bottom:after {
   border-right: solid 10px transparent;
   border-left: solid 10px transparent;
   border-bottom: solid 10px white;
@@ -201,7 +201,7 @@ export default {
   left: 10%;
   height: 0;
   width: 0;
-}
+} */
 
 .popover-bottom-enter-active {
   transform-origin: top center;
