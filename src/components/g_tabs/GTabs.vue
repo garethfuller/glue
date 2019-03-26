@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <div class="tab-panels">
+    <div v-if="!menuOnly" class="tab-panels">
       <slot></slot>
     </div>
   </div>
@@ -42,6 +42,7 @@ export default {
       default: 'blue',
       validator: value => ['blue', 'red', 'green', 'orange', 'white', 'black'].indexOf(value) !== -1,
     },
+    menuOnly: { type: Boolean, default: false }
   },
 
   data() {

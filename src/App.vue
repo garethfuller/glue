@@ -106,7 +106,7 @@
     </div>
 
     <div class="mt-12 bg-white-dark p-8 w-full">
-      <g-tabs @changed="changedTabHandler" color="orange">
+      <g-tabs @changed="changedTabHandler" color="orange" menu-only>
         <g-tab name="Design" icon="fas fa-palette">
           Design settings
         </g-tab>
