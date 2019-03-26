@@ -10,7 +10,7 @@
           :class="btnTextClasses(tab)"
           @click="clicked(tab)">
           <div></div>
-          <div  
+          <div
             class="flex items-center pr-12">
             <g-icon
               v-if="tab.icon"
@@ -74,7 +74,7 @@ export default {
 
     btnTextClasses(tab) {
       return {
-        'w-full cursor-pointer flex flex-col justify-between h-full': true,
+        'w-full cursor-pointer flex flex-col justify-between h-full no-underline': true,
         [`active text-${this.color}`]: tab.isActive,
         [`active text-grey-dark hover:text-grey-darkest`]: !tab.isActive,
         'text-center flex-col': this.center,
