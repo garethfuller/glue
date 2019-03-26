@@ -105,22 +105,41 @@
 
     </div>
 
-    <div class="mt-12 bg-white-dark p-8 w-full">
-      <g-tabs @changed="changedTabHandler" color="orange" menu-only>
-        <g-tab name="Design" icon="fas fa-palette">
+    <!-- <div class="mt-12 bg-white-dark p-8 w-full">
+      <g-tabs @changed="changedTabHandler" color="orange">
+        <g-tab name="Design" icon="fas fa-palette" no-panel>
           Design settings
         </g-tab>
-        <g-tab name="Units" icon="fas fa-calculator">
+        <g-tab name="Units" icon="fas fa-calculator" no-panel>
           Units settings
         </g-tab>
-        <g-tab name="Token" icon="fas fa-coins">
+        <g-tab name="Token" icon="fas fa-coins" no-panel>
           Token settings
         </g-tab>
-        <g-tab name="Fiat" icon="fas fa-dollar-sign">
+        <g-tab name="Fiat" icon="fas fa-dollar-sign" no-panel>
           Fiat settings
         </g-tab>
       </g-tabs>
-    </div>
+    </div> -->
+
+    <nav class="bg-white w-full h-16 border-b border-white-darker">
+      <div class="container mx-auto h-full flex justify-between items-end">
+        <g-tabs @changed="changedTabHandler" color="green">
+          <g-tab name="Dashboard" icon="fas fa-th-large" no-panel>
+            Dashboard
+          </g-tab>
+          <g-tab name="Payees" icon="fas fa-users" no-panel>
+            Payees
+          </g-tab>
+          <g-tab name="History" icon="fas fa-history" no-panel>
+            History
+          </g-tab>
+          <g-tab name="Settings" icon="fas fa-cog" no-panel>
+            Settings
+          </g-tab>
+        </g-tabs>
+      </div>
+    </nav>
 
     <div>
       <h1 class="my-8">Grid</h1>

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div v-if="isActive" :class="['g-tab bg-white p-8 rounded-b']">
+  <div v-if="isActive && !noPanel" :class="['g-tab bg-white p-8 rounded-b']">
     <slot></slot>
   </div>
 </template>
@@ -11,7 +11,8 @@ export default {
   props: {
     name: { type: String },
     icon: { type: String },
-    active: { type: Boolean, default: false }
+    active: { type: Boolean, default: false },
+    noPanel: { type: Boolean, default: false }
   },
 
   data() {

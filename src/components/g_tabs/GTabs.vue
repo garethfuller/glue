@@ -1,30 +1,27 @@
 <template lang="html">
-  <div class="g-tabs">
-    <div class="tab-btns flex flex-col">
-      <div :class="['text flex', { 'justify-center': center, 'justify-end': right }]">
+  <div class="g-tabs h-full">
+    <div class="tab-btns flex flex-col h-full">
+      <div :class="['flex h-full', { 'justify-center': center, 'justify-end': right }]">
         <div
           v-for="(tab, i) in tabs"
           :key="i"
           :class="btnTextClasses(tab)"
           @click="clicked(tab)">
-          <g-icon
-            v-if="tab.icon"
-            :name="tab.icon"
-            :color="(tab.isActive) ? color : null"
-            :class="[{ 'mr-2': !center, 'mb-2': center }]"
-          />
-          {{ tab.name }}
-        </div>
-      </div>
-      <div :class="['bar flex', { 'justify-center': center, 'justify-end': right }]">
-        <div
-          v-for="(tab, i) in tabs"
-          :key="i"
-          :class="btnBarClasses(tab)">
+          <div></div>
+          <div class="flex px-6">
+            <g-icon
+              v-if="tab.icon"
+              :name="tab.icon"
+              :color="(tab.isActive) ? color : null"
+              :class="[{ 'mr-2': !center, 'mb-2': center }]"
+            />
+            {{ tab.name }}
+          </div>
+          <div :class="btnBarClasses(tab)"/>
         </div>
       </div>
     </div>
-    <div v-if="!menuOnly" class="tab-panels">
+    <div class="tab-panels">
       <slot></slot>
     </div>
   </div>
@@ -41,8 +38,7 @@ export default {
       type: String,
       default: 'blue',
       validator: value => ['blue', 'red', 'green', 'orange', 'white', 'black'].indexOf(value) !== -1,
-    },
-    menuOnly: { type: Boolean, default: false }
+    }
   },
 
   data() {
@@ -52,6 +48,7 @@ export default {
   },
 
   mounted() {
+    console.log(this)
     this.tabs = this.$children.filter(tab => tab.$options._componentTag == 'g-tab')
     this.setDefaultActiveTab()
   },
@@ -74,8 +71,9 @@ export default {
 
     btnTextClasses(tab) {
       return {
-        'w-24 cursor-pointer py-3 px-1 flex items-center': true,
+        'w-full cursor-pointer flex flex-col justify-between h-full': true,
         [`active text-${this.color}`]: tab.isActive,
+        [`active text-grey-dark hover:text-grey-darkest`]: !tab.isActive,
         'text-center flex-col': this.center,
         'text-right': this.right
       }
@@ -83,7 +81,7 @@ export default {
 
     btnBarClasses(tab) {
       return {
-        'w-24 h-1 rounded': true,
+        'w-full h-1 rounded': true,
         [`active bg-${this.color}`]: tab.isActive
       }
     }
