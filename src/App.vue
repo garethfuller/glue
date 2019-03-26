@@ -13,13 +13,24 @@
 
     <h1 class="my-8">Btns</h1>
 
-    <g-popover right on-hover>
-      <g-btn slot="activator" flat color="green">Hello world</g-btn>
-      <g-menu>
-        <g-menu-item>Business</g-menu-item>
-        <g-menu-item>Logout</g-menu-item>
-      </g-menu>
-    </g-popover>
+    <nav class="bg-green w-full h-16 border-b border-white-dark">
+      <div class="container mx-auto h-full flex justify-between items-center">
+        <span>logo</span>
+        <div>
+          <g-popover left on-hover>
+            <g-btn slot="activator" flat color="white">
+              <g-icon name="fas fa-user-circle" class="pr-2"></g-icon>
+              Hello world
+            </g-btn>
+            <g-menu>
+              <g-menu-item>Business</g-menu-item>
+              <g-menu-item>Logout</g-menu-item>
+            </g-menu>
+          </g-popover>
+        </div>
+      </div>
+    </nav>
+
 
 
     <g-btn color="black">Hello World!</g-btn>

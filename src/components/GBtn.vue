@@ -232,7 +232,7 @@ export default {
   @apply bg-white text-black shadow;
 }
 .g-btn-flat.g-btn-white {
-  @apply bg-transparent text-black shadow-none;
+  @apply bg-transparent text-white shadow-none;
 }
 
 .g-btn-black {
