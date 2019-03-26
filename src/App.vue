@@ -125,7 +125,7 @@
     <nav class="bg-white w-full h-16 border-b border-white-darker">
       <div class="container mx-auto h-full flex justify-between items-end">
         <g-tabs @changed="changedTabHandler" color="green">
-          <g-tab name="Dashboard" icon="fas fa-th-large" no-panel>
+          <g-tab name="Dashboard" icon="fas fa-th-large" no-panel to="/panel">
             Dashboard
           </g-tab>
           <g-tab name="Payees" icon="fas fa-users" no-panel>

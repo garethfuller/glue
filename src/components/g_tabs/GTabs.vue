@@ -2,13 +2,16 @@
   <div class="g-tabs h-full">
     <div class="tab-btns flex flex-col h-full">
       <div :class="['flex h-full', { 'justify-center': center, 'justify-end': right }]">
-        <div
+        <component
           v-for="(tab, i) in tabs"
           :key="i"
+          :is="componentFor(tab)"
+          v-bind="attrsFor(tab)"
           :class="btnTextClasses(tab)"
           @click="clicked(tab)">
           <div></div>
-          <div class="flex items-center pr-12">
+          <div  
+            class="flex items-center pr-12">
             <g-icon
               v-if="tab.icon"
               :name="tab.icon"
@@ -18,7 +21,7 @@
             <span>{{ tab.name }}</span>
           </div>
           <div :class="btnBarClasses(tab)"/>
-        </div>
+        </component>
       </div>
     </div>
     <div class="tab-panels">
@@ -84,6 +87,17 @@ export default {
         'w-full h-1 rounded': true,
         [`active bg-${this.color}`]: tab.isActive
       }
+    },
+
+    componentFor(tab) {
+      if (tab.to) return 'nuxt-link'
+      return 'div'
+    },
+
+    attrsFor(tab) {
+      let attrs = {}
+      if (tab.to) attrs.to = tab.to
+      return attrs
     }
   }
 }
