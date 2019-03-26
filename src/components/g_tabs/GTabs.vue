@@ -90,7 +90,7 @@ export default {
     },
 
     componentFor(tab) {
-      if (tab.to) return 'a'
+      if (tab.to) return 'nuxt-link'
       return 'div'
     },
 
