@@ -14,19 +14,19 @@ export default {
   name: 'GMenuItem',
 
   props: {
-    to: { type: String, default: '' },
+    to: { type: String },
     icon: { type: String },
   },
 
   computed: {
     tag() {
-      if (this.to.length > 0) return 'a';
+      if (this.to) return 'nuxt-link';
       return 'div';
     },
 
     attrs() {
       const attrs = {};
-      if (this.to.length > 0) attrs.href = this.to;
+      if (this.to) attrs.to = this.to;
       return attrs;
     },
   },

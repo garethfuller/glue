@@ -9,14 +9,14 @@
           v-bind="attrsFor(tab)"
           :class="btnTextClasses(tab)"
           @click="clicked(tab)">
-          <div></div>
+          <div class="h-1"></div>
           <div
-            class="flex items-center pr-12">
+            class="g-tabs-label flex items-center pr-12">
             <g-icon
               v-if="tab.icon"
               :name="tab.icon"
               :color="(tab.isActive) ? color : null"
-              :class="[{ 'mr-2': !center, 'mb-2': center }]"
+              :class="[{ 'mr-3': !center, 'mb-2': center }]"
             />
             <span>{{ tab.name }}</span>
           </div>
@@ -84,7 +84,7 @@ export default {
 
     btnBarClasses(tab) {
       return {
-        'w-full h-1 rounded': true,
+        'w-full h-1 rounded-sm rounded-b-none': true,
         [`active bg-${this.color}`]: tab.isActive
       }
     },
@@ -104,4 +104,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.g-tabs-label {
+  transition: color .3s ease;
+}
 </style>
