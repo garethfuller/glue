@@ -28,19 +28,6 @@ export default {
 
   created() {
     this.isActive = this.active
-  },
-
-  computed: {
-    tag() {
-      if (this.to) return 'nuxt-link'
-      return 'div'
-    },
-
-    attrs() {
-      let attrs = {}
-      if (this.to) attrs.to = this.to
-      return attrs
-    }
   }
 }
 </script>

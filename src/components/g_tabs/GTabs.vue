@@ -74,7 +74,7 @@ export default {
 
     btnTextClasses(tab) {
       return {
-        'w-full cursor-pointer flex flex-col justify-between h-full no-underline': true,
+        'w-full cursor-pointer flex flex-col justify-between h-full hover:no-underline': true,
         [`active text-${this.color}`]: tab.isActive,
         [`active text-grey-dark hover:text-grey-darkest`]: !tab.isActive,
         'text-center flex-col': this.center,
@@ -90,7 +90,7 @@ export default {
     },
 
     componentFor(tab) {
-      if (tab.to) return 'nuxt-link'
+      if (tab.to) return 'a'
       return 'div'
     },
 
