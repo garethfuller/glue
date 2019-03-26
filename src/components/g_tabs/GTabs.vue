@@ -8,14 +8,14 @@
           :class="btnTextClasses(tab)"
           @click="clicked(tab)">
           <div></div>
-          <div class="flex px-6">
+          <div class="flex items-center pr-12">
             <g-icon
               v-if="tab.icon"
               :name="tab.icon"
               :color="(tab.isActive) ? color : null"
               :class="[{ 'mr-2': !center, 'mb-2': center }]"
             />
-            {{ tab.name }}
+            <span>{{ tab.name }}</span>
           </div>
           <div :class="btnBarClasses(tab)"/>
         </div>
