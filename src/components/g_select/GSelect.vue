@@ -18,7 +18,7 @@
     </g-text-field>
     <div class="relative">
       <transition name="fade-in-up">
-        <div v-if="showItems" class="g-select-items rounded shadow bg-white absolute w-full z-50">
+        <div v-if="showItems" class="g-select-items rounded shadow bg-white absolute w-full z-50 h-64 overflow-y-scroll">
           <g-select-item
             v-for="(item, index) in items"
             :text="textFor(item)"
@@ -107,6 +107,7 @@ export default {
     },
 
     inputLabel() {
+      if (!this.value) return ''
       if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return this.value;
       return this.items.find(item => item[this.itemValue] === this.inputValue)[this.itemText];
     },
