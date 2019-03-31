@@ -38,10 +38,12 @@
         </div>
       </div>
     </div>
-    <div
-      v-show="errors.has(name)"
-      class="g-text-field-error text-red text-sm absolute">
-      {{ errors.first(name) }}
+    <div class="relative">
+      <div
+        v-show="errors.has(name)"
+        class="g-text-field-error text-red text-sm absolute">
+        {{ errors.first(name) }}
+      </div>
     </div>
   </div>
 </template>
