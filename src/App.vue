@@ -58,6 +58,7 @@
           item-value="value"
           class="mt-4"
           required
+          size="large"
           label="Token"
         />
       </g-grid-item>

@@ -6,6 +6,7 @@
       :attrs="inputAttrs"
       :required="required"
       :append="true"
+      :size="size"
       :class="['g-select-input', inputClasses]"
       @focus="focusHandler">
       <div slot="append" class="cursor-pointer" @click="showItems = !showItems">
