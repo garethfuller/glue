@@ -20,7 +20,7 @@
         />
       </div>
     </g-text-field>
-    <div class="relative pb-12">
+    <div class="relative">
       <transition name="fade-in-up">
         <div v-if="showItems" class="g-select-items rounded shadow bg-white absolute w-full z-50 h-64 overflow-y-scroll">
           <g-select-item
