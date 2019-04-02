@@ -311,4 +311,8 @@ export default {
 .g-text-field-append-active {
   @apply bg-transparent border-grey-light;
 }
+
+.g-text-field-append-invalid {
+  @apply border-red text-red-light bg-transparent;
+}
 </style>

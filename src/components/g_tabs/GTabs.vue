@@ -51,7 +51,6 @@ export default {
   },
 
   mounted() {
-    console.log(this)
     this.tabs = this.$children.filter(tab => tab.$options._componentTag == 'g-tab')
     this.setDefaultActiveTab()
   },

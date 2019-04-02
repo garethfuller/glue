@@ -3,8 +3,11 @@
     <g-text-field
       v-model="inputLabel"
       :label="label"
+      :name="name"
       :attrs="inputAttrs"
       :required="required"
+      :validations="validations"
+      :validate-on="validateOn"
       :append="true"
       :size="size"
       :class="['g-select-input', inputClasses]"
@@ -17,7 +20,7 @@
         />
       </div>
     </g-text-field>
-    <div class="relative">
+    <div class="relative pb-12">
       <transition name="fade-in-up">
         <div v-if="showItems" class="g-select-items rounded shadow bg-white absolute w-full z-50 h-64 overflow-y-scroll">
           <g-select-item
@@ -43,6 +46,7 @@ export default {
   props: {
     value: { type: String },
     label: { type: String, default: null },
+    name: { type: String, default: '' },
     items: { type: Array },
     itemText: { type: String },
     itemValue: { type: String },
@@ -50,6 +54,8 @@ export default {
     raised: { type: Boolean, default: false },
     horizontal: { type: Boolean, default: false },
     required: { type: Boolean, default: false },
+    validations: { type: String, default: '' },
+    validateOn: { type: String, default: 'blur' },
     size: {
       type: String,
       default: 'medium',

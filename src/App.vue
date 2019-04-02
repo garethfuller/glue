@@ -54,8 +54,10 @@
         <g-select
           v-model="token"
           :items="selectOptions"
+          name="token"
           item-text="label"
           item-value="value"
+          validations="required"
           class="mt-4"
           required
           size="large"
