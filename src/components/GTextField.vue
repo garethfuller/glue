@@ -13,7 +13,9 @@
             `g-text-field-prepend bg-grey-lightest border-t border-b border-l
             border-grey-lightest rounded-l`,
             prependClasses]">
-          <slot name="prepend"></slot>
+            <div class="flex items-center justify-center h-full">
+              <slot name="prepend"></slot>
+            </div>
         </div>
         <input
           :class="['w-full bg-grey-lightest border-grey-lightest leading-none', inputClasses]"
@@ -34,7 +36,9 @@
         <div v-if="append"
           :class="[`g-text-field-append bg-grey-lightest border-grey-lightest
           border-t border-b border-r rounded-r`, appendClasses]">
-          <slot name="append"></slot>
+          <div class="flex items-center justify-center h-full">
+            <slot name="append"></slot>
+          </div>
         </div>
       </div>
     </div>
@@ -204,7 +208,7 @@ export default {
   @apply text-sm;
 
   & input {
-    @apply text-sm py-2 px-4;
+    @apply text-sm h-8 px-4;
   }
 }
 
@@ -212,7 +216,7 @@ export default {
   @apply text-base;
 
   & input {
-    @apply text-base py-3 px-4;
+    @apply text-base h-12 px-4;
   }
 }
 
@@ -220,7 +224,7 @@ export default {
   @apply text-lg;
 
   & input {
-    @apply text-lg py-4 px-4;
+    @apply text-lg h-16 px-4;
   }
 }
 
@@ -286,23 +290,23 @@ export default {
 
 /* APPEND & PREPEND */
 .g-text-field-prepend-small {
-  @apply text-sm py-2 px-4;
+  @apply text-sm h-8 px-4;
 }
 .g-text-field-prepend-medium {
-  @apply text-base py-3 px-4;
+  @apply text-base h-12 px-4;
 }
 .g-text-field-prepend-large {
-  @apply text-lg py-4 px-4;
+  @apply text-lg h-16 px-4;
 }
 
 .g-text-field-append-small {
-  @apply text-sm py-2 px-4;
+  @apply text-sm h-8 px-4;
 }
 .g-text-field-append-medium {
-  @apply text-base py-3 px-4;
+  @apply text-base h-12 px-4;
 }
 .g-text-field-append-large {
-  @apply text-lg py-4 px-4;
+  @apply text-lg h-16 px-4;
 }
 
 .g-text-field-prepend-active {
