@@ -13,7 +13,19 @@
 
     <h1 class="my-8">Btns</h1>
 
-    <nav class="bg-green w-full h-16 border-b border-white-dark">
+    <g-btn icon="fas fa-plus" size="small" class="mr-4">
+      Filter
+    </g-btn>
+
+    <g-btn icon="fas fa-plus" class="mr-4" color="grey" flat subtle>
+      Filter
+    </g-btn>
+
+    <g-btn icon="fas fa-plus" size="large">
+      Filter
+    </g-btn>
+
+    <nav class="bg-green w-full h-16 border-b border-white-dark mt-10">
       <div class="container mx-auto h-full flex justify-between items-center">
         <span>logo</span>
         <div>

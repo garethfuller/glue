@@ -5,8 +5,11 @@
     v-bind="additionalAttrs"
     @click="clickHandler">
     <span class="g-btn-contents leading-none">
-      <g-loading-animation v-if="loading" :color="loadingAnimationColor" />
-      <slot v-else></slot>
+      <g-loading-animation v-if="loading" :color="textColor" />
+      <template v-else>
+        <g-icon v-if="icon" :name="icon" class="mr-2" :size="iconSize" :color="textColor" />
+        <slot></slot>
+      </template>
     </span>
   </component>
 </template>
@@ -19,7 +22,7 @@ export default {
     color: {
       type: String,
       default: 'white',
-      validator: value => ['blue', 'red', 'green', 'orange', 'white', 'black'].indexOf(value) !== -1,
+      validator: value => ['blue', 'red', 'green', 'orange', 'white', 'black', 'grey'].indexOf(value) !== -1,
     },
     size: {
       type: String,
@@ -33,13 +36,14 @@ export default {
     },
     disabled: { type: Boolean, default: false },
     flat: { type: Boolean, default: false },
-    icon: { type: Boolean, default: false },
+    icon: { type: String },
     circle: { type: Boolean, default: false },
     rounded: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
     to: { type: String },
     attrs: { type: Object, default: () => ({}) },
     block: { type: Boolean, default: false },
+    subtle: { type: Boolean, default: false },
   },
 
   computed: {
@@ -47,17 +51,17 @@ export default {
       return {
         'g-btn-disabled': this.disabled,
         'g-btn-flat': this.flat,
-        'g-btn-icon': this.icon,
         'g-btn-circle': this.circle,
         [`g-btn-${this.color}`]: true,
         [`g-btn-${this.size}`]: true,
         rounded: !this.rounded,
         'rounded-full': this.rounded,
         'block w-full': this.block,
+        'g-btn-subtle': this.subtle,
       };
     },
 
-    loadingAnimationColor() {
+    textColor() {
       if (this.color === 'white') return 'black'
       if (this.flat) return this.color;
       return 'white';
@@ -74,6 +78,17 @@ export default {
       if (this.disabled) additional.disabled = this.disabled;
       return Object.assign({}, this.attrs, additional);
     },
+
+    iconSize() {
+      switch (this.size) {
+        case 'small':
+          return 'xs'
+        case 'medium':
+          return 'small'
+        case 'large':
+          return 'medium'
+      }
+    }
   },
 
   methods: {
@@ -193,9 +208,8 @@ export default {
 }
 
 .g-btn.g-btn-flat.g-btn-grey:hover {
-  @apply .bg-white-dark;
+  @apply .bg-grey-lighter;
 }
-
 .g-btn.g-btn-flat.g-btn-grey:active {
   @apply .bg-grey-lightest;
 }
@@ -240,6 +254,13 @@ export default {
 }
 .g-btn-flat.g-btn-black {
   @apply bg-transparent text-white shadow-none;
+}
+
+.g-btn-flat.g-btn-grey {
+  @apply bg-transparent text-grey shadow-none;
+}
+.g-btn-flat.g-btn-subtle.g-btn-grey {
+  @apply bg-grey-lighter;
 }
 
 .g-btn-disabled {

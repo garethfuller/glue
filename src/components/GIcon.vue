@@ -12,7 +12,7 @@ export default {
     size: {
       type: String,
       default: 'medium',
-      validator: value => ['small', 'medium', 'large', 'xl', '2xl', '3xl', '4xl', '5xl'].indexOf(value) !== -1,
+      validator: value => ['xs', 'small', 'medium', 'large', 'xl', '2xl', '3xl', '4xl', '5xl'].indexOf(value) !== -1,
     },
   },
 
@@ -70,6 +70,9 @@ export default {
 }
 
 /* SIZES */
+.g-icon-xs {
+  @apply text-xs;
+}
 .g-icon-small {
   @apply text-sm;
 }
