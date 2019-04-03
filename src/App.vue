@@ -52,30 +52,6 @@
           size="large"
           validations="required"
         />
-
-        <g-select
-          v-model="token"
-          :items="selectOptions"
-          name="token"
-          item-text="label"
-          item-value="value"
-          validations="required"
-          class="mt-4"
-          required
-          size="small"
-          label="Token"
-        />
-        <g-select
-          v-model="token"
-          :items="selectOptions"
-          name="token"
-          item-text="label"
-          item-value="value"
-          validations="required"
-          class="mt-4"
-          required
-          label="Token"
-        />
         <g-select
           v-model="token"
           :items="selectOptions"

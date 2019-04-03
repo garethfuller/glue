@@ -26,6 +26,12 @@ export default {
     }
   },
 
+  watch: {
+    active(newVal) {
+      this.isActive = this.active
+    }
+  },
+
   created() {
     this.isActive = this.active
   }
