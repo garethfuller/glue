@@ -36,7 +36,7 @@ export default {
   props: {
     name: { type: String, default: 'checkbox' },
     checked: { type: Boolean, default: false },
-    label: { type: String, default: 'Label' },
+    label: { type: String, default: '' },
     color: { type: String, default: 'blue' },
     size: {
       type: String,
