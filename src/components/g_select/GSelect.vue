@@ -4,12 +4,11 @@
       v-model="inputLabel"
       :label="label"
       :name="name"
-      :attrs="inputAttrs"
+      :attrs="allAttrs"
       :required="required"
       :validations="validations"
       :validate-on="validateOn"
       :size="size"
-      :attrs="inputAttrs"
       :class="['g-select-input', inputClasses]"
       @focus="focusHandler"
       append>
@@ -86,11 +85,10 @@ export default {
   },
 
   computed: {
-    inputAttrs() {
-      const attrs = {};
-      if (!this.filterable) attrs.readonly = 'readonly';
-
-      return attrs;
+    allAttrs() {
+      const attrs = {}
+      if (!this.filterable) attrs.readonly = 'readonly'
+      return Object.assign({}, this.inputAttrs, attrs)
     },
 
     classes() {
