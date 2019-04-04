@@ -85,6 +85,9 @@
           :attrs="{ 'data-vv-as': 'terms acceptance' }"></g-checkbox>
         {{ checkbox }}
       </g-grid-item>
+      <g-grid-item width="1/4">
+        <g-chip color="grey">Employee</g-chip>
+      </g-grid-item>
     </g-grid>
 
     <div class="flex w-1/4 flex-col">

@@ -47,10 +47,10 @@ export default {
   @apply .px-4 .py-2 .text-base;
 }
 .g-chip-grey {
-   @apply .bg-grey .text-black;
+   @apply .bg-grey .text-grey-darkest;
 }
 .g-chip-grey-lightest {
-   @apply .bg-grey-lightest .text-black;
+   @apply .bg-grey-lightest .text-grey-dark;
 }
 .g-chip-blue {
    @apply .bg-blue .text-white;
