@@ -22,7 +22,7 @@
     </g-text-field>
     <div class="relative">
       <transition name="fade-in-up">
-        <div v-if="showItems" class="g-select-items rounded shadow bg-white absolute w-full z-50 h-64 overflow-y-scroll">
+        <div v-if="showItems" class="g-select-items rounded shadow bg-white absolute w-full z-50 overflow-y-scroll">
           <g-select-item
             v-for="(item, index) in items"
             :text="textFor(item)"
@@ -148,6 +148,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.g-select-items {
+  max-height: 250px; 
+}
+
 .chevron {
   transition: transform 0.2s ease-in-out;
 }
