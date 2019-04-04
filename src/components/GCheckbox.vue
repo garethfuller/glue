@@ -1,7 +1,7 @@
 <template>
   <div>
     <label
-      class="g-checkbox"
+      :class="['g-checkbox', checkboxClasses]"
       @mouseover="hovered = true"
       @mouseout="hovered = false"><slot>{{ label }}</slot>
         <input
@@ -55,12 +55,18 @@ export default {
   },
 
   computed: {
+    checkboxClasses() {
+      return {
+        [`g-checkbox-${this.size}`]: true
+      }
+    },
+
     checkmarkClasses() {
       return {
         'bg-grey-lightest': !this.checked && !this.hovered,
         'bg-grey-light': !this.checked && this.hovered,
         [`bg-${this.color}`]: this.checked,
-        [`g-checkbox-${this.size}`]: true
+        [`g-checkmark-${this.size}`]: true
       }
     }
   }
@@ -106,19 +112,23 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.g-checkbox-small {
+  height: 20px;
+}
+.g-checkmark-small {
+  height: 20px;
+  width: 20px;
+}
+
+.g-checkbox-medium {
+  height: 25px;
+}
+.g-checkmark-medium {
   height: 25px;
   width: 25px;
 }
-
-/* On mouse-over, add a grey background color */
-.g-checkbox:hover input ~ .checkmark {
- /* @apply bg-grey-lighter; */
-}
-
-/* When the checkbox is checked, add a blue background */
-/* .g-checkbox input:checked ~ .checkmark {
- background-color: #2196F3;
-} */
 
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
@@ -133,13 +143,25 @@ export default {
 }
 
 /* Style the checkmark/indicator */
-.g-checkbox .checkmark:after {
+.g-checkbox-medium .checkmark:after {
  left: 7.5px;
  top: 3.5px;
  width: 10px;
  height: 15px;
  border: solid white;
  border-width: 0 5px 5px 0;
+ -webkit-transform: rotate(45deg);
+ -ms-transform: rotate(45deg);
+ transform: rotate(45deg);
+}
+
+.g-checkbox-small .checkmark:after {
+ left: 6.5px;
+ top: 3px;
+ width: 7px;
+ height: 12px;
+ border: solid white;
+ border-width: 0 3.5px 3.5px 0;
  -webkit-transform: rotate(45deg);
  -ms-transform: rotate(45deg);
  transform: rotate(45deg);
