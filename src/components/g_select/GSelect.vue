@@ -8,10 +8,11 @@
       :required="required"
       :validations="validations"
       :validate-on="validateOn"
-      :append="true"
       :size="size"
+      :attrs="inputAttrs"
       :class="['g-select-input', inputClasses]"
-      @focus="focusHandler">
+      @focus="focusHandler"
+      append>
       <div slot="append" class="cursor-pointer" @click="showItems = !showItems">
         <g-icon
           name="fas fa-chevron-down"
@@ -56,6 +57,7 @@ export default {
     required: { type: Boolean, default: false },
     validations: { type: String, default: '' },
     validateOn: { type: String, default: 'blur' },
+    inputAttrs: { type: Object, default: () => ({}) },
     size: {
       type: String,
       default: 'medium',
@@ -149,7 +151,7 @@ export default {
 
 <style lang="css" scoped>
 .g-select-items {
-  max-height: 250px; 
+  max-height: 250px;
 }
 
 .chevron {
