@@ -86,7 +86,10 @@
         {{ checkbox }}
       </g-grid-item>
       <g-grid-item width="1/4">
-        <g-chip color="grey">Employee</g-chip>
+        <g-tooltip text="delete">
+          <g-chip color="grey">Employee</g-chip>
+        </g-tooltip>
+
       </g-grid-item>
     </g-grid>
 
