@@ -87,6 +87,8 @@ export default {
           return 'small'
         case 'large':
           return 'medium'
+        default:
+          return 'small'
       }
     }
   },
