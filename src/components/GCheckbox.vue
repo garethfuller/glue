@@ -16,7 +16,7 @@
     </label>
     <div
       v-show="errors.has(name)"
-      class="g-text-field-error text-red text-sm absolute">
+      class="g-text-field-error text-red text-sm absolute mt-1">
       {{ errors.first(name) }}
     </div>
   </div>
@@ -79,7 +79,6 @@ export default {
  display: block;
  position: relative;
  padding-left: 35px;
- margin-bottom: 12px;
  cursor: pointer;
  -webkit-user-select: none;
  -moz-user-select: none;
