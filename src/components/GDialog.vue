@@ -1,11 +1,11 @@
 <template lang="html">
     <div v-if="show" class="g-dialog flex justify-center items-center" @click="$emit('close')">
       <transition name="g-dialog">
-        <div v-if="showContent" :class="['g-dialog-content w-full px-2 sm:px-0 relative', contentClasses]" :style="contentStyles" @click.stop>
+        <div v-g-click-outside="closeDialog" v-if="showContent" :class="['g-dialog-content w-full px-2 sm:px-0 relative', contentClasses]" :style="contentStyles" @click.stop>
 
           <div v-if="closeBtn" class="g-dialog-close-btn">
-            <g-btn flat circle @click.native="$emit('close')" size="small">
-              <g-icon name="ion-md-close" />
+            <g-btn flat circle @click.native="closeDialog" size="small">
+              <g-icon name="fas fa-times" />
             </g-btn>
           </div>
 
@@ -24,7 +24,7 @@ export default {
     show: { type: Boolean, default: false },
     maxWidth: { type: [String, Number], default: 500 },
     escClose: { type: Boolean, default: true },
-    closeBtn: { type: Boolean, default: true },
+    closeBtn: { type: Boolean, default: true }
   },
 
   data: () => ({
@@ -40,7 +40,7 @@ export default {
   mounted() {
     document.addEventListener('keydown', (e) => {
       if (this.escClose && e.keyCode == 27) {
-        this.$emit('close');
+        this.closeDialog()
       }
     });
   },
@@ -62,6 +62,12 @@ export default {
       return this.maxWidth;
     },
   },
+
+  methods: {
+    closeDialog() {
+      this.$emit('close')
+    }
+  }
 };
 </script>
 

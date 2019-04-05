@@ -13,9 +13,16 @@
 
     <h1 class="my-8">Btns</h1>
 
-    <g-btn icon="fas fa-plus" size="small" class="mr-4">
+    <g-btn icon="fas fa-plus" size="small" class="mr-4" @click.native="showDialog = true">
       Filter
     </g-btn>
+    <g-dialog :show="showDialog" @close="showDialog = false" close-btn>
+      <g-card>
+        <g-card-content>
+          content
+        </g-card-content>
+      </g-card>
+    </g-dialog>
 
     <g-btn icon="fas fa-plus" class="mr-4" color="grey" flat subtle>
       Filter
@@ -190,6 +197,7 @@ export default {
       textInput: '',
       token: '',
       switchVal: true,
+      showDialog: false,
       selectOptions: [
         { value: 'none', label: 'None' },
         { value: 'sm', label: 'Small' },
