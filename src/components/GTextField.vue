@@ -29,6 +29,7 @@
           :data-vv-validate-on="validateOn"
           ref="input"
           size="1"
+          :disabled="disabled"
           @input="input"
           @blur="blur"
           @focus="focus"
@@ -70,6 +71,7 @@ export default {
     append: { type: Boolean, default: false },
     raised: { type: Boolean, default: false },
     uppercase: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
     validations: { type: String, default: '' },
     validateOn: { type: String, default: 'blur' },
     attrs: { type: Object, default: () => ({}) },

@@ -70,6 +70,7 @@
           required
           size="large"
           validations="required"
+          disabled
         />
         <g-select
           v-model="token"
