@@ -22,7 +22,7 @@
     </g-text-field>
     <div class="relative">
       <transition name="fade-in-up">
-        <div v-if="showItems" class="g-select-items rounded shadow bg-white absolute w-full z-50 overflow-y-scroll">
+        <div v-if="showItems" ref="dropdown" class="g-select-items rounded shadow bg-white absolute w-full z-50 overflow-y-scroll">
           <g-select-item
             v-for="(item, index) in items"
             :text="textFor(item)"
@@ -33,6 +33,7 @@
           />
         </div>
       </transition>
+      <div v-if="showItems" class="g-select-spacer w-full absolute" />
     </div>
   </div>
 </template>
@@ -78,6 +79,12 @@ export default {
     value(newVal) {
       this.inputValue = newVal;
     },
+
+    showItems(newVal) {
+      if (newVal) {
+        this.adjustScrollPosition()
+      }
+    }
   },
 
   created() {
@@ -143,6 +150,17 @@ export default {
     focusHandler() {
       this.showItems = true;
     },
+
+    adjustScrollPosition() {
+      this.$nextTick().then(() => {
+        let el = this.$refs.dropdown
+        let bounding = el.getBoundingClientRect()
+        if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+          let newPos = bounding.bottom + bounding.height + window.innerHeight
+          window.scrollTo(0, newPos)
+        }
+      })
+    }
   },
 };
 </script>
@@ -150,6 +168,10 @@ export default {
 <style lang="css" scoped>
 .g-select-items {
   max-height: 250px;
+}
+
+.g-select-spacer {
+  height: 300px;
 }
 
 .chevron {
