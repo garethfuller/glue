@@ -83,6 +83,7 @@
           required
           size="large"
           label="Token"
+          filterable
         />
       </g-grid-item>
       <g-grid-item width="1/4">
@@ -216,23 +217,7 @@ export default {
         { value: 'none', label: 'None' },
         { value: 'sm', label: 'Small' },
         { value: 'md', label: 'Medium' },
-        { value: 'lg', label: 'Large' },
-        { value: 'none', label: 'None' },
-        { value: 'sm', label: 'Small' },
-        { value: 'md', label: 'Medium' },
-        { value: 'lg', label: 'Large' },
-        { value: 'none', label: 'None' },
-        { value: 'sm', label: 'Small' },
-        { value: 'md', label: 'Medium' },
-        { value: 'lg', label: 'Large' },
-        { value: 'none', label: 'None' },
-        { value: 'sm', label: 'Small' },
-        { value: 'md', label: 'Medium' },
-        { value: 'lg', label: 'Large' },
-        { value: 'none', label: 'None' },
-        { value: 'sm', label: 'Small' },
-        { value: 'md', label: 'Medium' },
-        { value: 'lg', label: 'Large' },
+        { value: 'lg', label: 'Large' }
       ],
       fiat: 'USD',
       checkbox: false

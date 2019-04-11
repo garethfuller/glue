@@ -1,7 +1,7 @@
 <template lang="html">
   <div v-g-click-outside="closeItems" :class="['g-select', classes]">
     <g-text-field
-      v-model="inputLabel"
+      v-model="textInputValue"
       :label="label"
       :name="name"
       :attrs="allAttrs"
@@ -24,7 +24,7 @@
       <transition name="fade-in-up">
         <div v-if="showItems" :ref="name" class="g-select-items rounded shadow bg-white absolute w-full z-50 overflow-y-scroll">
           <g-select-item
-            v-for="(item, index) in items"
+            v-for="(item, index) in internalItems"
             :text="textFor(item)"
             :key="index"
             :size="size"
@@ -68,6 +68,7 @@ export default {
   data() {
     return {
       inputValue: '',
+      textInputValue: '',
       showItems: false,
       active: false,
       complete: false,
@@ -78,6 +79,7 @@ export default {
   watch: {
     value(newVal) {
       this.inputValue = newVal;
+      this.textInputValue = this.labelFor(newVal)
     },
 
     showItems(newVal) {
@@ -123,8 +125,30 @@ export default {
     inputLabel() {
       if (!this.value) return ''
       if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return this.value
-      return this.items.find(item => item[this.itemValue] === this.inputValue)[this.itemText]
+
+      const selectedItem = this.items.find(item => item[this.itemValue] === this.inputValue)
+      if (selectedItem) {
+        return selectedItem[this.itemText]
+      } else {
+        return this.value
+      }
     },
+
+    internalItems() {
+      if (this.filterable) {
+        if (typeof this.items[0] === 'string' || this.items[0] instanceof String) {
+          return this.items.filter(text => text.includes(this.value))
+        } else {
+          const filteredTexts = this.items
+            .map(item => item[this.itemText].toLowerCase())
+            .filter(text => text.includes(this.textInputValue.toLowerCase()))
+
+          return this.items.filter(item => filteredTexts.includes(item[this.itemText].toLowerCase()))
+        }
+      } else {
+        return this.items
+      }
+    }
   },
 
   methods: {
@@ -137,6 +161,19 @@ export default {
     textFor(item) {
       if (typeof item === 'string' || item instanceof String) return item;
       return item[this.itemText];
+    },
+
+    labelFor(value) {
+      if (!this.value) return ''
+      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return value
+
+      const selectedItem = this.items.find(item => item[this.itemValue] === value)
+
+      if (selectedItem) {
+        return selectedItem[this.itemText]
+      } else {
+        return value
+      }
     },
 
     valueFor(item) {
