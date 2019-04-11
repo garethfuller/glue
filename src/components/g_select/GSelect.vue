@@ -22,7 +22,7 @@
     </g-text-field>
     <div class="relative">
       <transition name="fade-in-up">
-        <div v-if="showItems" ref="dropdown" class="g-select-items rounded shadow bg-white absolute w-full z-50 overflow-y-scroll">
+        <div v-if="showItems" :ref="name" class="g-select-items rounded shadow bg-white absolute w-full z-50 overflow-y-scroll">
           <g-select-item
             v-for="(item, index) in items"
             :text="textFor(item)"
@@ -129,8 +129,11 @@ export default {
 
   methods: {
     itemSelected(item) {
-      this.$emit('input', this.valueFor(item))
-      this.showItems = false;
+      this.$validator.reset(this.name).then(() => {
+        this.$emit('input', this.valueFor(item))
+        this.showItems = false;
+      })
+
     },
 
     textFor(item) {
@@ -153,10 +156,12 @@ export default {
 
     adjustScrollPosition() {
       this.$nextTick().then(() => {
-        let el = this.$refs.dropdown
+        let el = this.$refs[this.name]
         let bounding = el.getBoundingClientRect()
         if (bounding.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
-          let newPos = bounding.bottom + bounding.height + window.innerHeight
+          let currentScrollPos = document.documentElement.scrollTop
+          let overflow = bounding.bottom - Math.min(window.innerHeight, document.documentElement.clientHeight)
+          let newPos = currentScrollPos + overflow + 50
           window.scrollTo(0, newPos)
         }
       })
