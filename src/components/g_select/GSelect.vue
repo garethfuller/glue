@@ -85,6 +85,8 @@ export default {
     showItems(newVal) {
       if (newVal) {
         this.adjustScrollPosition()
+      } else {
+        this.clearIfNotItem()
       }
     }
   },
@@ -200,6 +202,19 @@ export default {
           window.scrollTo(0, newPos)
         }
       })
+    },
+
+    clearIfNotItem() {
+      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) {
+        if (!this.items.includes(this.value)) this.value = ''
+      } else {
+        if(!this.items.map(item => item[this.itemValue]).includes(this.value)) {
+          this.value = ''
+          this.textInputValue = ''
+          this.textInputValue = ''
+          this.$validator.validate(this.name, '')
+        }
+      }
     }
   },
 };
