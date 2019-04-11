@@ -129,11 +129,9 @@ export default {
 
   methods: {
     itemSelected(item) {
-      this.$validator.reset(this.name).then(() => {
-        this.$emit('input', this.valueFor(item))
-        this.showItems = false;
-      })
-
+      this.$validator.validate(this.name, this.valueFor(item))
+      this.$emit('input', this.valueFor(item))
+      this.showItems = false;
     },
 
     textFor(item) {
