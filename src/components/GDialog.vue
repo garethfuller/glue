@@ -1,19 +1,47 @@
 <template lang="html">
-    <div v-if="show" class="g-dialog flex justify-center items-center" @click="$emit('close')">
-      <transition name="g-dialog">
-        <div v-g-click-outside="closeDialog" v-if="showContent" :class="['g-dialog-content w-full px-2 sm:px-0 relative', contentClasses]" :style="contentStyles" @click.stop>
-
-          <div v-if="closeBtn" class="g-dialog-close-btn">
-            <g-btn flat circle @click.native="closeDialog" size="small">
-              <g-icon name="fas fa-times" />
-            </g-btn>
+  <div class="inline">
+    <template v-if="fullPage">
+      <transition name="g-fullpage-dialog">
+        <div
+          v-if="show"
+          :class="[`g-dialog-fullpage fixed pin-t pin-l w-full h-full bg-white shadow border-t-4 border-${borderColor}`]">
+          <div v-if="navbar" class="w-full shadow">
+            <div class="container mx-auto flex flex-wrap justify-between items-center h-20">
+              <div>
+                <slot name="title">{{ title }}</slot>
+              </div>
+              <div>
+                <slot name="navCenter"></slot>
+              </div>
+              <div v-if="closeBtn">
+                <g-btn flat circle @click.native="closeDialog" size="large">
+                  <g-icon name="fas fa-times" size="3xl" color="grey-dark" />
+                </g-btn>
+              </div>
+            </div>
           </div>
-
           <slot></slot>
-
         </div>
       </transition>
-    </div>
+    </template>
+    <template v-else>
+      <div v-if="show" class="g-dialog flex justify-center items-center" @click="$emit('close')">
+        <transition name="g-dialog">
+          <div v-g-click-outside="closeDialog" v-if="showContent" :class="['g-dialog-content w-full px-2 sm:px-0 relative', contentClasses]" :style="contentStyles" @click.stop>
+
+            <div v-if="closeBtn" class="g-dialog-close-btn">
+              <g-btn flat circle @click.native="closeDialog" size="small">
+                <g-icon name="fas fa-times" />
+              </g-btn>
+            </div>
+
+            <slot></slot>
+
+          </div>
+        </transition>
+      </div>
+    </template>
+  </div>
 </template>
 
 <script>
@@ -24,7 +52,11 @@ export default {
     show: { type: Boolean, default: false },
     maxWidth: { type: [String, Number], default: 500 },
     escClose: { type: Boolean, default: true },
-    closeBtn: { type: Boolean, default: true }
+    closeBtn: { type: Boolean, default: true },
+    fullPage: { type: Boolean, default: false },
+    navbar: { type: Boolean, default: false },
+    borderColor: { type: String, default: 'white' },
+    title: { type: String, default: 'Title' }
   },
 
   data: () => ({
@@ -102,6 +134,26 @@ export default {
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+.g-dialog-fullpage {
+  z-index: 99999;
+}
+.g-fullpage-dialog-enter-active {
+  animation: g-fullpage-dialog .7s ease;
+}
+.g-fullpage-dialog-leave-active {
+  animation: g-fullpage-dialog .7s reverse ease;
+}
+@keyframes g-fullpage-dialog {
+  0% {
+    margin-top: 100%;
+    height: 300%;
+  }
+  100% {
+    margin-top: 0%;
+    height: 100%;
   }
 }
 </style>
