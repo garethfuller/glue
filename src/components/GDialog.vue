@@ -5,7 +5,7 @@
         <div
           v-if="show"
           :class="[`g-dialog-fullpage fixed pin-t pin-l w-full h-full bg-white shadow border-t-4 border-${borderColor}`]">
-          <div v-if="navbar" class="w-full shadow">
+          <div v-if="navbar" class="w-full">
             <div class="container mx-auto flex flex-wrap justify-between items-center h-20">
               <div>
                 <slot name="title">{{ title }}</slot>
