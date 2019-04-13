@@ -141,10 +141,10 @@ export default {
   z-index: 99999;
 }
 .g-fullpage-dialog-enter-active {
-  animation: g-fullpage-dialog .7s ease;
+  animation: g-fullpage-dialog .5s ease;
 }
 .g-fullpage-dialog-leave-active {
-  animation: g-fullpage-dialog .7s reverse ease;
+  animation: g-fullpage-dialog .5s reverse ease;
 }
 @keyframes g-fullpage-dialog {
   0% {
