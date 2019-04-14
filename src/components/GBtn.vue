@@ -285,6 +285,7 @@ export default {
 .g-btn-circle.g-btn-small {
   @apply .text-sm .rounded-full .w-6 .h-6;
   & > .g-btn-contents {
+    @apply h-full;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -294,6 +295,7 @@ export default {
 .g-btn-circle.g-btn-medium {
   @apply .text-base .rounded-full .w-8 .h-8;
   & > .g-btn-contents {
+    @apply h-full;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -303,6 +305,7 @@ export default {
 .g-btn-circle.g-btn-large {
   @apply .text-lg .rounded-full .w-12 .h-12;
   & > .g-btn-contents {
+    @apply h-full;
     display: flex;
     justify-content: center;
     align-items: center;

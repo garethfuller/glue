@@ -28,6 +28,10 @@
       Filter
     </g-btn>
 
+    <g-btn icon circle>
+      <g-icon name="fas fa-plus" />
+    </g-btn>
+
     <nav class="bg-green w-full h-16 border-b border-white-dark mt-10">
       <div class="container mx-auto h-full flex justify-between items-center">
         <span>logo</span>
