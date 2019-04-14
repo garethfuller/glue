@@ -55,6 +55,24 @@
 
     <h1 class="my-8">Inputs</h1>
 
+    <div class="flex items-end">
+      <div class="w-1/4">
+        <g-text-field
+          v-model="textInput"
+          placeholder="Your name"
+          label="Name"
+          name="name"
+          horizontal
+          required
+          size="small"
+          validations="required"
+          disabled
+        />
+      </div>
+
+      <g-btn size="small" color="green" >Save</g-btn>
+    </div>
+
     <g-grid>
       <g-grid-item width="1/5">
         <g-text-field

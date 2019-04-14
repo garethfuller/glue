@@ -129,19 +129,19 @@ export default {
 
 .g-btn-small {
   & .g-btn-contents {
-    @apply text-sm py-1 px-2;
+    @apply text-sm h-8 px-2;
   }
 }
 
 .g-btn-medium {
   & .g-btn-contents {
-    @apply text-base py-3 px-4;
+    @apply text-base h-12 px-4;
   }
 }
 
 .g-btn-large {
   & .g-btn-contents {
-    @apply text-lg py-4 px-6;
+    @apply text-lg h-16 px-6;
   }
 }
 
