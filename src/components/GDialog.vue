@@ -4,7 +4,7 @@
       <transition name="g-fullpage-dialog">
         <div
           v-if="show"
-          :class="[`g-dialog-fullpage fixed pin-t pin-l w-full h-full bg-white shadow border-t-4 border-${borderColor}`]">
+          :class="[`g-dialog-fullpage fixed pin-t pin-l w-full bg-white shadow border-t-4 border-${borderColor}`]">
           <div v-if="navbar" class="w-full">
             <div class="container mx-auto flex flex-wrap justify-between items-center h-20">
               <div>
@@ -139,6 +139,8 @@ export default {
 
 .g-dialog-fullpage {
   z-index: 99999;
+  min-height: 100%;
+  overflow-y: scroll;
 }
 .g-fullpage-dialog-enter-active {
   animation: g-fullpage-dialog .5s ease;
