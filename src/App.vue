@@ -17,7 +17,15 @@
       Filter
     </g-btn>
     <g-dialog :show="showDialog" @close="showDialog = false" close-btn full-page navbar border-color="green">
-      some content
+      <div class="w-full bg-red h-24"></div>
+      <div class="w-full bg-green h-24"></div>
+      <div class="w-full bg-blue h-24"></div>
+      <div class="w-full bg-orange h-24"></div>
+      <div class="w-full bg-grey h-24"></div>
+      <div class="w-full bg-red h-24"></div>
+      <div class="w-full bg-blue h-24"></div>
+      <div class="w-full bg-green h-24"></div>
+      <div class="w-full bg-red h-24"></div>
     </g-dialog>
 
     <g-btn icon="fas fa-plus" class="mr-4" color="red" outline>
@@ -102,7 +110,7 @@
           size="large"
           label="Token"
           filterable
-          
+
         />
       </g-grid-item>
       <g-grid-item width="1/4">
