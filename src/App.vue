@@ -102,6 +102,7 @@
           size="large"
           label="Token"
           filterable
+          
         />
       </g-grid-item>
       <g-grid-item width="1/4">
