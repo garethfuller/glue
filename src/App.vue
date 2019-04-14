@@ -20,7 +20,7 @@
       some content
     </g-dialog>
 
-    <g-btn icon="fas fa-plus" class="mr-4" color="grey" flat subtle>
+    <g-btn icon="fas fa-plus" class="mr-4" color="red" outline>
       Filter
     </g-btn>
 
@@ -74,7 +74,7 @@
         />
       </div>
 
-      <g-btn size="small" color="green" >Save</g-btn>
+      <g-btn size="small" color="grey" outline>Save</g-btn>
     </div>
 
     <g-grid>

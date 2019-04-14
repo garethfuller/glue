@@ -44,6 +44,7 @@ export default {
     attrs: { type: Object, default: () => ({}) },
     block: { type: Boolean, default: false },
     subtle: { type: Boolean, default: false },
+    outline: { type: Boolean, default: false },
   },
 
   computed: {
@@ -58,12 +59,13 @@ export default {
         'rounded-full': this.rounded,
         'block w-full': this.block,
         'g-btn-subtle': this.subtle,
+        'g-btn-outline': this.outline
       };
     },
 
     textColor() {
       if (this.color === 'white') return 'black'
-      if (this.flat) return this.color;
+      if (this.flat || this.outline) return this.color;
       return 'white';
     },
 
@@ -104,7 +106,6 @@ export default {
 <style lang="css" scoped>
 .g-btn {
   padding: 0;
-  border: none;
   text-decoration: none;
   display: inline-block;
   line-height: 1.3em;
@@ -156,15 +157,32 @@ export default {
   transform: translateY(.5px);
 }
 
-.g-btn.g-btn-flat:hover {
+.g-btn.g-btn-flat:hover, .g-btn.g-btn-outline:hover {
   cursor: pointer;
   transform: translateY(0px) !important;
   box-shadow: none !important;
 }
 
-.g-btn.g-btn-flat:active {
+.g-btn.g-btn-flat:active, .g-btn.g-btn-outline:active {
   transform: translateY(0px) !important;
   box-shadow: none !important;
+}
+
+
+.g-btn-small.g-btn-outline {
+  & .g-btn-contents {
+    height: calc(2rem - 4px);
+  }
+}
+.g-btn-medium.g-btn-outline {
+  & .g-btn-contents {
+    height: calc(3rem - 4px);
+  }
+}
+.g-btn-large.g-btn-outline {
+  & .g-btn-contents {
+    height: calc(4rem - 4px);
+  }
 }
 
 .g-btn.g-btn-flat.g-btn-green:hover {
@@ -215,6 +233,41 @@ export default {
 .g-btn.g-btn-flat.g-btn-grey:active {
   @apply .bg-grey-lightest;
 }
+.g-btn-outline.g-btn-grey {
+  @apply bg-transparent text-grey shadow-none border-2 border-grey;
+}
+
+.g-btn.g-btn-outline.g-btn-red:hover {
+  background-color: config('colors.red-lighter')B3;
+}
+.g-btn.g-btn-outline.g-btn-red:active {
+  background-color: config('colors.red-lighter')80;
+}
+.g-btn.g-btn-outline.g-btn-green:hover {
+  background-color: config('colors.green-lighter')B3;
+}
+.g-btn.g-btn-outline.g-btn-green:active {
+  background-color: config('colors.green-lighter')80;
+}
+.g-btn.g-btn-outline.g-btn-blue:hover {
+  background-color: config('colors.blue-lighter')B3;
+}
+.g-btn.g-btn-outline.g-btn-blue:active {
+  background-color: config('colors.blue-lighter')80;
+}
+.g-btn.g-btn-outline.g-btn-orange:hover {
+  background-color: config('colors.orange-lighter')B3;
+}
+.g-btn.g-btn-outline.g-btn-orange:active {
+  background-color: config('colors.orange-lighter')80;
+}
+.g-btn.g-btn-outline.g-btn-grey:hover {
+  background-color: config('colors.grey-lighter')B3;
+}
+.g-btn.g-btn-outline.g-btn-grey:active {
+  background-color: config('colors.grey-lighter')80;
+}
+
 
 .g-btn-blue {
   @apply .bg-blue text-white shadow;
@@ -222,12 +275,19 @@ export default {
 .g-btn-flat.g-btn-blue {
   @apply bg-transparent text-blue shadow-none;
 }
+.g-btn-outline.g-btn-red {
+  @apply bg-transparent text-blue shadow-none border-2 border-blue;
+}
+
 
 .g-btn-red {
   @apply bg-red text-white shadow;
 }
 .g-btn-flat.g-btn-red {
   @apply .bg-transparent text-red shadow-none;
+}
+.g-btn-outline.g-btn-red {
+  @apply bg-transparent text-red shadow-none border-2 border-red;
 }
 
 .g-btn-green {
@@ -236,12 +296,18 @@ export default {
 .g-btn-flat.g-btn-green {
   @apply bg-transparent text-green shadow-none;
 }
+.g-btn-outline.g-btn-green {
+  @apply bg-transparent text-green shadow-none border-2 border-green;
+}
 
 .g-btn-orange {
   @apply bg-orange text-white shadow;
 }
 .g-btn-flat.g-btn-orange {
   @apply bg-transparent text-orange shadow-none;
+}
+.g-btn-outline.g-btn-orange {
+  @apply bg-transparent text-orange shadow-none border-2 border-orange;
 }
 
 .g-btn-white {
