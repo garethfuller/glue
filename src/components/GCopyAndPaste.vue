@@ -31,7 +31,7 @@ export default {
       this.$refs.contents.select();
       document.execCommand('copy');
       this.tooltipText = 'Copied!';
-      this.sleep(2000).then(res => this.tooltipText = 'Copy to clipboard');
+      this.gSleep(2000).then(res => this.tooltipText = 'Copy to clipboard');
     },
   },
 };

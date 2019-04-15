@@ -57,7 +57,7 @@ export default {
     horizontal: { type: Boolean, default: false },
     required: { type: Boolean, default: false },
     validations: { type: String, default: '' },
-    validateOn: { type: String, default: 'blur' },
+    validateOn: { type: String, default: 'change' },
     inputAttrs: { type: Object, default: () => ({}) },
     disabled: { type: Boolean, default: false },
     size: {
@@ -159,7 +159,7 @@ export default {
     itemSelected(item) {
       this.$validator.validate(this.name, this.valueFor(item))
       this.$emit('input', this.valueFor(item))
-      this.showItems = false;
+      this.showItems = false
     },
 
     textFor(item) {

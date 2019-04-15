@@ -37,7 +37,7 @@ export default {
   created() {
     const self = this;
     if (!this.snackbar.persistent) {
-      this.sleep(5000).then(res => self.$emit('closed', self.snackbar));
+      this.gSleep(5000).then(res => self.$emit('closed', self.snackbar));
     }
   },
 

@@ -1,10 +1,10 @@
 const GUtilities = {
   methods: {
-    sleep(ms) {
+    gSleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     },
 
-    timeout(ms, promise) {
+    gTimeout(ms, promise) {
       const timeout = new Promise((resolve, reject) => {
         const id = setTimeout(() => {
           clearTimeout(id);
@@ -15,7 +15,7 @@ const GUtilities = {
       return Promise.race([promise, timeout]);
     },
 
-    uuid() {
+    gUuid() {
       return Math.random()
         .toString(36)
         .substr(2, 10);

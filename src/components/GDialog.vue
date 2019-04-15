@@ -65,7 +65,7 @@ export default {
 
   watch: {
     show() {
-      this.sleep(1).then(res => this.showContent = this.show);
+      this.gSleep(1).then(res => this.showContent = this.show);
     },
   },
 
