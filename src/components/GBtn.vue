@@ -7,7 +7,7 @@
     <span class="g-btn-contents leading-none">
       <g-loading-animation v-if="loading" :color="textColor" />
       <template v-else>
-        <g-icon v-if="icon" :name="icon" class="mr-2" :size="iconSize" :color="textColor" />
+        <g-icon v-if="icon" :name="icon" :class="[{ 'mr-2': !circle }]" :size="iconSize" :color="textColor" />
         <slot></slot>
       </template>
     </span>
