@@ -228,10 +228,10 @@ export default {
 }
 
 .g-btn.g-btn-flat.g-btn-grey:hover {
-  @apply .bg-grey-lighter;
+  @apply .bg-grey-lightest;
 }
 .g-btn.g-btn-flat.g-btn-grey:active {
-  @apply .bg-grey-lightest;
+  @apply .bg-white-dark;
 }
 .g-btn-outline.g-btn-grey {
   @apply bg-transparent text-grey shadow-none border-2 border-grey;
