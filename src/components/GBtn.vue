@@ -65,6 +65,7 @@ export default {
 
     textColor() {
       if (this.color === 'white') return 'black'
+      if (this.color === 'grey' && (this.flat || this.outline)) return 'grey-dark'
       if (this.flat || this.outline) return this.color;
       return 'white';
     },
@@ -325,7 +326,7 @@ export default {
 }
 
 .g-btn-flat.g-btn-grey {
-  @apply bg-transparent text-grey shadow-none;
+  @apply bg-transparent text-grey-dark shadow-none;
 }
 .g-btn-flat.g-btn-subtle.g-btn-grey {
   @apply bg-grey-lighter;
