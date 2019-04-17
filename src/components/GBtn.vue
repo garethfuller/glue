@@ -235,7 +235,7 @@ export default {
   @apply .bg-white-dark;
 }
 .g-btn-outline.g-btn-grey {
-  @apply bg-transparent text-grey shadow-none border-2 border-grey;
+  @apply bg-transparent text-grey-dark shadow-none border-2 border-grey;
 }
 
 .g-btn.g-btn-outline.g-btn-red:hover {
