@@ -28,7 +28,7 @@
       <div class="w-full bg-red h-24"></div>
     </g-dialog>
 
-    <g-btn icon="fas fa-plus" class="mr-4" color="grey" flat>
+    <g-btn icon="fas fa-plus" class="mr-4" color="black" flat>
       Filter
     </g-btn>
 

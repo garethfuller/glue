@@ -65,6 +65,7 @@ export default {
 
     textColor() {
       if (this.color === 'white') return 'black'
+      if (this.flat && this.color === 'black') return 'black'
       if (this.color === 'grey' && (this.flat || this.outline)) return 'grey-dark'
       if (this.flat || this.outline) return this.color;
       return 'white';
@@ -222,10 +223,10 @@ export default {
 }
 
 .g-btn.g-btn-flat.g-btn-black:hover {
-  background-color: rgba(255,255,255, .1);
+  background-color: config('colors.black')1A;
 }
 .g-btn.g-btn-flat.g-btn-black:active {
-  background-color: rgba(255,255,255, .05);
+  background-color: config('colors.black')0D;
 }
 
 .g-btn.g-btn-flat.g-btn-grey:hover {
@@ -322,7 +323,7 @@ export default {
   @apply bg-black text-white shadow;
 }
 .g-btn-flat.g-btn-black {
-  @apply bg-transparent text-white shadow-none;
+  @apply bg-transparent text-black shadow-none;
 }
 
 .g-btn-flat.g-btn-grey {
