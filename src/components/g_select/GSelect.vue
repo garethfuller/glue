@@ -95,6 +95,7 @@ export default {
 
   created() {
     this.inputValue = this.value;
+    this.textInputValue = this.labelFor(this.value)
   },
 
   computed: {

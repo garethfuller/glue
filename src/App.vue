@@ -110,7 +110,6 @@
           size="large"
           label="Token"
           filterable
-
         />
       </g-grid-item>
       <g-grid-item width="1/4">
@@ -237,7 +236,7 @@ export default {
   data() {
     return {
       textInput: '',
-      token: '',
+      token: 'sm',
       switchVal: true,
       showDialog: false,
       selectOptions: [
