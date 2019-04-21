@@ -236,7 +236,7 @@ export default {
   @apply .bg-white-dark;
 }
 .g-btn-outline.g-btn-grey {
-  @apply bg-transparent text-grey-dark shadow-none border-2 border-grey;
+  @apply bg-transparent text-grey-dark shadow-none border border-grey;
 }
 
 .g-btn.g-btn-outline.g-btn-red:hover {
@@ -278,7 +278,7 @@ export default {
   @apply bg-transparent text-blue shadow-none;
 }
 .g-btn-outline.g-btn-red {
-  @apply bg-transparent text-blue shadow-none border-2 border-blue;
+  @apply bg-transparent text-blue shadow-none border border-blue;
 }
 
 
@@ -289,7 +289,7 @@ export default {
   @apply .bg-transparent text-red shadow-none;
 }
 .g-btn-outline.g-btn-red {
-  @apply bg-transparent text-red shadow-none border-2 border-red;
+  @apply bg-transparent text-red shadow-none border border-red;
 }
 
 .g-btn-green {
@@ -299,7 +299,7 @@ export default {
   @apply bg-transparent text-green shadow-none;
 }
 .g-btn-outline.g-btn-green {
-  @apply bg-transparent text-green shadow-none border-2 border-green;
+  @apply bg-transparent text-green shadow-none border border-green;
 }
 
 .g-btn-orange {
@@ -309,7 +309,7 @@ export default {
   @apply bg-transparent text-orange shadow-none;
 }
 .g-btn-outline.g-btn-orange {
-  @apply bg-transparent text-orange shadow-none border-2 border-orange;
+  @apply bg-transparent text-orange shadow-none border border-orange;
 }
 
 .g-btn-white {
