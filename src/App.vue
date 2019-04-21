@@ -130,6 +130,8 @@
 
     <div class="flex w-1/4 flex-col">
 
+      <g-copy-and-paste text="address.public_key" />
+
       <!-- <g-text-field
         v-model="textInput"
         placeholder="Your name"
