@@ -10,7 +10,8 @@ export default {
 
   props: {
     spacing: { type: String, default: '2' },
-    vertSpacing: { type: String, default: '2' }
+    vertSpacing: { type: String, default: '2' },
+    noWrap: { type: Boolean, default: false }
   },
 
   mounted() {
