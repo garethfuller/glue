@@ -30,7 +30,7 @@ export default {
 <style lang="css" scoped>
 .g-tooltip-text {
     visibility: hidden;
-    @apply bg-black text-white text-center rounded-full px-2 py-1;
+    @apply bg-black text-white text-center rounded px-2 py-1;
     position: absolute;
     z-index: 1;
     bottom: 125%;
