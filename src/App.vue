@@ -28,7 +28,13 @@
       <div class="w-full bg-red h-24"></div>
     </g-dialog>
 
-    <g-btn icon="fas fa-plus" class="mr-4" color="black" flat>
+    <g-btn icon="fas fa-plus" class="mr-4" color="green" size="small" :disabled="loading" :loading="loading" @click.native="setLoading">
+      Filter
+    </g-btn>
+    <g-btn icon="fas fa-plus" class="mr-4" color="green" size="medium" :disabled="loading" :loading="loading" @click.native="setLoading">
+      Filter
+    </g-btn>
+    <g-btn icon="fas fa-plus" class="mr-4" color="green" size="large" :disabled="loading" :loading="loading" @click.native="setLoading">
       Filter
     </g-btn>
 
@@ -248,7 +254,8 @@ export default {
         { value: 'lg', label: 'Large' }
       ],
       fiat: 'USD',
-      checkbox: false
+      checkbox: false,
+      loading: false
     };
   },
 
@@ -268,6 +275,13 @@ export default {
 
   methods: {
     changedTabHandler(newTab) {
+    },
+
+    setLoading() {
+      this.loading = true
+      this.gSleep(5000).then(() => {
+        this.loading = false
+      })
     }
   }
 };

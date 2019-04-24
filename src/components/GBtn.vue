@@ -5,11 +5,11 @@
     v-bind="additionalAttrs"
     @click="clickHandler">
     <span class="g-btn-contents leading-none">
-      <g-loading-animation v-if="loading" :color="textColor" />
-      <template v-else>
-        <g-icon v-if="icon" :name="icon" :class="[{ 'mr-2': !circle }]" :size="iconSize" :color="textColor" />
-        <slot></slot>
-      </template>
+      <transition name="icon-switch" mode="out-in">
+        <g-block-spinner v-if="loading" key="loader" :size="size" :color="textColor" class="mr-2"/>
+        <g-icon v-if="!loading && icon" key="icon" :name="icon" :class="[{ 'mr-2': !circle }]" :size="iconSize" :color="textColor" />
+      </transition>
+      <slot></slot>
     </span>
   </component>
 </template>
@@ -378,5 +378,12 @@ export default {
     justify-content: center;
     align-items: center;
   }
+}
+
+.icon-switch-enter-active, .icon-switch-leave-active {
+  transition: all .3s;
+}
+.icon-switch-enter, .icon-switch-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
