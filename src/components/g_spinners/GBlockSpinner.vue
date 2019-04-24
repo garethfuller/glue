@@ -30,6 +30,8 @@ export default {
           return 12
         case 'large':
           return 16
+        case 'xl':
+          return 40
       }
     },
 
