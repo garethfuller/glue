@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="g-tooltip relative inline-block">
+  <div class="g-tooltip relative inline-block leading-none">
     <slot></slot>
     <span class="g-tooltip-text text-xs flex items-center justify-center" :style="textStyles">
       <slot name="text">{{ text }}</slot>
@@ -30,7 +30,7 @@ export default {
 <style lang="css" scoped>
 .g-tooltip-text {
     visibility: hidden;
-    @apply bg-black text-white text-center rounded px-2 py-1;
+    @apply bg-black text-white text-center rounded px-2 py-2;
     position: absolute;
     z-index: 1;
     bottom: 125%;

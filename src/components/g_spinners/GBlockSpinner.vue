@@ -32,6 +32,8 @@ export default {
           return 16
         case 'xl':
           return 40
+        default:
+          return 12
       }
     },
 
