@@ -83,7 +83,7 @@ export default {
 
     btnBarClasses(tab) {
       return {
-        'w-full h-1 rounded-sm rounded-b-none': true,
+        'w-full h-px': true,
         [`active bg-${this.color}`]: tab.isActive
       }
     },
