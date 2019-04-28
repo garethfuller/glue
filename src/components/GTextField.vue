@@ -292,23 +292,23 @@ export default {
 
 /* APPEND & PREPEND */
 .g-text-field-prepend-small {
-  @apply text-sm h-8 px-4;
+  @apply text-sm h-8 pl-4;
 }
 .g-text-field-prepend-medium {
-  @apply text-base h-12 px-4;
+  @apply text-base h-12 pl-4;
 }
 .g-text-field-prepend-large {
-  @apply text-lg h-16 px-4;
+  @apply text-lg h-16 pl-4;
 }
 
 .g-text-field-append-small {
-  @apply text-sm h-8 px-4;
+  @apply text-sm h-8 pr-4;
 }
 .g-text-field-append-medium {
-  @apply text-base h-12 px-4;
+  @apply text-base h-12 pr-4;
 }
 .g-text-field-append-large {
-  @apply text-lg h-16 px-4;
+  @apply text-lg h-16 pr-4;
 }
 
 .g-text-field-prepend-active {
