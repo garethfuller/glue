@@ -45,6 +45,7 @@ export default {
     block: { type: Boolean, default: false },
     subtle: { type: Boolean, default: false },
     outline: { type: Boolean, default: false },
+    targetExt: { type: Boolean, default: false }
   },
 
   computed: {
@@ -80,6 +81,7 @@ export default {
       const additional = {};
       if (this.to) additional.href = this.to;
       if (this.disabled) additional.disabled = this.disabled;
+      if (this.targetExt) { additional.target = ''; additional.rel = 'noreferrer' }
       return Object.assign({}, this.attrs, additional);
     },
 
