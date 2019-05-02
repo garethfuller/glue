@@ -13,7 +13,6 @@
             <g-icon v-if="copied" key="check" name="fas fa-check-circle" color="green"/>
             <g-icon v-else key="copy" name="fas fa-copy" color="grey"/>
           </transition>
-
         </span>
       </div>
     </g-tooltip>

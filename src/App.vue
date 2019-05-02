@@ -75,7 +75,14 @@
 
     <div class="flex items-end">
       <div class="w-1/4">
-        <g-text-field
+        <g-textarea
+          v-model="textInput"
+          placeholder="A long text field"
+          label="Description"
+          name="description"
+          validations="required"
+        />
+        <!-- <g-text-field
           v-model="textInput"
           placeholder="Your name"
           label="Name"
@@ -85,7 +92,7 @@
           size="small"
           validations="required"
           disabled
-        />
+        /> -->
       </div>
 
       <g-btn size="small" color="grey" outline>Save</g-btn>
@@ -102,7 +109,7 @@
           required
           size="large"
           validations="required"
-          disabled
+          
         />
         <g-select
           v-model="token"

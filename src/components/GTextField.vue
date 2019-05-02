@@ -65,7 +65,6 @@ export default {
     label: { type: String, default: null },
     name: { type: String, default: '' },
     placeholder: { type: String, default: '' },
-    horizontal: { type: Boolean, default: false },
     required: { type: Boolean, default: false },
     prepend: { type: Boolean, default: false },
     append: { type: Boolean, default: false },
@@ -104,7 +103,6 @@ export default {
     classes() {
       return {
         [`g-text-field-${this.size}`]: true,
-        'g-text-field-horizontal': this.horizontal,
         'g-text-field-active': this.active,
         'g-text-field-complete': this.complete,
         'g-text-field-invalid': this.errors.has(this.name),
@@ -129,7 +127,6 @@ export default {
     prependClasses() {
       return {
         [`g-text-field-prepend-${this.size}`]: true,
-        'g-text-field-prepend-horizontal': this.horizontal,
         'g-text-field-prepend-active': this.active,
         'g-text-field-prepend-complete': this.complete,
         'g-text-field-prepend-invalid': this.errors.has(this.name),
@@ -140,7 +137,6 @@ export default {
     appendClasses() {
       return {
         [`g-text-field-append-${this.size}`]: true,
-        'g-text-field-append-horizontal': this.horizontal,
         'g-text-field-append-active': this.active,
         'g-text-field-append-complete': this.complete,
         'g-text-field-append-invalid': this.errors.has(this.name),
@@ -253,22 +249,6 @@ export default {
     & ::placeholder {
       @apply text-red-light;
     }
-  }
-}
-
-.g-text-field-horizontal {
-  & .g-text-field-input-group {
-
-    & .g-text-field-input {
-
-    }
-
-    & label {
-
-    }
-  }
-
-  & .g-text-field-error {
   }
 }
 

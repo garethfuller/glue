@@ -30,3 +30,4 @@ export { default as GTab } from './g_tabs/GTab.vue';
 export { default as GCheckbox } from './GCheckbox.vue';
 export { default as GImg } from './GImg.vue';
 export { default as GBlockSpinner } from './g_spinners/GBlockSpinner.vue';
+export { default as GTextarea } from './GTextarea.vue';
