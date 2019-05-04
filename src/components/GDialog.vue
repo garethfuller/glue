@@ -8,7 +8,11 @@
           <div v-if="navbar" class="w-full">
             <div class="container mx-auto flex flex-wrap justify-between items-center h-20">
               <div>
-                <slot name="title">{{ title }}</slot>
+                <slot name="title">
+                  <h2 class="heading-m">
+                    {{ title }}
+                  </h2>
+                </slot>
               </div>
               <div>
                 <slot name="navCenter"></slot>
