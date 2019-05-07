@@ -61,7 +61,7 @@ export default {
 
   props: {
     type: { type: String, default: 'text' },
-    value: { type: String, default: '' },
+    value: { type: [String, Number], default: '' },
     label: { type: String, default: null },
     name: { type: String, default: '' },
     placeholder: { type: String, default: '' },
