@@ -1,6 +1,8 @@
 <template lang="html">
   <div :class="['g-chip rounded-full', classes]">
-    <slot></slot>
+    <div class="flex items-center leading-none">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -19,13 +21,15 @@ export default {
       default: 'medium',
       validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1,
     },
+    outline: { type: Boolean, default: false }
   },
 
   computed: {
     classes() {
       return {
-        [`g-chip-${this.color}`]: true,
+        [`g-chip-${this.color}`]: !this.outline,
         [`g-chip-${this.size}`]: true,
+        [`g-chip-outline-${this.color}`]: this.outline,
       };
     },
   },
@@ -35,16 +39,24 @@ export default {
 <style lang="css" scoped>
 .g-chip {
   white-space: nowrap;
-  display: inline-block;
 }
 .g-chip-small {
-  @apply .px-2 .py-1 .text-xs;
+  @apply .px-2 .h-5 .text-xs;
+  & div {
+    @apply h-full
+  }
 }
 .g-chip-medium {
-  @apply .px-3 .py-1 .text-sm .font-medium;
+  @apply .px-3 h-6 .text-sm;
+  & div {
+    @apply h-full
+  }
 }
 .g-chip-large {
-  @apply .px-4 .py-2 .text-base;
+  @apply .px-4 h-8 .text-base;
+  & div {
+    @apply h-full
+  }
 }
 .g-chip-grey {
    @apply .bg-grey .text-grey-darkest;
@@ -63,5 +75,21 @@ export default {
 }
 .g-chip-orange {
    @apply .bg-orange .text-white;
+}
+
+.g-chip-outline-grey {
+   @apply border bg-grey-lightest border-grey text-grey-dark;
+}
+.g-chip-outline-blue {
+   @apply border bg-blue-lightest border-blue text-blue-dark;
+}
+.g-chip-outline-red {
+   @apply border bg-red-lightest border-red text-red-dark;
+}
+.g-chip-outline-green {
+   @apply border bg-green-lightest border-green text-green-dark;
+}
+.g-chip-outline-orange {
+   @apply border bg-orange-lightest border-orange text-orange-dark;
 }
 </style>

@@ -109,7 +109,7 @@
           required
           size="large"
           validations="required"
-          
+
         />
         <g-select
           v-model="token"
@@ -137,6 +137,12 @@
         <g-tooltip text="delete">
           <g-chip color="grey">Employee</g-chip>
         </g-tooltip>
+
+        <div class="flex mt-4">
+          <g-chip color="grey" size="small" outline>small</g-chip>
+          <g-chip color="grey" size="medium" outline>Medium</g-chip>
+          <g-chip color="grey" size="large" outline>large</g-chip>
+        </div>
 
       </g-grid-item>
     </g-grid>
