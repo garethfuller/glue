@@ -39,21 +39,22 @@ export default {
 <style lang="css" scoped>
 .g-chip {
   white-space: nowrap;
+  display: inline-block;
 }
 .g-chip-small {
-  @apply .px-2 .h-5 .text-xs;
+  @apply .px-2 .h-6 .text-sm;
   & div {
     @apply h-full
   }
 }
 .g-chip-medium {
-  @apply .px-3 h-6 .text-sm;
+  @apply .px-3 h-8 .text-base;
   & div {
     @apply h-full
   }
 }
 .g-chip-large {
-  @apply .px-4 h-8 .text-base;
+  @apply .px-4 h-10 .text-lg;
   & div {
     @apply h-full
   }
