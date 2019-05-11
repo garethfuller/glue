@@ -119,7 +119,7 @@ export default {
 
 <style lang="css" scoped>
 .g-popover {
-  z-index: 50;
+  z-index: 100;
 }
 
 .popover-bottom-enter-active {
