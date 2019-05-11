@@ -101,7 +101,7 @@ export default {
   computed: {
     allAttrs() {
       const attrs = {}
-      attrs.autocomplete = 'nope'
+      attrs.autocomplete = 'off'
       if (!this.filterable) attrs.readonly = 'readonly'
       return Object.assign({}, this.inputAttrs, attrs)
     },
