@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="g-snackbar-list px-2 sm:px-0">
+  <div class="g-snackbar-list px-2 pt-2 sm:px-0">
     <div class="g-snackbar-list-container">
       <g-snackbar
         v-for="(snackbar, index) in snackbars"

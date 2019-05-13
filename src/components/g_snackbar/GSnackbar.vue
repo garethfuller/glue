@@ -3,20 +3,15 @@
     name="bounce"
     enter-active-class="bounceInDown"
     leave-active-class="bounceOutUp">
-    <div v-if="visible" :class="['g-snackbar rounded shadow-lg', classes]">
-      <div class="g-snackbar-icon" v-if="hasIcon">
-        <g-icon class="icon" :name="snackbar.icon" color="white" size="large"></g-icon>
-      </div>
-      <div class="contents">
-        <h2 class="text-lg leading-none font-bold mb-1" v-html="snackbar.title"></h2>
-        <p class="mb-2" v-html="snackbar.description"></p>
-      </div>
-      <div class="g-snackbar-close">
-        <g-btn flat circle @click.native="handleClose" size="small" color="white">
-          <g-icon name="fas fa-times" size="small" color="white"></g-icon>
-        </g-btn>
-      </div>
-    </div>
+    <g-alert
+      v-if="visible"
+      :title="snackbar.title"
+      :icon="snackbar.icon"
+      :color="color"
+      class="mb-2"
+      @closed="handleClose">
+      <div v-html="snackbar.description" />
+    </g-alert>
   </transition>
 </template>
 
@@ -37,7 +32,7 @@ export default {
   created() {
     const self = this;
     if (!this.snackbar.persistent) {
-      this.gSleep(5000).then(res => self.$emit('closed', self.snackbar));
+      this.gSleep(5000).then(res => self.$emit('closed', self.snackbar))
     }
   },
 
@@ -46,21 +41,19 @@ export default {
   },
 
   computed: {
-    classes() {
-      return {
-        [`g-snackbar-${this.type}`]: true,
-      };
-    },
-
-    hasIcon() {
-      return !!((this.snackbar.icon && this.snackbar.icon.length > 0));
-    },
-
-    type() {
-      if (this.snackbar.type && this.snackbar.type.length > 0) {
-        return this.snackbar.type;
+    color() {
+      switch (this.snackbar.type) {
+        case 'default':
+          return 'blue'
+        case 'error':
+          return 'red'
+        case 'warning':
+          return 'orange'
+        case 'success':
+          return 'green'
+        default:
+          return 'blue'
       }
-      return 'default';
     },
 
     persistent() {
@@ -76,42 +69,5 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
-.g-snackbar-icon {
-  @apply pr-2;
-}
-
-.g-snackbar-close {
-  margin-left: auto;
-}
-
-.g-snackbar {
-  @apply p-2 mt-2;
-  display: flex;
-}
-
-.g-snackbar-default {
-  @apply bg-black text-white;
-  & h2 { @apply .text-white; }
-}
-
-.g-snackbar-error {
-  @apply bg-red text-white;
-  & h2 { @apply text-white; }
-}
-
-.g-snackbar-warning {
-  @apply bg-orange text-white;
-  & h2 { @apply text-white; }
-}
-
-.g-snackbar-success {
-  @apply bg-green text-white;
-  & h2 { @apply text-white; }
-}
-
-.g-snackbar-red {
-  @apply bg-red text-white;
-  & h2 { @apply text-white; }
-}
+<style scoped>
 </style>

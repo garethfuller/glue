@@ -1,5 +1,13 @@
 <template>
   <div id="app" class="p-8">
+
+    <div>
+      <g-alert title="A title" icon="fas fa-check-circle" color="green">
+        A description asdm asdm kasd skdna lkas lkasdlm kmasd.
+      </g-alert>
+    </div>
+
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
     <g-snackbar-list :snackbars="[
