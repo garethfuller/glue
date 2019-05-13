@@ -9,7 +9,7 @@
       :icon="snackbar.icon"
       :color="color"
       class="mb-2"
-      @closed="handleClose">
+      @close="handleClose">
       <div v-html="snackbar.description" />
     </g-alert>
   </transition>
