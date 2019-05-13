@@ -11,11 +11,7 @@ export default {
   props: {
     to: { type: String, default: null },
     href: { type: String, default: null },
-    color: {
-      type: String,
-      default: 'blue',
-      validator: value => ['black', 'blue', 'orange', 'blue', 'white', 'red'].indexOf(value) !== -1,
-    },
+    color: { type: String, default: 'blue' },
     size: {
       type: String,
       default: 'base',
