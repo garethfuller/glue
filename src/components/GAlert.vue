@@ -13,7 +13,7 @@
         <g-icon :name="icon" :color="color" size="2xl" />
       </div>
       <div :class="['content py-6 pr-4', { 'pl-4': !icon }]">
-        <h3 class="headline mb-1">
+        <h3 class="subheading mb-0">
           <slot name="title">
             {{ title }}
           </slot>
