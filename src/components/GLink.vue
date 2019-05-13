@@ -30,9 +30,13 @@ export default {
 
   methods: {
     clicked(e) {
-      if (this.to) e.preventDefault();
-      this.$emit('clicked');
-      this.$router.push(this.to);
+      if (this.to) {
+        e.preventDefault()
+        this.$router.push(this.to)
+      } else if (!this.href) {
+        e.preventDefault()
+      }
+      this.$emit('clicked')
     },
   },
 };
