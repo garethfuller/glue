@@ -28,7 +28,7 @@ export default {
 
 <style lang="css" scoped>
 .g-snackbar-list {
-  z-index: 9999 !important;
+  z-index: 99999 !important;
   display: flex;
   justify-content: center;
   position: fixed;
