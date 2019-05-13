@@ -34,8 +34,8 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  max-width: 350px;
+  width: 400px;
+  max-width: 100%;
 }
 @screen sm {
   .g-snackbar-list {
