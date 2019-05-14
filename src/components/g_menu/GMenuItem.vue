@@ -2,7 +2,7 @@
   <component :is="tag" v-bind="attrs" class="g-menu-item cursor-pointer px-6 py-4">
     <div class="g-menu-item-container flex items-center">
       <div v-if="icon" class="icon w-8">
-        <g-icon :name="icon" size="large" />
+        <g-icon :name="icon" size="large" color="grey-dark" />
       </div>
       <slot></slot>
     </div>
@@ -36,9 +36,9 @@ export default {
 <style lang="css" scoped>
 .g-menu-item{
   transition: background .4s ease;
-  @apply text-black no-underline block;
+  @apply text-grey-darkest no-underline block;
 }
 .g-menu-item:hover {
-  @apply bg-white-dark;
+  @apply bg-white-dark text-black;
 }
 </style>

@@ -64,7 +64,7 @@
               Hello world
             </g-btn>
             <g-menu>
-              <g-menu-item>Business</g-menu-item>
+              <g-menu-item icon="fas fa-th">Business</g-menu-item>
               <g-menu-item>Logout</g-menu-item>
             </g-menu>
           </g-popover>
