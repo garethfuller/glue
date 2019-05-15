@@ -1,6 +1,6 @@
 <template>
   <div :class="`g-alert bg-white shadow-lg rounded border-l-4 border-${color}`">
-    <div class="relative">
+    <div v-if="!persistent" class="relative">
       <div class="absolute pin-r mr-1 mt-1">
         <g-btn flat circle @click.native="$emit('close')" size="small" color="grey">
           <g-icon name="fas fa-times" size="small" color="grey-dark"></g-icon>
@@ -33,7 +33,8 @@ export default {
   props: {
     title: { type: String },
     color: { type: String, default: 'blue' },
-    icon: { type: String }
+    icon: { type: String },
+    persistent: { type: Boolean, default: false }
   },
 
   data () {
