@@ -39,7 +39,7 @@ export default {
 }
 @screen sm {
   .g-snackbar-list {
-    left: calc((100% / 2) - (350px / 2));
+    left: calc((100% / 2) - (400px / 2));
   }
 }
 
