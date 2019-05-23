@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="g-copy-text-box block border border-grey-lightest rounded flex justify-between">
     <no-ssr>
-      <input :value="text" type="text" class="contents px-2 py-1 w-full rounded" ref="contents" readonly/>
+      <input :value="text" type="text" :class="['contents px-2 py-1 w-full rounded', inputBg]" ref="contents" readonly/>
     </no-ssr>
     <g-tooltip :text="tooltipText" :width="70">
       <div
@@ -25,6 +25,7 @@ export default {
 
   props: {
     text: { type: String, required: true },
+    inputBg: { type: String, default: 'bg-white' }
   },
 
   data() {
