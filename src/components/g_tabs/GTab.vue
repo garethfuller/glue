@@ -14,6 +14,7 @@ export default {
 
   props: {
     name: { type: String },
+    path: { type: String },
     icon: { type: String },
     active: { type: Boolean, default: false },
     noPanel: { type: Boolean, default: false },
