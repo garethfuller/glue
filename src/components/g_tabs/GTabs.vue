@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="g-tabs h-full">
+  <div class="g-tabs h-full w-full">
     <div class="tab-btns flex flex-col h-full">
       <div :class="['flex h-full', { 'justify-center': center, 'justify-end': right }]">
         <component
