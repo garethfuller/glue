@@ -27,7 +27,7 @@
           v-bind="attrs"
           v-validate="validations"
           :data-vv-validate-on="validateOn"
-          ref="input"
+          :ref="inputRef"
           size="1"
           :disabled="disabled"
           @input="input"
@@ -74,6 +74,7 @@ export default {
     validations: { type: String, default: '' },
     validateOn: { type: String, default: 'blur' },
     attrs: { type: Object, default: () => ({}) },
+    inputRef: { type: String, default: 'input' },
     size: {
       type: String,
       default: 'medium',
