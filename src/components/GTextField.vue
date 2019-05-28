@@ -160,6 +160,7 @@ export default {
     blur() {
       this.active = false;
       if (this.value.length > 0) this.complete = true;
+      this.$emit('blur');
     },
   },
 };
