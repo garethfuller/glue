@@ -19,6 +19,7 @@
         </div>
         <input
           :class="['w-full bg-grey-lightest border-grey-lightest leading-none', inputClasses]"
+          :ref="inputRef"
           :type="type"
           :value="value"
           :placeholder="placeholder"
@@ -27,7 +28,6 @@
           v-bind="attrs"
           v-validate="validations"
           :data-vv-validate-on="validateOn"
-          :ref="inputRef"
           size="1"
           :disabled="disabled"
           @input="input"
