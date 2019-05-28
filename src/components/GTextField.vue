@@ -71,7 +71,7 @@ export default {
     raised: { type: Boolean, default: false },
     uppercase: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
-    validations: { type: String, default: '' },
+    validations: { type: [String, Object], default: '' },
     validateOn: { type: String, default: 'blur' },
     attrs: { type: Object, default: () => ({}) },
     inputRef: { type: String, default: 'input' },
