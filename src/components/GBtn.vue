@@ -45,7 +45,8 @@ export default {
     block: { type: Boolean, default: false },
     subtle: { type: Boolean, default: false },
     outline: { type: Boolean, default: false },
-    targetBlank: { type: Boolean, default: false }
+    targetBlank: { type: Boolean, default: false },
+    textColor: { type: String }
   },
 
   computed: {
@@ -65,7 +66,7 @@ export default {
     },
 
     textColor() {
-      if (this.color === 'white' && !this.flat) return 'black'
+      if (this.color === 'white' && !this.flat) return this.textColor || 'black'
       if (this.flat && this.color === 'black') return 'black'
       if (this.color === 'grey' && (this.flat || this.outline)) return 'grey-dark'
       if (this.flat || this.outline) return this.color;
