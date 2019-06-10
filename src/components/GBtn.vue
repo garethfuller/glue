@@ -6,8 +6,8 @@
     @click="clickHandler">
     <span class="g-btn-contents leading-none">
       <transition name="icon-switch" mode="out-in">
-        <g-block-spinner v-if="loading" key="loader" :size="size" :color="textColor" class="mr-2"/>
-        <g-icon v-if="!loading && icon" key="icon" :name="icon" :class="[{ 'mr-2': !circle }]" :size="iconSize" :color="textColor" />
+        <g-block-spinner v-if="loading" key="loader" :size="size" :color="_textColor" class="mr-2"/>
+        <g-icon v-if="!loading && icon" key="icon" :name="icon" :class="[{ 'mr-2': !circle }]" :size="iconSize" :color="_textColor" />
       </transition>
       <slot></slot>
     </span>
@@ -65,7 +65,7 @@ export default {
       };
     },
 
-    textColor() {
+    _textColor() {
       if (this.color === 'white' && !this.flat) return this.textColor || 'black'
       if (this.flat && this.color === 'black') return 'black'
       if (this.color === 'grey' && (this.flat || this.outline)) return 'grey-dark'
