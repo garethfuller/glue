@@ -323,6 +323,9 @@ export default {
 .g-btn-flat.g-btn-subtle.g-btn-white {
   background-color: rgba(0,0,0, .05);
 }
+.g-btn-flat.g-btn-subtle.g-btn-black {
+  background-color: rgba(0,0,0, .05);
+}
 
 .g-btn-black {
   @apply bg-black text-white shadow;
