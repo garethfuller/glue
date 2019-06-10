@@ -4,7 +4,7 @@
     :class="['g-btn font-medium', classes]"
     v-bind="additionalAttrs"
     @click="clickHandler">
-    <span class="g-btn-contents leading-none">
+    <span :class="`g-btn-contents leading-none text-${_textColor}`">
       <transition name="icon-switch" mode="out-in">
         <g-block-spinner v-if="loading" key="loader" :size="size" :color="_textColor" class="mr-2"/>
         <g-icon v-if="!loading && icon" key="icon" :name="icon" :class="[{ 'mr-2': !circle }]" :size="iconSize" :color="_textColor" />
@@ -316,7 +316,7 @@ export default {
 }
 
 .g-btn-white {
-  @apply bg-white text-black shadow;
+  @apply bg-white shadow;
 }
 .g-btn-flat.g-btn-white {
   @apply bg-transparent text-white shadow-none;
