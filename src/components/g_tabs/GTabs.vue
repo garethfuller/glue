@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="g-tabs h-full w-full">
     <div class="tab-btns flex flex-col h-full">
-      <div :class="['flex h-full', { 'justify-center': center, 'justify-end': right }]">
+      <div :class="['flex h-full', { 'justify-end': right }]">
         <component
           v-for="(tab, i) in tabs"
           :key="i"
@@ -11,14 +11,14 @@
           @click="clicked(tab)">
           <div class="h-1"></div>
           <div
-            class="g-tabs-label flex items-center pr-12">
+            class="g-tabs-label flex flex-col md:flex-row items-center justify-center md:justify-start pr-0 md:pr-12">
             <g-icon
               v-if="tab.icon"
               :name="tab.icon"
               :color="(tab.isActive) ? color : null"
-              :class="[{ 'mr-3': !center, 'mb-2': center }]"
+              class="mb-2 md:mb-0 mr-0 md:mr-3"
             />
-            <span>{{ tab.name }}</span>
+            <span class="text-xs md:text-base">{{ tab.name }}</span>
           </div>
           <div :class="btnBarClasses(tab)"/>
         </component>
@@ -35,7 +35,6 @@ export default {
   name: 'GTabs',
 
   props: {
-    center: { type: Boolean, default: false },
     right: { type: Boolean, default: false },
     color: {
       type: String,
@@ -76,7 +75,6 @@ export default {
         'w-full cursor-pointer flex flex-col justify-between h-full hover:no-underline': true,
         [`active text-${this.color}`]: tab.isActive,
         [`active text-grey-dark hover:text-grey-darkest`]: !tab.isActive,
-        'text-center flex-col': this.center,
         'text-right': this.right
       }
     },
