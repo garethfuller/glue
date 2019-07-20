@@ -256,6 +256,24 @@
       label="Token"
     />
 
+    <div class="w-full p-24 border mt-24">
+      <g-vert-nav @changed="changedTabHandler" color="green">
+        <g-vert-nav-item name="Dashboard" icon="fas fa-th-large">
+          Dashboard
+        </g-vert-nav-item>
+        <g-vert-nav-item name="Payees" icon="fas fa-users">
+          Payees
+        </g-vert-nav-item>
+        <g-vert-nav-item name="History" icon="fas fa-history">
+          History
+        </g-vert-nav-item>
+        <g-vert-nav-item name="Settings" icon="fas fa-cog">
+          Settings
+        </g-vert-nav-item>
+        <div>pannel</div>
+      </g-vert-nav>
+    </div>
+
   </div>
 </template>
 

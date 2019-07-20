@@ -33,3 +33,5 @@ export { default as GBlockSpinner } from './g_spinners/GBlockSpinner.vue';
 export { default as GTextarea } from './GTextarea.vue';
 export { default as GAlert } from './GAlert.vue';
 export { default as GCopyBtn } from './GCopyBtn.vue';
+export { default as GVertNav } from './g_vert_nav/GVertNav.vue';
+export { default as GVertNavItem } from './g_vert_nav/GVertNavItem.vue';

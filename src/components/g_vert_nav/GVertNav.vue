@@ -1,0 +1,108 @@
+<template lang="html">
+  <div class="border border-red flex">
+    <div class="flex border border-blue">
+      <div class="flex flex-col">
+        <component
+          v-for="(tab, i) in tabs"
+          :key="i"
+          :is="componentFor(tab)"
+          v-bind="attrsFor(tab)"
+          :class="btnTextClasses(tab)"
+          @click="clicked(tab)">
+          <div
+            class="g-tabs-label flex items-center pb-8">
+            <div class="w-8 text-center mr-4">
+              <g-icon
+                v-if="tab.icon"
+                :name="tab.icon"
+                :color="(tab.isActive) ? color : null"
+                size="xl"
+                :class="iconClasses(tab)"
+              />
+            </div>
+            <span>{{ tab.name }}</span>
+          </div>
+        </component>
+      </div>
+    </div>
+    <div class="tab-panels flex-1 border border-green">
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'GVertNav',
+
+  props: {
+    right: { type: Boolean, default: false },
+    color: {
+      type: String,
+      default: 'blue',
+      validator: value => ['blue', 'red', 'green', 'orange', 'white', 'black'].indexOf(value) !== -1,
+    }
+  },
+
+  data() {
+    return {
+      tabs: []
+    }
+  },
+
+  mounted() {
+    this.tabs = this.$children.filter(tab => tab.$options._componentTag == 'g-vert-nav-item')
+    this.setDefaultActiveTab()
+  },
+
+  computed: {
+    activeTab() {
+      return this.tabs.find(tab => tab.isActive)
+    }
+  },
+
+  methods: {
+    clicked(tab) {
+      this.tabs.forEach(t => t.isActive = (t === tab))
+      this.$emit('changed', this.activeTab)
+    },
+
+    setDefaultActiveTab() {
+      if (!this.activeTab) this.tabs[0].isActive = true
+    },
+
+    btnTextClasses(tab) {
+      return {
+        'w-full cursor-pointer flex flex-col justify-between h-full hover:no-underline text-grey': true,
+        [`active text-${this.color}`]: tab.isActive,
+        [`active text-grey-dark hover:text-grey-darkest`]: !tab.isActive,
+        'text-right': this.right
+      }
+    },
+
+    iconClasses(tab) {
+      return {
+        'text-grey-dark': true,
+        [`text-${this.color}-dark`]: tab.active
+      }
+    },
+
+    componentFor(tab) {
+      if (tab.to) return 'nuxt-link'
+      return 'div'
+    },
+
+    attrsFor(tab) {
+      let attrs = {}
+      if (tab.to) attrs.to = tab.to
+      return attrs
+    }
+  }
+}
+</script>
+
+<style lang="css" scoped>
+.g-tabs-label {
+  transition: color .3s ease;
+}
+</style>
