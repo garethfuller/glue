@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="flex">
+  <div class="flex flex-wrap flex-col md:flex-row">
     <div class="flex">
-      <div class="flex flex-col">
+      <div class="flex flex-row md:flex-col w-full md:w-auto">
         <component
           v-for="(tab, i) in tabs"
           :key="i"
@@ -10,8 +10,8 @@
           :class="btnTextClasses(tab)"
           @click="clicked(tab)">
           <div
-            class="g-tabs-label flex items-center pb-6">
-            <div class="w-8 text-center mr-3">
+            class="g-tabs-label flex flex-col md:flex-row items-center pb-6">
+            <div class="w-8 text-center mr-0 md:mr-3 mb-1 md:mb-0">
               <g-icon
                 v-if="tab.icon"
                 :name="tab.icon"
@@ -25,7 +25,7 @@
         </component>
       </div>
     </div>
-    <div class="tab-panels flex-1 ml-16">
+    <div class="tab-panels flex-1 ml-0 md:ml-16">
       <slot></slot>
     </div>
   </div>

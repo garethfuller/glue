@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="p-8">
+  <div id="app" class="p-2">
 
     <div>
       <g-alert title="A title" icon="fas fa-check-circle" color="green">
@@ -256,7 +256,7 @@
       label="Token"
     />
 
-    <div class="w-full p-24 border mt-24">
+    <div class="w-full mt-24">
       <g-vert-nav @changed="changedTabHandler" color="green">
         <g-vert-nav-item name="Dashboard" icon="fas fa-th-large">
           Dashboard
