@@ -270,7 +270,6 @@
         <g-vert-nav-item name="Settings" icon="fas fa-cog">
           Settings
         </g-vert-nav-item>
-        <div>pannel</div>
       </g-vert-nav>
     </div>
 

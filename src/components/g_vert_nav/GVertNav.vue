@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="border border-red flex">
-    <div class="flex border border-blue">
+  <div class="flex">
+    <div class="flex">
       <div class="flex flex-col">
         <component
           v-for="(tab, i) in tabs"
@@ -25,7 +25,7 @@
         </component>
       </div>
     </div>
-    <div class="tab-panels flex-1 border border-green">
+    <div class="tab-panels flex-1 ml-16">
       <slot></slot>
     </div>
   </div>

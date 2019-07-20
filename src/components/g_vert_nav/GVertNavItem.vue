@@ -1,9 +1,7 @@
 <template lang="html">
   <component
-    :is="tag"
-    v-bind="attrs"
-    v-if="isActive && !noPanel"
-    :class="['g-tab bg-white p-8 rounded-b']">
+    is="div"
+    v-if="isActive && !noPanel">
     <slot></slot>
   </component>
 </template>
