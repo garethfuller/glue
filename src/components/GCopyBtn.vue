@@ -8,7 +8,7 @@
         </transition>
       </g-btn>
     </g-tooltip>
-    <textarea name="text" ref="contents" class="input">{{ text }}</textarea>
+    <textarea name="text" ref="contents" class="input" :value="text"></textarea>
   </div>
 </template>
 
@@ -66,5 +66,8 @@ export default {
 .input {
   width: 0px;
   height: 0px;
+  resize: none;
+  border: none;
+  outline: none;
 }
 </style>
