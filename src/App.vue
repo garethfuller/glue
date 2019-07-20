@@ -54,6 +54,8 @@
       <g-icon name="fas fa-plus" />
     </g-btn>
 
+    <g-copy-btn text="Copy this" />
+
     <nav class="bg-green w-full h-16 border-b border-white-dark mt-10">
       <div class="container mx-auto h-full flex justify-between items-center">
         <span>logo</span>

@@ -32,3 +32,4 @@ export { default as GImg } from './GImg.vue';
 export { default as GBlockSpinner } from './g_spinners/GBlockSpinner.vue';
 export { default as GTextarea } from './GTextarea.vue';
 export { default as GAlert } from './GAlert.vue';
+export { default as GCopyBtn } from './GCopyBtn.vue';
