@@ -1,10 +1,17 @@
 <template>
   <div>
     <g-tooltip :text="tooltipText" :width="70">
-      <g-btn circle :flat="flat" :outline="outline" :color="color" :size="size" @click.native="copyToClipboard">
+      <g-btn
+        circle
+        :flat="flat"
+        :outline="outline"
+        :color="color"
+        :size="size"
+        :subtle="subtle"
+        @click.native="copyToClipboard">
         <transition name="switch" mode="out-in">
-          <g-icon v-if="copied" key="check" name="fas fa-check-circle" color="green"/>
-          <g-icon v-else key="copy" name="far fa-clone" :color="iconColor"/>
+          <g-icon v-if="copied" key="check" name="fas fa-check-circle" :size="iconSize" :color="iconColor" />
+          <g-icon v-else key="copy" name="far fa-clone" :size="iconSize" :color="iconColor"/>
         </transition>
       </g-btn>
     </g-tooltip>
@@ -21,6 +28,7 @@ export default {
     color: { type: String, default: 'white' },
     flat: { type: Boolean, default: false },
     outline: { type: Boolean, default: false },
+    subtle: { type: Boolean, default: false },
     size: {
       type: String,
       default: 'medium',
@@ -43,6 +51,19 @@ export default {
       if (this.flat || this.outline) return this.color;
       return 'white';
     },
+
+    iconSize() {
+      switch (this.size) {
+        case 'small':
+          return 'xs'
+        case 'medium':
+          return 'small'
+        case 'large':
+          return 'medium'
+        default:
+          return 'small'
+      }
+    }
   },
 
   methods: {
