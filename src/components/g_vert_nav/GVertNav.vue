@@ -10,8 +10,8 @@
           :class="btnTextClasses(tab)"
           @click="clicked(tab)">
           <div
-            class="g-tabs-label flex items-center pb-8">
-            <div class="w-8 text-center mr-4">
+            class="g-tabs-label flex items-center pb-6">
+            <div class="w-8 text-center mr-3">
               <g-icon
                 v-if="tab.icon"
                 :name="tab.icon"
