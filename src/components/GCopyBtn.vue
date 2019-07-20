@@ -15,7 +15,7 @@
         </transition>
       </g-btn>
     </g-tooltip>
-    <textarea name="text" ref="contents" class="input -ml-2" :value="text"></textarea>
+    <textarea name="text" ref="contents" class="input -ml-2 absolute" :value="text"></textarea>
   </div>
 </template>
 
