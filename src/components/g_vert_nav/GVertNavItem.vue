@@ -1,9 +1,8 @@
 <template lang="html">
-  <component
-    is="div"
+  <div
     v-if="isActive && !noPanel">
     <slot></slot>
-  </component>
+  </div>
 </template>
 
 <script>
