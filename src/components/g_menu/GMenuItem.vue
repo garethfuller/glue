@@ -15,18 +15,21 @@ export default {
 
   props: {
     to: { type: String },
+    href: { type: String },
     icon: { type: String },
   },
 
   computed: {
     tag() {
-      if (this.to) return 'nuxt-link';
+      if (this.to) return 'nuxt-link'
+      if (this.href) return 'a'
       return 'div';
     },
 
     attrs() {
       const attrs = {};
-      if (this.to) attrs.to = this.to;
+      if (this.to) attrs.to = this.to
+      if (this.href) attrs.href = this.href
       return attrs;
     },
   },
