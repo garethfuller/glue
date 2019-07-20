@@ -1,29 +1,27 @@
 <template lang="html">
-  <div class="flex flex-wrap flex-col md:flex-row">
-    <div class="flex">
-      <div class="flex flex-row md:flex-col w-full md:w-auto">
-        <component
-          v-for="(tab, i) in tabs"
-          :key="i"
-          :is="componentFor(tab)"
-          v-bind="attrsFor(tab)"
-          :class="btnTextClasses(tab)"
-          @click="clicked(tab)">
-          <div
-            class="g-tabs-label flex flex-col md:flex-row items-center pb-6">
-            <div class="w-8 text-center mr-0 md:mr-3 mb-1 md:mb-0">
-              <g-icon
-                v-if="tab.icon"
-                :name="tab.icon"
-                :color="(tab.isActive) ? color : null"
-                size="xl"
-                :class="iconClasses(tab)"
-              />
-            </div>
-            <span>{{ tab.name }}</span>
+  <div class="flex flex-wrap flex-col md:flex-row items-start">
+    <div class="flex flex-row md:flex-col w-full md:w-auto">
+      <component
+        v-for="(tab, i) in tabs"
+        :key="i"
+        :is="componentFor(tab)"
+        v-bind="attrsFor(tab)"
+        :class="btnTextClasses(tab)"
+        @click="clicked(tab)">
+        <div
+          class="g-tabs-label flex flex-col md:flex-row items-center pb-6">
+          <div class="w-8 text-center mr-0 md:mr-3 mb-1 md:mb-0">
+            <g-icon
+              v-if="tab.icon"
+              :name="tab.icon"
+              :color="(tab.isActive) ? color : null"
+              size="xl"
+              :class="iconClasses(tab)"
+            />
           </div>
-        </component>
-      </div>
+          <span>{{ tab.name }}</span>
+        </div>
+      </component>
     </div>
     <div class="tab-panels flex-1 ml-0 md:ml-16">
       <slot></slot>
