@@ -1,7 +1,7 @@
 <template>
   <div>
     <g-tooltip :text="tooltipText" :width="70">
-      <g-btn circle :flat="flat" :outline="outline" :color="color" @click.native="copyToClipboard">
+      <g-btn circle :flat="flat" :outline="outline" :color="color" :size="size" @click.native="copyToClipboard">
         <transition name="switch" mode="out-in">
           <g-icon v-if="copied" key="check" name="fas fa-check-circle" color="green"/>
           <g-icon v-else key="copy" name="far fa-clone" :color="iconColor"/>
@@ -20,7 +20,12 @@ export default {
     text: { type: String, required: true },
     color: { type: String, default: 'white' },
     flat: { type: Boolean, default: false },
-    outline: { type: Boolean, default: false }
+    outline: { type: Boolean, default: false },
+    size: {
+      type: String,
+      default: 'medium',
+      validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1,
+    },
   },
 
   data () {
