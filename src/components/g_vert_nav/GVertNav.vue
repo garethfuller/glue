@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="flex flex-wrap flex-col md:flex-row items-start">
+  <div class="flex flex-col md:flex-row items-start">
     <div class="flex flex-row md:flex-col w-full md:w-auto">
       <component
         v-for="(tab, i) in tabs"
