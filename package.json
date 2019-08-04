@@ -1,6 +1,6 @@
 {
-  "name": "@garethfuller/glue",
-  "version": "0.1.20",
+  "name": "gluevue",
+  "version": "0.1.4",
   "main": "./src/build.js",
   "files": [
     "dist/*",
