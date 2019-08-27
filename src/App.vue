@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="p-2">
 
+    <g-circle>i</g-circle>
+
     <div>
       <g-alert title="A title" icon="fas fa-check-circle" color="green">
         A description asdm asdm kasd skdna lkas lkasdlm kmasd.
