@@ -12,7 +12,7 @@
             v-for="(lang, i) in langs"
             :key="i"
             flat
-            color="black"
+            color="white"
             size="small"
             :class="['ml-2', { active: isActive(lang) }]"
             @click.native="changeLangTo(lang)">

@@ -3,6 +3,8 @@
 
     <g-circle>i</g-circle>
 
+    <g-code :code="{ bash: '$ some command'}" :langs="['bash']"></g-code>
+
     <div>
       <g-alert title="A title" icon="fas fa-check-circle" color="green">
         A description asdm asdm kasd skdna lkas lkasdlm kmasd.
@@ -210,7 +212,7 @@
       </g-tabs>
     </div> -->
 
-    <nav class="bg-white w-full h-16 border-b border-white-darker">
+    <nav class="bg-white w-full h-16 border-b border-grey-lightest">
       <div class="container mx-auto h-full flex justify-between items-end">
         <g-tabs @changed="changedTabHandler" color="green">
           <g-tab name="Dashboard" icon="fas fa-th-large" no-panel to="/panel">
@@ -251,9 +253,7 @@
       name="token"
       item-text="label"
       item-value="value"
-      validations="required"
       class="mt-4"
-      required
       size="large"
       label="Token"
     />
@@ -286,7 +286,7 @@ export default {
   data() {
     return {
       textInput: '',
-      token: 'sm',
+      token: '',
       switchVal: true,
       showDialog: false,
       selectOptions: [
