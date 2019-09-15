@@ -1,6 +1,14 @@
 <template>
   <div id="app" class="p-2">
 
+    <g-credit-card :card="{
+      brand: 'visa',
+      funding: 'credit',
+      exp_month: '02',
+      exp_year: '23',
+      last4: '1233'
+    }"/>
+
     <g-circle>i</g-circle>
 
     <g-code :code="{ bash: '$ some command'}" :langs="['bash']"></g-code>

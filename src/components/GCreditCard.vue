@@ -18,7 +18,7 @@
       <span class="last4">{{ card.last4 }}</span>
     </div>
     <div class="card-footer flex justify-between">
-      <span>{{ currentUser.name | upcase }}</span>
+      <span>{{ userName | upcase }}</span>
       <span>Exp: {{ `${card.exp_month}/${card.exp_year}`}}</span>
     </div>
   </div>
@@ -48,12 +48,17 @@ export default {
     },
 
     cardIconSrc() {
-      return `https://s3-eu-west-1.amazonaws.com/garethfuller/images/icons/credit_cards/${this.cardBrand}_dark.svg`;
+      return require(`../assets/images/credit_cards/dark/${this.cardBrand}.png`)
     },
 
     cardBrand() {
       return this.card.brand.toLowerCase();
     },
+
+    userName() {
+      if (this.currentUser) return this.currentUser.name
+      return 'Your card'
+    }
   },
 };
 </script>
