@@ -159,7 +159,6 @@ export default {
 
   methods: {
     itemSelected(item) {
-      this.$validator.validate(this.name, this.valueFor(item))
       this.$emit('input', this.valueFor(item))
       this.showItems = false
     },
