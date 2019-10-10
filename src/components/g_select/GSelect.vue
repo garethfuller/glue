@@ -191,7 +191,8 @@ export default {
     },
 
     focusHandler() {
-      this.showItems = true;
+      this.showItems = true
+      this.$emit('focus')
     },
 
     adjustScrollPosition() {
