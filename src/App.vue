@@ -1,6 +1,29 @@
 <template>
   <div id="app" class="p-2">
 
+    <g-form @submit="submit" data-vv-scope="form1" class="mb-12">
+      <g-text-field
+        v-model="textInput"
+        label="Business name"
+        name="form1.name"
+        validations="required"
+        :attrs="{ 'data-vv-as': 'name' }"
+      />
+      <g-select
+        v-model="token"
+        :items="selectOptions"
+        name="form1.token"
+        item-text="label"
+        item-value="value"
+        validations="required"
+        class="mt-4"
+        required
+        size="large"
+        label="Token"
+        filterable
+      />
+    </g-form>
+
     <g-credit-card :card="{
       brand: 'visa',
       funding: 'credit',
@@ -22,10 +45,10 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-    <g-snackbar-list :snackbars="[
+    <!-- <g-snackbar-list :snackbars="[
       {title: 'error', type: 'error', description: 'description', persistent: true, icon: 'fas fa-exclamation-triangle'},
       {title: 'API Key updated!', type: 'success', icon: 'fas fa-check-circle'}
-    ]"/>
+    ]"/> -->
 
     <h1 class="my-8">Links</h1>
     <g-link to="/here" color="blue">Here</g-link><br>
@@ -36,16 +59,116 @@
     <g-btn icon="fas fa-plus" size="small" class="mr-4" @click.native="showDialog = true">
       Filter
     </g-btn>
-    <g-dialog :show="showDialog" @close="showDialog = false" close-btn full-page navbar border-color="green">
-      <div class="w-full bg-red h-24"></div>
-      <div class="w-full bg-green h-24"></div>
-      <div class="w-full bg-blue h-24"></div>
-      <div class="w-full bg-orange h-24"></div>
-      <div class="w-full bg-grey h-24"></div>
-      <div class="w-full bg-red h-24"></div>
-      <div class="w-full bg-blue h-24"></div>
-      <div class="w-full bg-green h-24"></div>
-      <div class="w-full bg-red h-24"></div>
+    <g-dialog :show="showDialog" @close="showDialog = false" close-btn navbar border-color="green">
+      <g-card>
+        <g-card-title>
+          Title
+        </g-card-title>
+        <g-card-content>
+          <g-text-field
+            v-model="textInput"
+            placeholder="Your name"
+            label="Name"
+            name="name"
+            horizontal
+            required
+            size="large"
+            validations="required"
+
+          />
+          <g-text-field
+            v-model="textInput"
+            placeholder="Your name"
+            label="Name"
+            name="name"
+            horizontal
+            required
+            size="large"
+            validations="required"
+
+          />
+          <g-text-field
+            v-model="textInput"
+            placeholder="Your name"
+            label="Name"
+            name="name"
+            horizontal
+            required
+            size="large"
+            validations="required"
+
+          />
+          <g-text-field
+            v-model="textInput"
+            placeholder="Your name"
+            label="Name"
+            name="name"
+            horizontal
+            required
+            size="large"
+            validations="required"
+
+          />
+          <g-text-field
+            v-model="textInput"
+            placeholder="Your name"
+            label="Name"
+            name="name"
+            horizontal
+            required
+            size="large"
+            validations="required"
+
+          />
+          <g-text-field
+            v-model="textInput"
+            placeholder="Your name"
+            label="Name"
+            name="name"
+            horizontal
+            required
+            size="large"
+            validations="required"
+
+          />
+          <g-text-field
+            v-model="textInput"
+            placeholder="Your name"
+            label="Name"
+            name="name"
+            horizontal
+            required
+            size="large"
+            validations="required"
+
+          />
+          <g-text-field
+            v-model="textInput"
+            placeholder="Your name"
+            label="Name"
+            name="name"
+            horizontal
+            required
+            size="large"
+            validations="required"
+
+          />
+          <g-text-field
+            v-model="textInput"
+            placeholder="Your name"
+            label="Name"
+            name="name"
+            horizontal
+            required
+            size="large"
+            validations="required"
+
+          />
+        </g-card-content>
+        <g-card-actions>
+          actions
+        </g-card-actions>
+      </g-card>
     </g-dialog>
 
     <g-btn icon="fas fa-plus" class="mr-4" color="green" size="small" :disabled="loading" :loading="loading" @click.native="setLoading">
@@ -291,9 +414,12 @@
 export default {
   name: 'app',
 
+  inject: ['$validator'],
+
   data() {
     return {
       textInput: '',
+      textInput2: '',
       token: '',
       switchVal: true,
       showDialog: false,
