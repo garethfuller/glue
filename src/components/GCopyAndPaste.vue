@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="g-copy-text-box block border border-grey-lightest rounded flex justify-between">
-    <no-ssr>
+    <client-only>
       <input :value="text" type="text" :class="['contents px-2 py-1 w-full rounded', inputBg]" ref="contents" readonly/>
-    </no-ssr>
+    </client-only>
     <g-tooltip :text="tooltipText" :width="70">
       <div
         class="copy-btn w-12 py-1 flex justify-center bg-grey-lightest h-full text-grey-dark flex items-center cursor-pointer"

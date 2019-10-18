@@ -5,7 +5,8 @@
         v-for="(snackbar, index) in snackbars"
         :key="index"
         :snackbar="snackbar"
-        @closed="closeHandler"/>
+        @closed="closeHandler"
+      />
     </div>
   </div>
 </template>

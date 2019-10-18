@@ -1,18 +1,20 @@
 <template lang="html">
-  <transition
-    name="bounce"
-    enter-active-class="bounceInDown"
-    leave-active-class="bounceOutUp">
-    <g-alert
-      v-if="visible"
-      :title="snackbar.title"
-      :icon="snackbar.icon"
-      :color="color"
-      class="mb-2"
-      @close="handleClose">
-      <div v-html="snackbar.description" />
-    </g-alert>
-  </transition>
+  <div>
+    <transition
+      name="bounce"
+      enter-active-class="bounceInDown"
+      leave-active-class="bounceOutUp">
+      <g-alert
+        v-if="visible"
+        :title="snackbar.title"
+        :icon="snackbar.icon"
+        :color="color"
+        class="mb-2"
+        @close="handleClose">
+        <div v-html="snackbar.description"></div>
+      </g-alert>
+    </transition>
+  </div>
 </template>
 
 <script>

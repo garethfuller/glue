@@ -45,10 +45,10 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-    <!-- <g-snackbar-list :snackbars="[
+    <g-snackbar-list :snackbars="[
       {title: 'error', type: 'error', description: 'description', persistent: true, icon: 'fas fa-exclamation-triangle'},
       {title: 'API Key updated!', type: 'success', icon: 'fas fa-check-circle'}
-    ]"/> -->
+    ]"/>
 
     <h1 class="my-8">Links</h1>
     <g-link to="/here" color="blue">Here</g-link><br>
