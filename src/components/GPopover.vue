@@ -7,7 +7,9 @@
     <div
       class="activator inline-block"
       ref="activator"
-      @click="showPopover = !showPopover">
+      @click="showPopover = !showPopover"
+      @mouseover="isOverActivator=true"
+      @mouseout="isOverActivator=false">
       <slot name="activator"></slot>
     </div>
     <transition name="popover-bottom">
@@ -15,7 +17,9 @@
         ref="contents"
         v-show="showPopover"
         :class="['g-popover-contents bg-white absolute shadow-lg rounded mt-1', contentClasses]"
-        :style="contentStyles">
+        :style="contentStyles"
+        @mouseover="isOverContent=true"
+        @mouseout="isOverContent=false">
         <slot></slot>
       </div>
     </transition>
@@ -28,18 +32,26 @@ export default {
 
   props: {
     width: { type: Number, default: 200 },
-    height: { type: Number, default: 200 },
+    height: { type: Number, default: 0 },
     onHover: { type: Boolean, default: false },
     top: { type: Boolean, default: false },
+    bottom: { type: Boolean, default: false },
     left: { type: Boolean, default: false },
     right: { type: Boolean, default: false },
+    rightAligned: { type: Boolean, default: false },
+    leftAligned: { type: Boolean, default: false },
   },
 
-  data: () => ({
-    popoverXPosition: 0,
-    popoverYPosition: 0,
-    showPopover: false,
-  }),
+  data () {
+    return {
+      popoverXPosition: 0,
+      popoverYPosition: 0,
+      showPopover: false,
+      isOverContent: false,
+      isOverActivator: false,
+      timer: null
+    }
+  },
 
   mounted() {
     const activatorPosition = this.$refs.activator.getBoundingClientRect()
@@ -47,15 +59,19 @@ export default {
     if (this.right) {
       this.popoverXPosition = 0
     } else if (this.left) {
-      this.popoverXPosition = this.width - activatorPosition.width
+      this.popoverXPosition = this.width
+    } else if (this.leftAligned) {
+      this.popoverXPosition = 0;
+    } else if (this.rightAligned) {
+      this.popoverXPosition = this.width - activatorPosition.width;
     } else {
       this.popoverXPosition = (this.width / 2) - (activatorPosition.width / 2);
     }
 
-    if (this.top) {
-      this.popoverYPosition = ((this.height / 2) + (activatorPosition.height / 2));
-    } else {
-      this.popoverYPosition = activatorPosition.height - 5;
+    if (this.top && this.height !== 0) {
+      this.popoverYPosition = this.height + 5
+    } else if (this.bottom) {
+      this.popoverYPosition = activatorPosition.height;
     }
   },
 
@@ -81,7 +97,7 @@ export default {
     contentStyles() {
       return {
         width: `${this.width}px`,
-        height: 'auto',
+        height: (this.height === 0) ? 'auto' : `${this.height}px`,
         ...this.contentPostiton,
       };
     },
@@ -107,11 +123,24 @@ export default {
     },
 
     handleMouseover() {
-      if (this.onHover) this.showPopover = true
+      if (this.onHover) {
+        let vm = this
+        this.timer = setTimeout(() => {
+          vm.showPopover = true
+        }, 200)
+      }
     },
 
     handleMouseout() {
-      if (this.onHover) this.showPopover = false
+      if (this.onHover) {
+        let vm = this
+        clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
+          if (!vm.isOverContent && !vm.isOverActivator) {
+            vm.showPopover = false
+          }
+        }, 200)
+      }
     }
   },
 };
