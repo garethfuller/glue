@@ -12,7 +12,7 @@
       <div v-if="icon" class="px-6">
         <g-icon :name="icon" :color="color" size="2xl" />
       </div>
-      <div :class="['content py-6 pr-4', { 'pl-4': !icon }]">
+      <div :class="['w-full content py-6 pr-4', { 'pl-4': !icon }]">
         <h3 class="subheading mb-0">
           <slot name="title">
             {{ title }}

@@ -195,15 +195,18 @@
       <div class="container mx-auto h-full flex justify-between items-center">
         <span>logo</span>
         <div>
-          <g-popover left on-hover>
+          <g-popover :height="200" bottom right-aligned on-hover>
             <g-btn slot="activator" flat color="white">
               <g-icon name="fas fa-user-circle" class="pr-2"></g-icon>
               Hello world
             </g-btn>
-            <g-menu>
+            <div>
+              ETH Address Unconfirmed
+            </div>
+            <!-- <g-menu>
               <g-menu-item icon="fas fa-th" href="/">Business</g-menu-item>
               <g-menu-item>Logout</g-menu-item>
-            </g-menu>
+            </g-menu> -->
           </g-popover>
         </div>
       </div>
