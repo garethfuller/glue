@@ -38,6 +38,7 @@ export default {
     icon: { type: String },
     circle: { type: Boolean, default: false },
     rounded: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
     block: { type: Boolean, default: false },
     subtle: { type: Boolean, default: false },
