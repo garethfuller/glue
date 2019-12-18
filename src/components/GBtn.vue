@@ -1,9 +1,9 @@
 <template lang="html">
   <component
-    :is="buttonTag"
+    :is="tag"
     :class="['g-btn font-medium', classes]"
-    v-bind="additionalAttrs"
-    @click="clickHandler">
+    v-bind="$attrs"
+    v-on="listeners">
     <span :class="`g-btn-contents leading-none text-${_textColor}`">
       <transition name="icon-switch" mode="out-in">
         <g-block-spinner v-if="loading" key="loader" :size="size" :color="_textColor" class="mr-2"/>
@@ -34,22 +34,22 @@ export default {
       default: 'button',
       validator: value => ['button', 'div', 'a'].indexOf(value) !== -1,
     },
-    disabled: { type: Boolean, default: false },
     flat: { type: Boolean, default: false },
     icon: { type: String },
     circle: { type: Boolean, default: false },
     rounded: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
-    to: { type: String },
-    attrs: { type: Object, default: () => ({}) },
     block: { type: Boolean, default: false },
     subtle: { type: Boolean, default: false },
     outline: { type: Boolean, default: false },
-    targetBlank: { type: Boolean, default: false },
     textColor: { type: String }
   },
 
   computed: {
+    listeners() {
+      return { ...this.$listeners }
+    },
+
     classes() {
       return {
         'g-btn-disabled': this.disabled,
@@ -73,19 +73,6 @@ export default {
       return 'white';
     },
 
-    buttonTag() {
-      if (this.to) return 'a';
-      return this.tag;
-    },
-
-    additionalAttrs() {
-      const additional = {};
-      if (this.to) additional.href = this.to;
-      if (this.disabled) additional.disabled = this.disabled;
-      if (this.targetBlank) { additional.target = '_blank'; additional.rel = 'noreferrer' }
-      return Object.assign({}, this.attrs, additional);
-    },
-
     iconSize() {
       switch (this.size) {
         case 'small':
@@ -98,13 +85,7 @@ export default {
           return 'small'
       }
     }
-  },
-
-  methods: {
-    clickHandler() {
-      this.$emit('clicked');
-    },
-  },
+  }
 };
 </script>
 
@@ -172,7 +153,6 @@ export default {
   transform: translateY(0px) !important;
   box-shadow: none !important;
 }
-
 
 .g-btn-small.g-btn-outline {
   & .g-btn-contents {
