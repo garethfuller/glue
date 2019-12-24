@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ 'mb-6': !noMargin }">
     <label
       :class="['g-checkbox', checkboxClasses]"
       @mouseover="hovered = true"
@@ -8,16 +8,14 @@
         type="checkbox"
         :name="name"
         :checked="checked"
-        v-validate="validations"
-        :data-vv-validate-on="validateOn"
-        v-bind="attrs"
-        @change="$emit('change', $event.target.checked)">
+        v-bind="$attrs"
+        v-on="listeners">
         <span :class="['checkmark', checkmarkClasses]"></span>
     </label>
     <div
-      v-show="errors.has(name)"
-      class="g-text-field-error text-red text-sm absolute mt-1">
-      {{ errors.first(name) }}
+      v-show="hasError"
+      class="g-text-field-error text-red-500 text-sm absolute mt-1">
+      {{ errors[0] }}
     </div>
   </div>
 </template>
@@ -25,8 +23,6 @@
 <script>
 export default {
   name: 'GCheckbox',
-
-  inject: ['$validator'],
 
   model: {
     prop: 'checked',
@@ -38,23 +34,39 @@ export default {
     checked: { type: Boolean, default: false },
     label: { type: String, default: '' },
     color: { type: String, default: 'blue' },
+    rules: { type: Array },
+    validateOn: { type: String, default: 'change' },
+    noMargin: { type: Boolean, default: false },
     size: {
       type: String,
       default: 'medium',
       validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1,
-    },
-    validations: { type: String, default: '' },
-    validateOn: { type: String, default: 'change' },
-    attrs: { type: Object, default: () => ({}) },
+    }
   },
 
   data () {
     return {
-      hovered: false
+      hovered: false,
+      errors: []
     }
   },
 
   computed: {
+    listeners() {
+      let vm = this
+      return {
+        ...this.$listeners,
+        change: event => {
+          vm.$emit('change', event.target.checked)
+          if (this.validateOn === 'change') vm.validate(event.target.checked)
+        }
+      }
+    },
+
+    hasError() {
+      return this.errors.length > 0
+    },
+
     checkboxClasses() {
       return {
         [`g-checkbox-${this.size}`]: true
@@ -63,11 +75,21 @@ export default {
 
     checkmarkClasses() {
       return {
-        'bg-grey-lightest': !this.checked && !this.hovered,
-        'bg-grey-light': !this.checked && this.hovered,
-        [`bg-${this.color}`]: this.checked,
+        'bg-gray-300': !this.checked && !this.hovered,
+        'bg-gray-400': !this.checked && this.hovered,
+        [`bg-${this.color}-500`]: this.checked,
         [`g-checkmark-${this.size}`]: true
       }
+    }
+  },
+
+  methods: {
+    validate(val) {
+      this.errors = []
+      this.rules.forEach(rule => {
+        let result = rule(val)
+        if (typeof result === 'string') this.errors.push(result)
+      })
     }
   }
 }

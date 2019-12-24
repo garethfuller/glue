@@ -9,7 +9,7 @@
         <g-icon
           name="fas fa-star-of-life"
           size="small"
-          color="white-dark"
+          color="white-600"
           class="number-mask mr-1"
           v-for="n in 4"
           :key="n"

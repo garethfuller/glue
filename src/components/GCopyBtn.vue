@@ -47,7 +47,7 @@ export default {
     iconColor() {
       if (this.color === 'white' && !this.flat) return 'black'
       if (this.flat && this.color === 'black') return 'black'
-      if (this.color === 'grey' && (this.flat || this.outline)) return 'grey-dark'
+      if (this.color === 'gray' && (this.flat || this.outline)) return 'gray-600'
       if (this.flat || this.outline) return this.color;
       return 'white';
     },

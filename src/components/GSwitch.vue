@@ -1,19 +1,39 @@
 <template lang="html">
-  <label :class="['g-switch', classes]">
-    <input type="checkbox" :name="name" :value="internalVal" :checked="internalVal" @click="clickHandler">
-    <span :class="['slider', sliderClasses]"></span>
-  </label>
+  <div :class="{ 'mb-6': !noMargin }">
+    <label :class="`g-switch g-switch-${size}`">
+      <input
+        type="checkbox"
+        :name="name"
+        :checked="checked"
+        v-on="listeners"
+        v-bind="$attrs">
+      <span :class="[`slider slider-${color} slider-${size}`, { round }]"></span>
+    </label>
+    <div
+      v-show="hasError"
+      class="g-text-field-error text-red-500 text-sm absolute mt-1">
+      {{ errors[0] }}
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'GSwitch',
 
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
+
   props: {
-    value: { type: Boolean },
     name: { type: String },
     round: { type: Boolean, default: false },
     color: { type: String, default: 'blue' },
+    checked: { type: Boolean, default: false },
+    rules: { type: Array },
+    validateOn: { type: String, default: 'change' },
+    noMargin: { type: Boolean, default: false },
     size: {
       type: String,
       default: 'medium',
@@ -23,37 +43,37 @@ export default {
 
   data() {
     return {
-      internalVal: false,
-    };
-  },
-
-  created() {
-    this.internalVal = this.value;
+      errors: []
+    }
   },
 
   computed: {
-    classes() {
+    listeners() {
+      let vm = this
       return {
-        [`g-switch-${this.size}`]: true,
-      };
+        ...this.$listeners,
+        change: event => {
+          vm.$emit('change', event.target.checked)
+          if (this.validateOn === 'change') vm.validate(event.target.checked)
+        }
+      }
     },
 
-    sliderClasses() {
-      return {
-        round: this.round,
-        [`slider-${this.color}`]: true,
-        [`slider-${this.size}`]: true,
-      };
-    },
+    hasError() {
+      return this.errors.length > 0
+    }
   },
 
   methods: {
-    clickHandler(e) {
-      this.internalVal = !this.internalVal;
-      this.$emit('input', this.internalVal);
-    },
-  },
-};
+    validate(val) {
+      this.errors = []
+      this.rules.forEach(rule => {
+        let result = rule(val)
+        if (typeof result === 'string') this.errors.push(result)
+      })
+    }
+  }
+}
 </script>
 
 <style lang="css" scoped>
@@ -68,7 +88,7 @@ export default {
 }
 
 .slider {
-  @apply bg-grey-light;
+  @apply bg-gray-300;
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -92,34 +112,34 @@ export default {
 
 /* COLORS */
 input:checked + .slider-blue {
-  @apply bg-blue;
+  @apply bg-blue-500;
 }
 input:focus + .slider-blue {
-  box-shadow: 0 0 1px config('colors.blue');
+  box-shadow: 0 0 1px theme('colors.blue-500');
 }
 input:checked + .slider-red {
-  @apply bg-red;
+  @apply bg-red-500;
 }
 input:focus + .slider-red {
-  box-shadow: 0 0 1px config('colors.red');
+  box-shadow: 0 0 1px theme('colors.red-500');
 }
 input:checked + .slider-green {
-  @apply bg-green;
+  @apply bg-green-500;
 }
 input:focus + .slider-green {
-  box-shadow: 0 0 1px config('colors.green');
+  box-shadow: 0 0 1px theme('colors.green-500');
 }
 input:checked + .slider-orange {
-  @apply bg-orange;
+  @apply bg-orange-500;
 }
 input:focus + .slider-orange {
-  box-shadow: 0 0 1px config('colors.orange');
+  box-shadow: 0 0 1px theme('colors.orange-500');
 }
-input:checked + .slider-black {
-  @apply bg-black;
+input:checked + .slider-gray {
+  @apply bg-gray-900;
 }
-input:focus + .slider-black {
-  box-shadow: 0 0 1px config('colors.black');
+input:focus + .slider-gray {
+  box-shadow: 0 0 1px theme('colors.gray-900');
 }
 
 /* SIZES */

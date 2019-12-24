@@ -4,7 +4,7 @@
       <transition name="g-fullpage-dialog">
         <div
           v-if="show"
-          :class="[`g-dialog-fullpage fixed pin-t pin-l w-full h-full bg-white shadow border-t-4 border-${borderColor}`]">
+          :class="[`g-dialog-fullpage fixed top-0 left-0 w-full h-full bg-white shadow border-t-4 border-${borderColor}`]">
           <div v-if="navbar" class="w-full">
             <div class="container mx-auto flex flex-wrap justify-between items-center h-20 px-mobile">
               <div>
@@ -19,7 +19,7 @@
               </div>
               <div v-if="closeBtn">
                 <g-btn flat circle @click.native="closeDialog" size="large">
-                  <g-icon name="fas fa-times" size="3xl" color="grey-dark" />
+                  <g-icon name="fas fa-times" size="3xl" color="gray-600" />
                 </g-btn>
               </div>
             </div>

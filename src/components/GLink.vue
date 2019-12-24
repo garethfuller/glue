@@ -1,5 +1,8 @@
 <template lang="html">
-  <a :href="href" :class="['g-link no-underline hover:no-underline cursor-pointer leading-none', classes]" @click="clicked">
+  <a
+    :class="`hover:underline cursor-pointer text-${color}-500 hover:text-${color}-400 text-${size}`"
+    v-bind="$attrs"
+    v-on="listeners">
     <slot></slot>
   </a>
 </template>
@@ -9,41 +12,14 @@ export default {
   name: 'GLink',
 
   props: {
-    to: { type: String, default: null },
-    href: { type: String, default: null },
     color: { type: String, default: 'blue' },
-    size: {
-      type: String,
-      default: 'base',
-      validator: value => ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'].indexOf(value) !== -1,
-    },
+    size: { type: String, default: 'base' }
   },
 
   computed: {
-    classes() {
-      return {
-        [`text-${this.color} hover:text-${this.color}-light`]: true,
-        [`text-${this.size}`]: true,
-      };
-    },
-  },
-
-  methods: {
-    clicked(e) {
-      if (this.to) {
-        e.preventDefault()
-        this.$router.push(this.to)
-      } else if (!this.href) {
-        e.preventDefault()
-      }
-      this.$emit('clicked')
-    },
-  },
-};
-</script>
-
-<style lang="css" scoped>
-.g-link:hover {
-  text-decoration: underline;
+    listeners() {
+      return { ...this.$listeners }
+    }
+  }
 }
-</style>
+</script>

@@ -88,14 +88,14 @@ export default {
 
 <style lang="css" scoped>
 .header {
-  background: config('colors.black');
+  background: theme('colors.black');
 }
 .active {
   background: rgba(white, .3) !important;
 }
 .code-container {
   width: 100%;
-  background: config('colors.black');
+  background: theme('colors.black');
   min-height: 100px;
 }
 code {

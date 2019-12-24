@@ -74,7 +74,7 @@ export default {
       return {
         'w-full cursor-pointer flex flex-col justify-between h-full hover:no-underline': true,
         [`active text-${this.color}`]: tab.isActive,
-        [`active text-grey-dark hover:text-grey-darkest`]: !tab.isActive,
+        [`active text-gray-600 hover:text-gray-800`]: !tab.isActive,
         'text-right': this.right
       }
     },

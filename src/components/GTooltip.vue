@@ -30,7 +30,7 @@ export default {
 <style lang="css" scoped>
 .g-tooltip-text {
     visibility: hidden;
-    @apply bg-black text-white text-center rounded px-2 py-2;
+    @apply bg-gray-900 text-white text-center rounded px-2 py-2;
     position: absolute;
     z-index: 1;
     bottom: 125%;
@@ -46,7 +46,7 @@ export default {
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: config('colors.black') transparent transparent transparent;
+    border-color: theme('colors.black') transparent transparent transparent;
 }
 .g-tooltip:hover .g-tooltip-text {
     visibility: visible;

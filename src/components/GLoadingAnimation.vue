@@ -1,8 +1,8 @@
 <template lang="html">
-  <div :class="['g-loading-animation', classes]">
-    <div class="dot" :style="dotStyle"></div>
-    <div class="dot dot-middle" :style="dotStyle"></div>
-    <div class="dot" :style="dotStyle"></div>
+  <div :class="['flex justify-center items-center g-loading-animation', classes]">
+    <div :class="['dot', colorClass]" :style="dotStyle"></div>
+    <div :class="['dot dot-middle', colorClass]" :style="dotStyle"></div>
+    <div :class="['dot', colorClass]" :style="dotStyle"></div>
   </div>
 </template>
 
@@ -31,49 +31,30 @@ export default {
   },
 
   computed: {
-    classes() {
-      return {
-        [`g-loading-animation-${this.color}`]: true,
-      };
+    colorClass() {
+      switch (this.color) {
+        case 'blue':
+          return 'bg-blue-500'
+        case 'red':
+          return 'bg-red-500'
+        case 'green':
+          return 'bg-green-500'
+        case 'black':
+          return 'bg-gray-900'
+        case 'white':
+          return 'bg-white'
+        default:
+          return 'bg-white'
+      }
     },
   },
 };
 </script>
 
-<style lang="css" scoped>
+<style scoped>
 .g-loading-animation {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-top: 2px;
   padding-bottom: 2px;
-}
-.g-loading-animation > .dot {
-  @apply .bg-white;
-}
-.g-loading-animation.g-loading-animation-default > .dot {
-  @apply .bg-blue;
-}
-.g-loading-animation.g-loading-animation-primary > .dot {
-  @apply .bg-blue;
-}
-.g-loading-animation.g-loading-animation-primary-lightest > .dot {
-  @apply .bg-blue-lightest;
-}
-.g-loading-animation.g-loading-animation-secondary > .dot {
-  @apply .bg-orange;
-}
-.g-loading-animation.g-loading-animation-red > .dot {
-  @apply .bg-red;
-}
-.g-loading-animation.g-loading-animation-green > .dot {
-  @apply .bg-green;
-}
-.g-loading-animation.g-loading-animation-black > .dot {
-  @apply .bg-black;
-}
-.g-loading-animation.g-loading-animation-white > .dot {
-  @apply .bg-white;
 }
 .dot {
   animation-name: expand;

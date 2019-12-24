@@ -1,36 +1,32 @@
 <template lang="html">
-  <div v-g-click-outside="closeItems" :class="['g-select', classes]">
+  <div v-g-click-outside="closeItems">
     <g-text-field
       v-model="textInputValue"
       :label="label"
       :name="name"
-      :attrs="allAttrs"
+      :rules="rules"
+      validate-on="none"
       :required="required"
-      :validations="validations"
-      :validate-on="validateOn"
       :disabled="disabled"
+      :readonly="!filterable"
       :size="size"
-      :class="['g-select-input', inputClasses]"
+      autocomplete="off"
+      class="g-select-input"
       @focus="focusHandler"
       append>
-      <div slot="append" class="cursor-pointer" @click="(!disabled) ? showItems = !showItems : null">
-        <g-icon
-          name="fas fa-chevron-down"
-          color="grey"
-          :class="['chevron', chevronClasses]"
-        />
+      <div slot="append" class="cursor-pointer px-4" @click="(!disabled) ? showItems = !showItems : null">
+        <g-icon name="fas fa-chevron-down" :class="['chevron text-gray-600', chevronClasses]" />
       </div>
     </g-text-field>
     <div class="relative">
       <transition name="fade-in-up">
-        <div v-if="showItems" :ref="name" class="g-select-items rounded shadow bg-white absolute w-full z-50 overflow-y-scroll">
+        <div v-if="showItems" :ref="name" class="g-select-items rounded shadow-lg bg-white absolute w-full z-50 overflow-y-scroll -mt-6">
           <g-select-item
-            v-for="(item, index) in internalItems"
+            v-for="(item, index) in _items"
             :text="textFor(item)"
             :key="index"
             :size="size"
             @click.native="itemSelected(item)"
-            class=""
           />
         </div>
       </transition>
@@ -43,23 +39,20 @@
 export default {
   name: 'GSelect',
 
-  inject: ['$validator'],
-
   props: {
     value: { type: String },
     label: { type: String, default: null },
     name: { type: String, default: '' },
     items: { type: Array },
-    itemText: { type: String },
-    itemValue: { type: String },
+    itemText: { type: String, default: 'text' },
+    itemValue: { type: String, default: 'value' },
     filterable: { type: Boolean, default: false },
     raised: { type: Boolean, default: false },
     horizontal: { type: Boolean, default: false },
     required: { type: Boolean, default: false },
-    validations: { type: String, default: '' },
-    validateOn: { type: String, default: 'change' },
-    inputAttrs: { type: Object, default: () => ({}) },
     disabled: { type: Boolean, default: false },
+    rules: { type: Array },
+    validateOn: { type: String, default: 'blur' },
     size: {
       type: String,
       default: 'medium',
@@ -71,10 +64,7 @@ export default {
     return {
       inputValue: '',
       textInputValue: '',
-      showItems: false,
-      active: false,
-      complete: false,
-      success: false,
+      showItems: false
     };
   },
 
@@ -82,6 +72,7 @@ export default {
     value(newVal) {
       this.inputValue = newVal;
       this.textInputValue = this.labelFor(newVal)
+      this.validate(newVal)
     },
 
     showItems(newVal) {
@@ -89,6 +80,7 @@ export default {
         this.adjustScrollPosition()
       } else {
         this.clearIfNotItem()
+        this.validate(this.textInputValue)
       }
     }
   },
@@ -99,29 +91,6 @@ export default {
   },
 
   computed: {
-    allAttrs() {
-      const attrs = {}
-      attrs.autocomplete = 'off'
-      if (!this.filterable) attrs.readonly = 'readonly'
-      return Object.assign({}, this.inputAttrs, attrs)
-    },
-
-    classes() {
-      return {
-        [`g-select-${this.size}`]: true,
-        'g-select-horizontal': this.horizontal,
-        'g-select-active': this.active,
-        'g-select-complete': this.complete,
-        'g-select-invalid': this.errors.has(this.name),
-        'g-select-success': this.success,
-        'g-select-raised': this.raised,
-      };
-    },
-
-    inputClasses() {
-      return {};
-    },
-
     chevronClasses() {
       return {
         'chevron-active': this.showItems,
@@ -140,7 +109,7 @@ export default {
       }
     },
 
-    internalItems() {
+    _items() {
       if (this.filterable) {
         if (typeof this.items[0] === 'string' || this.items[0] instanceof String) {
           return this.items.filter(text => text.includes(this.value))
@@ -164,7 +133,7 @@ export default {
     },
 
     textFor(item) {
-      if (typeof item === 'string' || item instanceof String) return item;
+      if (typeof item === 'string' || item instanceof String) return item
       return item[this.itemText];
     },
 
@@ -213,15 +182,21 @@ export default {
         if (!this.items.includes(this.value)) this.value = ''
       } else {
         if(!this.items.map(item => item[this.itemValue]).includes(this.value)) {
-          this.value = ''
+          this.inputValue = ''
           this.textInputValue = ''
-          this.textInputValue = ''
-          this.$validator.validate(this.name, '')
         }
       }
+    },
+
+    validate(val) {
+      this.$children.forEach(input => {
+        if (typeof input.validate === 'function') {
+          input.validate(val)
+        }
+      })
     }
-  },
-};
+  }
+}
 </script>
 
 <style lang="css" scoped>

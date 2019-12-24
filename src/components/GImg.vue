@@ -16,12 +16,6 @@ export default {
     alt: { type: String, default: 'Image' },
     width: { type: String },
     height: { type: String }
-  },
-
-  data () {
-    return {
-
-    }
   }
 }
 </script>

@@ -35,13 +35,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.g-dot-green {
-  @apply .bg-green;
+.g-dot-green-500 {
+  @apply .bg-green-500;
 }
-.g-dot-orange {
-  @apply .bg-orange;
+.g-dot-orange-500 {
+  @apply .bg-orange-500;
 }
-.g-dot-red {
-  @apply .bg-red;
+.g-dot-red-500 {
+  @apply .bg-red-500;
 }
 </style>

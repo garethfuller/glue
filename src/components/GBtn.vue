@@ -1,16 +1,12 @@
-<template lang="html">
-  <component
-    :is="tag"
-    :class="['g-btn font-medium', classes]"
-    v-bind="$attrs"
-    v-on="listeners">
-    <span :class="`g-btn-contents leading-none text-${_textColor}`">
+<template>
+  <component :is="tag" v-on="listeners" :class="['g-btn', ...classes]" v-bind="$attrs" :disabled="disabled">
+    <div class="flex justify-center items-center">
       <transition name="icon-switch" mode="out-in">
-        <g-block-spinner v-if="loading" key="loader" :size="size" :color="_textColor" class="mr-2"/>
-        <g-icon v-if="!loading && icon" key="icon" :name="icon" :class="[{ 'mr-2': !circle }]" :size="iconSize" :color="_textColor" />
-      </transition>
+          <g-block-spinner v-if="loading" key="loader" :size="size" :color="loadingColor" class="mr-2"/>
+          <g-icon v-if="!loading && icon" key="icon" :name="icon" :class="[textColorClasses, { 'mr-2': !circle }]" />
+        </transition>
       <slot></slot>
-    </span>
+    </div>
   </component>
 </template>
 
@@ -19,31 +15,25 @@ export default {
   name: 'GBtn',
 
   props: {
+    tag: { type: String, default: 'button' },
     color: {
       type: String,
-      default: 'white',
-      validator: value => ['blue', 'red', 'green', 'orange', 'white', 'black', 'grey'].indexOf(value) !== -1,
+      default: 'blue',
+      validator: value => ['blue', 'red', 'green', 'orange', 'white', 'black', 'gray'].indexOf(value) !== -1,
     },
     size: {
       type: String,
       default: 'medium',
       validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1,
     },
-    tag: {
-      type: String,
-      default: 'button',
-      validator: value => ['button', 'div', 'a'].indexOf(value) !== -1,
-    },
+    outline: { type: Boolean, default: false },
     flat: { type: Boolean, default: false },
-    icon: { type: String },
     circle: { type: Boolean, default: false },
+    block: { type: Boolean, default: false },
     rounded: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
-    block: { type: Boolean, default: false },
-    subtle: { type: Boolean, default: false },
-    outline: { type: Boolean, default: false },
-    textColor: { type: String }
+    icon: { type: String }
   },
 
   computed: {
@@ -52,26 +42,92 @@ export default {
     },
 
     classes() {
-      return {
-        'g-btn-disabled': this.disabled,
-        'g-btn-flat': this.flat,
-        'g-btn-circle': this.circle,
-        [`g-btn-${this.color}`]: true,
-        [`g-btn-${this.size}`]: true,
-        rounded: !this.rounded,
-        'rounded-full': this.rounded,
-        'block w-full': this.block,
-        'g-btn-subtle': this.subtle,
-        'g-btn-outline': this.outline
-      };
+      return [
+        this.defaultClasses,
+        this.sizeClasses,
+        this.shapeClasses,
+        this.bgClasses,
+        this.textColorClasses,
+        this.borderClasses,
+        this.shadowClasses,
+        this.displayClasses,
+        this.opacityClasses,
+        this.cursorClasses
+      ]
     },
 
-    _textColor() {
-      if (this.color === 'white' && !this.flat) return this.textColor || 'black'
-      if (this.flat && this.color === 'black') return 'black'
-      if (this.color === 'grey' && (this.flat || this.outline)) return 'grey-dark'
-      if (this.flat || this.outline) return this.color;
-      return 'white';
+    defaultClasses() {
+      return `
+        font-medium inline-block leading-snug
+        ${ this.disabled ? 'g-btn-disabled' : '' }
+        ${ !this.outline && !this.flat ? 'g-btn-dynamic' : '' }`
+    },
+
+    sizeClasses() {
+      if (this.circle) {
+        switch (this.size) {
+          case 'large':
+            return 'w-12 h-12 text-2xl'
+          case 'small':
+            return 'w-6 h-6 text-xs'
+          default:
+            return 'w-10 h-10 text-lg'
+        }
+      } else {
+        switch (this.size) {
+          case 'large':
+            return 'h-16 px-6 text-2xl'
+          case 'small':
+            return 'h-8 px-2 text-sm'
+          default:
+            return 'h-12 px-4 text-base'
+        }
+      }
+    },
+
+    shapeClasses() {
+      if (this.rounded || this.circle) return 'rounded-full'
+      return 'rounded'
+    },
+
+    bgClasses() {
+      if (this.flat) return `bg-${this.color}-100 hover:bg-${this.color}-200 active:bg-${this.color}-300`
+      if (this.outline) return `bg-transparent hover:bg-${this.color}-100 active:bg-${this.color}-200`
+      return `bg-${this.color}${this.colorShade}`
+    },
+
+    textColorClasses() {
+      if (this.color === 'white' && !this.flat) return this.textColor || 'text-gray-900'
+      if (this.flat && this.color === 'black') return 'text-gray-900'
+      if (this.color === 'gray' && (this.flat || this.outline)) return 'text-gray-600'
+      if (this.flat || this.outline) return `text-${this.color}${this.colorShade}`
+      return 'text-white'
+    },
+
+    borderClasses() {
+      if (this.flat) return 'border border-transparent'
+      return `border border-${this.color}${this.colorShade}`
+    },
+
+    shadowClasses() {
+      if (this.outline || this.flat) return ''
+      if (this.disabled) return 'shadow-none hover:shadow-none'
+      return 'shadow hover:shadow-md'
+    },
+
+    displayClasses() {
+      if (this.block) return 'block w-full'
+      return 'inline-block'
+    },
+
+    opacityClasses() {
+      if (this.disabled) return 'opacity-50'
+      return ''
+    },
+
+    cursorClasses() {
+      if (this.disabled) return 'cursor-not-allowed'
+      return 'cursor-pointer'
     },
 
     iconSize() {
@@ -79,301 +135,54 @@ export default {
         case 'small':
           return 'xs'
         case 'medium':
-          return 'small'
+          return 'sm'
         case 'large':
-          return 'medium'
+          return 'base'
         default:
-          return 'small'
+          return 'sm'
       }
+    },
+
+    colorShade() {
+      return ['white', 'black'].includes(this.color) ? '' : '-500'
+    },
+
+    loadingColor() {
+      if (this.color === 'white' && !this.flat) return this.textColor || 'gray-900'
+      if (this.flat && this.color === 'black') return 'gray-900'
+      if (this.color === 'gray' && (this.flat || this.outline)) return 'gray-600'
+      if (this.flat || this.outline) return `${this.color}${this.colorShade}`
+      return 'white'
     }
   }
-};
+}
 </script>
 
-<style lang="css" scoped>
+<style scoped>
 .g-btn {
-  padding: 0;
-  text-decoration: none;
-  display: inline-block;
-  line-height: 1.3em;
   transition: all .2s ease;
   -webkit-transition: all .2s ease;
   -moz-transition: all .2s ease;
   -o-transition: all .2s ease;
   -ms-transition: all .2s ease;
-
   &:active, &:focus {
     outline: none;
   }
 }
 
-.g-btn-contents {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.g-btn-small {
-  & .g-btn-contents {
-    @apply text-sm h-8 px-2;
-  }
-}
-
-.g-btn-medium {
-  & .g-btn-contents {
-    @apply text-base h-12 px-4;
-  }
-}
-
-.g-btn-large {
-  & .g-btn-contents {
-    @apply text-lg h-16 px-6;
-  }
-}
-
-.g-btn:hover {
-  cursor: pointer;
+.g-btn-dynamic:hover {
   transform: translateY(-1px);
-  @apply shadow-md;
 }
 
-.g-btn:active {
-  @apply shadow-none;
+.g-btn-dynamic:active {
   transform: translateY(.5px);
-}
-
-.g-btn.g-btn-flat:hover, .g-btn.g-btn-outline:hover {
-  cursor: pointer;
-  transform: translateY(0px) !important;
-  box-shadow: none !important;
-}
-
-.g-btn.g-btn-flat:active, .g-btn.g-btn-outline:active {
-  transform: translateY(0px) !important;
-  box-shadow: none !important;
-}
-
-.g-btn-small.g-btn-outline {
-  & .g-btn-contents {
-    height: calc(2rem - 4px);
-  }
-}
-.g-btn-medium.g-btn-outline {
-  & .g-btn-contents {
-    height: calc(3rem - 4px);
-  }
-}
-.g-btn-large.g-btn-outline {
-  & .g-btn-contents {
-    height: calc(4rem - 4px);
-  }
-}
-
-.g-btn.g-btn-flat.g-btn-green:hover {
-  background-color: config('colors.green-lightest')B3;
-}
-.g-btn.g-btn-flat.g-btn-green:active {
-  background-color: config('colors.green-lightest')80;
-}
-
-.g-btn.g-btn-flat.g-btn-blue:hover {
-  background-color: config('colors.blue-lightest')B3;
-}
-.g-btn.g-btn-flat.g-btn-blue:active {
-  background-color: config('colors.blue-lightest')80;
-}
-
-.g-btn.g-btn-flat.g-btn-red:hover {
-  background-color: config('colors.red-lightest')B3;
-}
-.g-btn.g-btn-flat.g-btn-red:active {
-  background-color: config('colors.red-lightest')80;
-}
-
-.g-btn.g-btn-flat.g-btn-orange:hover {
-  background-color: config('colors.orange-lightest')B3;
-}
-.g-btn.g-btn-flat.g-btn-orange:active {
-  background-color: config('colors.orange-lightest')80;
-}
-
-.g-btn.g-btn-flat.g-btn-white:hover {
-  background-color: rgba(0,0,0, .1);
-}
-.g-btn.g-btn-flat.g-btn-white:active {
-  background-color: rgba(0,0,0, .05);
-}
-
-.g-btn.g-btn-flat.g-btn-black:hover {
-  background-color: config('colors.black')1A;
-}
-.g-btn.g-btn-flat.g-btn-black:active {
-  background-color: config('colors.black')0D;
-}
-
-.g-btn.g-btn-flat.g-btn-grey:hover {
-  @apply .bg-grey-lightest;
-}
-.g-btn.g-btn-flat.g-btn-grey:active {
-  @apply .bg-white-dark;
-}
-.g-btn-outline.g-btn-grey {
-  @apply bg-transparent text-grey-dark shadow-none border border-grey;
-}
-
-.g-btn.g-btn-outline.g-btn-red:hover {
-  background-color: config('colors.red-lighter')B3;
-}
-.g-btn.g-btn-outline.g-btn-red:active {
-  background-color: config('colors.red-lighter')80;
-}
-.g-btn.g-btn-outline.g-btn-green:hover {
-  background-color: config('colors.green-lighter')B3;
-}
-.g-btn.g-btn-outline.g-btn-green:active {
-  background-color: config('colors.green-lighter')80;
-}
-.g-btn.g-btn-outline.g-btn-blue:hover {
-  background-color: config('colors.blue-lighter')B3;
-}
-.g-btn.g-btn-outline.g-btn-blue:active {
-  background-color: config('colors.blue-lighter')80;
-}
-.g-btn.g-btn-outline.g-btn-orange:hover {
-  background-color: config('colors.orange-lighter')B3;
-}
-.g-btn.g-btn-outline.g-btn-orange:active {
-  background-color: config('colors.orange-lighter')80;
-}
-.g-btn.g-btn-outline.g-btn-grey:hover {
-  background-color: config('colors.grey-lighter')B3;
-}
-.g-btn.g-btn-outline.g-btn-grey:active {
-  background-color: config('colors.grey-lighter')80;
-}
-
-
-.g-btn-blue {
-  @apply .bg-blue text-white shadow;
-}
-.g-btn-flat.g-btn-blue {
-  @apply bg-transparent text-blue shadow-none;
-}
-.g-btn-outline.g-btn-red {
-  @apply bg-transparent text-blue shadow-none border border-blue;
-}
-
-
-.g-btn-red {
-  @apply bg-red text-white shadow;
-}
-.g-btn-flat.g-btn-red {
-  @apply .bg-transparent text-red shadow-none;
-}
-.g-btn-outline.g-btn-red {
-  @apply bg-transparent text-red shadow-none border border-red;
-}
-
-.g-btn-green {
-  @apply .bg-green text-white shadow;
-}
-.g-btn-flat.g-btn-green {
-  @apply bg-transparent text-green shadow-none;
-}
-.g-btn-outline.g-btn-green {
-  @apply bg-transparent text-green shadow-none border border-green;
-}
-
-.g-btn-orange {
-  @apply bg-orange text-white shadow;
-}
-.g-btn-flat.g-btn-orange {
-  @apply bg-transparent text-orange shadow-none;
-}
-.g-btn-outline.g-btn-orange {
-  @apply bg-transparent text-orange shadow-none border border-orange;
-}
-
-.g-btn-white {
-  @apply bg-white shadow;
-}
-.g-btn-flat.g-btn-white {
-  @apply bg-transparent text-white shadow-none;
-}
-.g-btn-flat.g-btn-subtle.g-btn-white {
-  background-color: rgba(0,0,0, .05);
-}
-.g-btn-flat.g-btn-subtle.g-btn-black {
-  background-color: rgba(0,0,0, .05);
-}
-
-.g-btn-black {
-  @apply bg-black text-white shadow;
-}
-.g-btn-flat.g-btn-black {
-  @apply bg-transparent text-black shadow-none;
-}
-
-.g-btn-flat.g-btn-grey {
-  @apply bg-transparent text-grey-dark shadow-none;
-}
-.g-btn-flat.g-btn-subtle.g-btn-grey {
-  @apply bg-grey-lighter;
-}
-
-.g-btn-disabled {
-  opacity: 0.5;
-  @apply .shadow-none;
+  @apply shadow-none;
 }
 
 .g-btn-disabled:hover {
-  @apply .shadow-none;
-  cursor: not-allowed;
-  transform: translateY(0px) !important;
+  transform: translateY(0px);
 }
-
 .g-btn-disabled:active {
-  @apply .shadow-none;
-  cursor: not-allowed;
-  transform: translateY(0px) !important;
-}
-
-.g-btn-circle.g-btn-small {
-  @apply .text-sm .rounded-full .w-6 .h-6;
-  & > .g-btn-contents {
-    @apply h-full;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-.g-btn-circle.g-btn-medium {
-  @apply .text-base .rounded-full .w-8 .h-8;
-  & > .g-btn-contents {
-    @apply h-full;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-.g-btn-circle.g-btn-large {
-  @apply .text-lg .rounded-full .w-12 .h-12;
-  & > .g-btn-contents {
-    @apply h-full;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-.icon-switch-enter-active, .icon-switch-leave-active {
-  transition: all .3s;
-}
-.icon-switch-enter, .icon-switch-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+  transform: translateY(0px);
 }
 </style>

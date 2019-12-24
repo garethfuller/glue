@@ -1,6 +1,6 @@
 <template lang="html">
-  <div :class="['g-chip rounded-full', classes]">
-    <div class="flex items-center leading-none">
+  <div v-on="listeners" :class="['inline-block whitespace-no-wrap rounded-full', ...classes]">
+    <div class="flex items-center leading-none h-full">
       <slot></slot>
     </div>
   </div>
@@ -11,10 +11,11 @@ export default {
   name: 'GChip',
 
   props: {
+    textColor: { type: String, default: 'white' },
     color: {
       type: String,
-      default: 'grey-lightest',
-      validator: value => ['blue', 'red', 'green', 'orange', 'grey', 'grey-lightest'].indexOf(value) !== -1,
+      default: 'gray',
+      validator: value => ['blue', 'red', 'green', 'orange', 'gray'].indexOf(value) !== -1,
     },
     size: {
       type: String,
@@ -25,72 +26,31 @@ export default {
   },
 
   computed: {
-    classes() {
-      return {
-        [`g-chip-${this.color}`]: !this.outline,
-        [`g-chip-${this.size}`]: true,
-        [`g-chip-outline-${this.color}`]: this.outline,
-      };
+    listeners() {
+      return { ...this.$listeners }
     },
-  },
-};
+
+    classes() {
+      return [this.sizeClasses, this.colorClasses]
+    },
+
+    sizeClasses() {
+      switch (this.size) {
+        case 'small':
+          return 'px-2 h-6 text-xs'
+        case 'medium':
+          return 'px-3 h-8 text-sm'
+        case 'large':
+          return 'px-4 h-10 text-base'
+        default:
+          return 'px-3 h-8 text-sm'
+      }
+    },
+
+    colorClasses() {
+      if (this.outline) return `bg-${this.color}-100 border border-${this.color}-500 text-${this.color}-500`
+      return `bg-${this.color}-500 border border-${this.color}-500 text-${this.textColor}`
+    }
+  }
+}
 </script>
-
-<style lang="css" scoped>
-.g-chip {
-  white-space: nowrap;
-  display: inline-block;
-}
-.g-chip-small {
-  @apply .px-2 .h-6 .text-xs;
-  & div {
-    @apply h-full
-  }
-}
-.g-chip-medium {
-  @apply .px-3 h-8 .text-sm;
-  & div {
-    @apply h-full
-  }
-}
-.g-chip-large {
-  @apply .px-4 h-10 .text-base;
-  & div {
-    @apply h-full
-  }
-}
-.g-chip-grey {
-   @apply .bg-grey .text-grey-darkest;
-}
-.g-chip-grey-lightest {
-   @apply .bg-grey-lightest .text-grey-darker;
-}
-.g-chip-blue {
-   @apply .bg-blue .text-white;
-}
-.g-chip-red {
-   @apply .bg-red .text-white;
-}
-.g-chip-green {
-   @apply .bg-green .text-white;
-}
-.g-chip-orange {
-   @apply .bg-orange .text-white;
-}
-
-.g-chip-outline-grey {
-   @apply border bg-grey-lightest border-grey text-grey-dark;
-}
-.g-chip-outline-blue {
-   @apply border bg-blue-lightest border-blue text-blue-dark;
-}
-.g-chip-outline-red {
-   @apply border bg-red-lightest border-red text-red-dark;
-}
-.g-chip-outline-green {
-   @apply border bg-green-lightest border-green text-green-dark;
-}
-.g-chip-outline-orange {
-   @apply border bg-orange-lightest border-orange text-orange-dark;
-}
-</style>
