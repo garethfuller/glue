@@ -86,7 +86,7 @@ export default {
   methods: {
     validate(val) {
       this.errors = []
-      this.rules.forEach(rule => {
+      if (this.rules && this.rules.length > 0) this.rules.forEach(rule => {
         let result = rule(val)
         if (typeof result === 'string') this.errors.push(result)
       })
