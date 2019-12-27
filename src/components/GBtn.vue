@@ -71,7 +71,7 @@ export default {
           case 'small':
             return 'w-6 h-6 text-xs'
           default:
-            return 'w-10 h-10 text-lg'
+            return 'w-8 h-8 text-base'
         }
       } else {
         switch (this.size) {
