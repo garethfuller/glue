@@ -1,6 +1,6 @@
 <template lang="html">
   <a
-    :class="`hover:underline cursor-pointer text-${color}-500 hover:text-${color}-400 text-${size}`"
+    :class="`hover:underline cursor-pointer text-${_color} hover:text-${hoverColor} text-${size}`"
     v-bind="$attrs"
     v-on="listeners">
     <slot></slot>
@@ -19,6 +19,16 @@ export default {
   computed: {
     listeners() {
       return { ...this.$listeners }
+    },
+
+    _color() {
+      if (['white', 'black'].includes(this.color)) return this.color
+      return `${this.color}-500`
+    },
+
+    hoverColor() {
+      if (['white', 'black'].includes(this.color)) return this.color
+      return `${this.color}-400`
     }
   }
 }
