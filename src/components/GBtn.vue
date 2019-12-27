@@ -1,6 +1,6 @@
 <template>
   <component :is="tag" v-on="listeners" :class="['g-btn', ...classes]" v-bind="$attrs" :disabled="disabled">
-    <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center w-full h-full">
       <transition name="icon-switch" mode="out-in">
           <g-block-spinner v-if="loading" key="loader" :size="size" :color="loadingColor" class="mr-2"/>
           <g-icon v-if="!loading && icon" key="icon" :name="icon" :class="[textColorClasses, { 'mr-2': !circle }]" />
@@ -165,6 +165,7 @@ export default {
   -moz-transition: all .2s ease;
   -o-transition: all .2s ease;
   -ms-transition: all .2s ease;
+  text-decoration: none !important;
   &:active, &:focus {
     outline: none;
   }
