@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="g-credit-card p-4 text-white rounded shadow-md">
+  <div class="g-credit-card p-4 text-white-500 rounded shadow-md">
     <div class="card-header flex justify-between">
       <span>{{ card.funding | capitalize }} Card</span>
       <img v-if="cardBrandAvailable" :src="cardIconSrc" alt="credit card icon">

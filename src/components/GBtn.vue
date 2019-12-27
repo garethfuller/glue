@@ -93,20 +93,19 @@ export default {
     bgClasses() {
       if (this.flat) return `bg-${this.color}-100 hover:bg-${this.color}-200 active:bg-${this.color}-300`
       if (this.outline) return `bg-transparent hover:bg-${this.color}-100 active:bg-${this.color}-200`
-      return `bg-${this.color}${this.colorShade}`
+      return `bg-${this.color}-500`
     },
 
     textColorClasses() {
       if (this.color === 'white' && !this.flat) return this.textColor || 'text-gray-900'
-      if (this.flat && this.color === 'black') return 'text-gray-900'
       if (this.color === 'gray' && (this.flat || this.outline)) return 'text-gray-600'
-      if (this.flat || this.outline) return `text-${this.color}${this.colorShade}`
-      return 'text-white'
+      if (this.flat || this.outline) return `text-${this.color}-500`
+      return 'text-white-500'
     },
 
     borderClasses() {
       if (this.flat) return 'border border-transparent'
-      return `border border-${this.color}${this.colorShade}`
+      return `border border-${this.color}-500`
     },
 
     shadowClasses() {
@@ -143,15 +142,11 @@ export default {
       }
     },
 
-    colorShade() {
-      return ['white', 'black'].includes(this.color) ? '' : '-500'
-    },
-
     loadingColor() {
       if (this.color === 'white' && !this.flat) return this.textColor || 'gray-900'
       if (this.flat && this.color === 'black') return 'gray-900'
       if (this.color === 'gray' && (this.flat || this.outline)) return 'gray-600'
-      if (this.flat || this.outline) return `${this.color}${this.colorShade}`
+      if (this.flat || this.outline) return `${this.color}-500`
       return 'white'
     }
   }

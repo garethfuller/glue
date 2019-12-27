@@ -42,9 +42,9 @@ export default {
         case 'black':
           return 'bg-gray-900'
         case 'white':
-          return 'bg-white'
+          return 'bg-white-500'
         default:
-          return 'bg-white'
+          return 'bg-white-500'
       }
     },
   },

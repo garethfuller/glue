@@ -99,7 +99,7 @@ export default {
   transition: .4s;
 }
 .slider:before {
-  @apply bg-white;
+  @apply bg-white-500;
   position: absolute;
   content: "";
   -webkit-transition: .4s;

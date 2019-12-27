@@ -25,7 +25,7 @@ export default {
 
   props: {
     text: { type: String, required: true },
-    inputBg: { type: String, default: 'bg-white' }
+    inputBg: { type: String, default: 'bg-white-500' }
   },
 
   data() {

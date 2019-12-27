@@ -20,7 +20,7 @@
     </g-text-field>
     <div class="relative">
       <transition name="fade-in-up">
-        <div v-if="showItems" :ref="name" class="g-select-items rounded shadow-lg bg-white absolute w-full z-50 overflow-y-scroll -mt-6">
+        <div v-if="showItems" :ref="name" class="g-select-items rounded shadow-lg bg-white-500 absolute w-full z-50 overflow-y-scroll -mt-6">
           <g-select-item
             v-for="(item, index) in _items"
             :text="textFor(item)"

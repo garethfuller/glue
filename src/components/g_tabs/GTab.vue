@@ -3,7 +3,7 @@
     :is="tag"
     v-bind="attrs"
     v-if="isActive && !noPanel"
-    :class="['g-tab bg-white p-8 rounded-b']">
+    :class="['g-tab bg-white-500 p-8 rounded-b']">
     <slot></slot>
   </component>
 </template>

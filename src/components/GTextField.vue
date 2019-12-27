@@ -127,7 +127,7 @@ export default {
     prependClasses() {
       const borderClasses = 'border-t border-b border-l'
       let borderColor = 'border-gray-300'
-      if (this.raised) borderColor = 'border-white'
+      if (this.raised) borderColor = 'border-white-500'
       if (this.hasError) borderColor = 'border-red-500'
 
       return [
@@ -142,7 +142,7 @@ export default {
     appendClasses() {
       const borderClasses = 'border-t border-b border-r'
       let borderColor = 'border-gray-300'
-      if (this.raised) borderColor = 'border-white'
+      if (this.raised) borderColor = 'border-white-500'
       if (this.hasError) borderColor = 'border-red-500'
 
       return [
@@ -157,7 +157,7 @@ export default {
     bgClasses() {
       if (this.hasError) return 'bg-red-100'
       if (this.focussed && !this.raised) return 'bg-gray-100'
-      if (this.raised) return 'bg-white'
+      if (this.raised) return 'bg-white-500'
       return 'bg-gray-300'
     },
 
@@ -168,7 +168,7 @@ export default {
         if (this.append) return 'border-t border-b border-l border-red-500'
         return 'border border-red-500'
       }
-      if (this.raised) return 'border border-white'
+      if (this.raised) return 'border border-white-500'
       if (this.prepend && this.append) return 'border-t border-b border-gray-300'
       if (this.prepend) return 'border-t border-b border-r border-gray-300'
       if (this.append) return 'border-t border-b border-l border-gray-300'

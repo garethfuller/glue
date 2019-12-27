@@ -7,7 +7,7 @@
           <g-dot color="orange" class="mr-2" />
           <g-dot color="green" class="" />
         </div>
-        <div class="nav text-white">
+        <div class="nav text-white-500">
           <g-btn
             v-for="(lang, i) in langs"
             :key="i"
