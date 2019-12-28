@@ -73,7 +73,7 @@ export default {
     btnTextClasses(tab) {
       return {
         'w-full cursor-pointer flex flex-col justify-between h-full hover:no-underline': true,
-        [`active text-${this.color}`]: tab.isActive,
+        [`active text-${this.color}-500`]: tab.isActive,
         [`active text-gray-600 hover:text-gray-800`]: !tab.isActive,
         'text-right': this.right
       }
