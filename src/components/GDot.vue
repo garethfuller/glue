@@ -1,5 +1,5 @@
 <template lang="html">
-  <div :class="['g-dot inline-block', classes]" :style="styles">
+  <div :class="['inline-block', classes]" :style="styles">
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
   computed: {
     classes() {
       return {
-        [`g-dot-${this.color}`]: true,
+        [`bg-${this.color}-500`]: true,
       };
     },
 
@@ -27,21 +27,12 @@ export default {
       return {
         width: `${this.radius * 2}px`,
         height: `${this.radius * 2}px`,
-        borderRadius: `${this.radius}px`,
-      };
-    },
-  },
-};
+        borderRadius: `${this.radius}px`
+      }
+    }
+  }
+}
 </script>
 
-<style lang="css" scoped>
-.g-dot-green-500 {
-  @apply .bg-green-500;
-}
-.g-dot-orange-500 {
-  @apply .bg-orange-500;
-}
-.g-dot-red-500 {
-  @apply .bg-red-500;
-}
+<style scoped>
 </style>
