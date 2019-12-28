@@ -31,15 +31,13 @@ export default {
     },
 
     classes() {
-      return [this.sizeClasses, this.colorClasses]
+      return [this.sizeClasses, this.colorClasses, this.textClasses]
     },
 
     sizeClasses() {
       switch (this.size) {
         case 'small':
           return 'px-2 h-6 text-xs'
-        case 'medium':
-          return 'px-3 h-8 text-sm'
         case 'large':
           return 'px-4 h-10 text-base'
         default:
@@ -48,8 +46,15 @@ export default {
     },
 
     colorClasses() {
-      if (this.outline) return `bg-${this.color}-100 border border-${this.color}-500 text-${this.color}-500`
-      return `bg-${this.color}-500 border border-${this.color}-500 text-${this.textColor}`
+      if (this.outline) return `bg-${this.color}-100 border border-${this.color}-500`
+      if (this.color === 'gray') return `bg-${this.color}-200`
+      return `bg-${this.color}-500 border border-${this.color}-500`
+    },
+
+    textClasses() {
+      if (this.color === 'gray' && !this.outline) return 'text-gray-700'
+      if (this.outline) return `text-${this.color}-500`
+      return `text-${this.textColor}-500`
     }
   }
 }
