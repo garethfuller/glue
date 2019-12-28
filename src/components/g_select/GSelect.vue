@@ -14,7 +14,7 @@
       class="g-select-input"
       @focus="focusHandler"
       append>
-      <div slot="append" class="cursor-pointer px-4" @click="(!disabled) ? showItems = !showItems : null">
+      <div slot="append" class="block cursor-pointer px-4" @click="(!disabled) ? showItems = !showItems : null">
         <g-icon name="fas fa-chevron-down" :class="['chevron text-gray-600', chevronClasses]" />
       </div>
     </g-text-field>

@@ -9,22 +9,22 @@
       </label>
       <div class="g-text-field-input flex">
         <div v-if="prepend"
-          :class="[
-            `prepend rounded-l`,
-            ...prependClasses]">
-            <div class="flex items-center justify-center h-full">
-              <slot name="prepend"></slot>
-            </div>
+          :class="[`prepend rounded-l`, ...prependClasses]">
+          <div class="flex items-center justify-center h-full">
+            <slot name="prepend"></slot>
+          </div>
         </div>
-        <input
-          :class="['w-full leading-none', ...inputClasses]"
-          :type="type"
-          :name="name"
-          :value="value"
-          v-bind="$attrs"
-          v-on="listeners"
-          :disabled="disabled"
-        />
+        <div class="flex-1">
+          <input
+            :class="['w-full leading-none', ...inputClasses]"
+            :type="type"
+            :name="name"
+            :value="value"
+            v-bind="$attrs"
+            v-on="listeners"
+            :disabled="disabled"
+          />
+        </div>
         <div v-if="append"
           :class="[`append rounded-r`, ...appendClasses]">
           <div class="flex items-center justify-center h-full">
