@@ -46,7 +46,7 @@ export default {
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: theme('colors.black') transparent transparent transparent;
+    border-color: theme('colors.black.500') transparent transparent transparent;
 }
 .g-tooltip:hover .g-tooltip-text {
     visibility: visible;
