@@ -18,8 +18,8 @@
                 <slot name="navCenter"></slot>
               </div>
               <div v-if="closeBtn">
-                <g-btn flat circle @click.native="closeDialog" size="large">
-                  <g-icon name="fas fa-times" size="3xl" color="gray-600" />
+                <g-btn flat circle color="gray" @click.native="closeDialog" size="large">
+                  <g-icon name="fas fa-times" size="3xl" />
                 </g-btn>
               </div>
             </div>
