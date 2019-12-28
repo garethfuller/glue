@@ -38,10 +38,10 @@ export default {
 
 <style lang="css" scoped>
 .g-menu-item{
-  transition: background .4s ease;
-  @apply text-gray-800 no-underline block;
+  transition: background .3s ease;
+  @apply text-gray-600 no-underline block;
 }
 .g-menu-item:hover {
-  @apply bg-gray-100 text-gray-900;
+  @apply bg-gray-100 text-gray-800;
 }
 </style>
