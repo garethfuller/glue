@@ -1,11 +1,11 @@
 <template lang="html">
-  <div class="g-copy-text-box block border border-gray-500 rounded flex justify-between">
-    <client-only>
+  <div class="g-copy-text-box block border border-gray-300 rounded flex justify-between">
+    <client-only class="w-full">
       <input :value="text" type="text" :class="['contents px-2 py-1 w-full rounded', inputBg]" ref="contents" readonly/>
     </client-only>
     <g-tooltip :text="tooltipText" :width="70">
       <div
-        class="copy-btn w-12 py-1 flex justify-center bg-gray-500 h-full text-gray-600 flex items-center cursor-pointer"
+        class="copy-btn w-12 py-1 flex justify-center bg-gray-300 border-t border-l border-b border-gray-300 h-full text-gray-600 flex items-center cursor-pointer"
         @click="copyToClipboard">
         <g-icon name="ion-md-copy" size="large" color="gray" />
         <span class="text-sm ml-1">
