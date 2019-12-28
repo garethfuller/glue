@@ -147,7 +147,7 @@ export default {
       if (this.flat && this.color === 'black') return 'gray-900'
       if (this.color === 'gray' && (this.flat || this.outline)) return 'gray-600'
       if (this.flat || this.outline) return `${this.color}-500`
-      return 'white'
+      return 'white-500'
     }
   }
 }
