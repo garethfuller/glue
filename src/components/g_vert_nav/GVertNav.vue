@@ -14,8 +14,6 @@
             <g-icon
               v-if="tab.icon"
               :name="tab.icon"
-              :color="(tab.isActive) ? color : null"
-              size="xl"
               :class="iconClasses(tab)"
             />
           </div>
@@ -72,7 +70,7 @@ export default {
     btnTextClasses(tab) {
       return {
         'w-full cursor-pointer flex flex-col justify-between h-full hover:no-underline text-gray-500': true,
-        [`active text-${this.color}`]: tab.isActive,
+        [`active text-${this.color}-500`]: tab.isActive,
         [`active text-gray-600 hover:text-gray-800`]: !tab.isActive,
         'text-right': this.right
       }
@@ -80,7 +78,7 @@ export default {
 
     iconClasses(tab) {
       return {
-        'text-gray-600': true,
+        'text-gray-500 text-xl': true,
         [`text-${this.color}-600`]: tab.active
       }
     },
