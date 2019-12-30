@@ -19,7 +19,7 @@
               </div>
               <div v-if="closeBtn">
                 <g-btn flat circle color="gray" @click.native="closeDialog" size="large">
-                  <g-icon name="fas fa-times" size="3xl" />
+                  <g-icon name="fas fa-times" class="text-3xl" />
                 </g-btn>
               </div>
             </div>
@@ -34,7 +34,7 @@
           <div v-g-click-outside="closeDialog" v-if="showContent" :class="['g-dialog-content w-full px-2 sm:px-0 relative', contentClasses]" :style="contentStyles" @click.stop>
 
             <div v-if="closeBtn" class="g-dialog-close-btn">
-              <g-btn flat circle @click.native="closeDialog" size="small">
+              <g-btn flat circle size="small" color="gray" @click.native="closeDialog">
                 <g-icon name="fas fa-times" />
               </g-btn>
             </div>
