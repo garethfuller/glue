@@ -13,7 +13,7 @@
         <g-icon :name="icon" :class="`text-2xl text-${color}-500`" />
       </div>
       <div :class="['w-full content py-6 pr-4', { 'pl-4': !icon }]">
-        <h3 class="font-bold text-xl mb-0">
+        <h3 class="font-medium text-lg mb-0">
           <slot name="title">
             {{ title }}
           </slot>
@@ -36,12 +36,6 @@ export default {
     icon: { type: String },
     persistent: { type: Boolean, default: false },
     shadow: { type: String, default: 'shadow-lg' }
-  },
-
-  data () {
-    return {
-
-    }
   }
 }
 </script>
