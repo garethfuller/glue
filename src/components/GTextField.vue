@@ -241,6 +241,9 @@ export default {
 <style scoped>
 input, .prepend, .append {
   transition: all .3s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 input:focus {
