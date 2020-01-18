@@ -1,6 +1,6 @@
 <template lang="html">
   <div :class="['g-code', classes, shadow]">
-    <div class="header w-full block rounded-t px-2 py-1">
+    <div class="header bg-black-500 w-full block rounded-t px-2 py-1">
       <div class="contents flex justify-between">
         <div class="fake-controls">
           <g-dot color="red" class="mr-2" />
@@ -14,14 +14,14 @@
             flat
             color="white"
             size="small"
-            :class="['ml-2', { active: isActive(lang) }]"
+            :class="['ml-2', { 'is-active': isActive(lang) }]"
             @click.native="changeLangTo(lang)">
             {{ labelFor(lang) }}
           </g-btn>
         </div>
       </div>
     </div>
-    <div class="code-container rounded-b">
+    <div class="code-container bg-black-500 rounded-b">
       <pre v-highlightjs="selectedCodeSnippet"><code :class="internalLang" class="rounded-b p-4"></code></pre>
     </div>
   </div>
@@ -40,7 +40,7 @@ export default {
   },
 
   props: {
-    langs: { type: Array, default: () => ['ruby', 'javascript', 'bash', 'html'] },
+    langs: { type: Array, default: () => ['ruby', 'python', 'javascript', 'bash', 'html'] },
     lang: { type: String, default: 'bash' },
     code: { type: Object, required: true },
     shadow: { type: String, default: 'shadow-lg' }
@@ -50,6 +50,7 @@ export default {
     internalLang: '',
     langLabels: {
       ruby: 'Ruby',
+      python: 'Python',
       javascript: 'Javascript',
       bash: 'Bash',
       html: 'HTML',
@@ -87,15 +88,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.header {
-  background: theme('colors.black');
-}
-.active {
-  background: rgba(white, .3) !important;
+.is-active {
+  border: 1px solid rgba(255,255,255, .5);
 }
 .code-container {
   width: 100%;
-  background: theme('colors.black');
   min-height: 100px;
 }
 code {
