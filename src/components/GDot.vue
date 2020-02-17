@@ -8,11 +8,7 @@ export default {
   name: 'GDot',
 
   props: {
-    color: {
-      type: String,
-      default: 'green',
-      validator: value => ['green', 'orange', 'red'].indexOf(value) !== -1,
-    },
+    color: { type: String, default: 'green' },
     radius: { type: Number, default: 5 },
   },
 

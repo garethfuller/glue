@@ -12,11 +12,8 @@ export default {
 
   props: {
     dotRadius: { type: Number, default: 5 },
-    color: {
-      type: String,
-      default: 'blue',
-      validator: value => ['blue', 'red', 'green', 'black', 'white'].indexOf(value) !== -1,
-    },
+    color: { type: String, default: 'primary' },
+    colorShade: { type: String, default: '500' }
   },
 
   data() {
@@ -32,20 +29,7 @@ export default {
 
   computed: {
     colorClass() {
-      switch (this.color) {
-        case 'blue':
-          return 'bg-blue-500'
-        case 'red':
-          return 'bg-red-500'
-        case 'green':
-          return 'bg-green-500'
-        case 'black':
-          return 'bg-gray-900'
-        case 'white':
-          return 'bg-white-500'
-        default:
-          return 'bg-white-500'
-      }
+      return `bg-${this.color}-${this.colorShade}`
     },
   },
 };

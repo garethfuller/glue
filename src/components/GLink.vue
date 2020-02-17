@@ -13,7 +13,7 @@ export default {
   name: 'GLink',
 
   props: {
-    color: { type: String, default: 'blue' },
+    color: { type: String, default: 'primary' },
     size: { type: String, default: 'base' },
     tag: { type: String, default: 'a' }
   },

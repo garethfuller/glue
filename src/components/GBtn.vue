@@ -2,9 +2,9 @@
   <component :is="tag" v-on="listeners" :class="['g-btn', ...classes]" v-bind="$attrs" :disabled="disabled">
     <div class="flex justify-center items-center w-full h-full">
       <transition name="icon-switch" mode="out-in">
-          <g-block-spinner v-if="loading" key="loader" :size="size" :color="loadingColor" class="mr-2"/>
-          <g-icon v-if="!loading && icon" key="icon" :name="icon" :class="[textColorClasses, { 'mr-2': !circle }]" />
-        </transition>
+        <g-block-spinner v-if="loading" key="loader" :size="size" :color="loadingColor" class="mr-2"/>
+        <g-icon v-if="!loading && icon" key="icon" :name="icon" :class="[textColorClasses, { 'mr-2': !circle }]" />
+      </transition>
       <slot></slot>
     </div>
   </component>
@@ -16,11 +16,7 @@ export default {
 
   props: {
     tag: { type: String, default: 'button' },
-    color: {
-      type: String,
-      default: 'blue',
-      validator: value => ['blue', 'red', 'green', 'orange', 'white', 'black', 'gray'].indexOf(value) !== -1,
-    },
+    color: { type: String, default: 'primary' },
     size: {
       type: String,
       default: 'medium',

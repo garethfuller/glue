@@ -12,11 +12,7 @@ export default {
 
   props: {
     textColor: { type: String, default: 'white' },
-    color: {
-      type: String,
-      default: 'gray',
-      validator: value => ['blue', 'red', 'green', 'orange', 'gray'].indexOf(value) !== -1,
-    },
+    color: { type: String, default: 'gray' },
     size: {
       type: String,
       default: 'medium',

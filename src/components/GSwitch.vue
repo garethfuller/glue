@@ -29,7 +29,7 @@ export default {
   props: {
     name: { type: String },
     round: { type: Boolean, default: false },
-    color: { type: String, default: 'blue' },
+    color: { type: String, default: 'primary' },
     checked: { type: Boolean, default: false },
     rules: { type: Array },
     validateOn: { type: String, default: 'change' },

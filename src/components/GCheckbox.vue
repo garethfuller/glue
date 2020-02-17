@@ -33,7 +33,7 @@ export default {
     name: { type: String, default: 'checkbox' },
     checked: { type: Boolean, default: false },
     label: { type: String, default: '' },
-    color: { type: String, default: 'blue' },
+    color: { type: String, default: 'primary' },
     rules: { type: Array },
     validateOn: { type: String, default: 'change' },
     noMargin: { type: Boolean, default: false },
