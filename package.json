@@ -1,6 +1,6 @@
 {
   "name": "gluevue",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "main": "./src/build.js",
   "files": [
     "dist/*",
