@@ -96,7 +96,7 @@ export default {
       if (this.color === 'white' && !this.flat) return this.textColor || 'text-gray-900'
       if (this.color === 'gray' && (this.flat || this.outline)) return 'text-gray-600'
       if (this.flat || this.outline) return `text-${this.color}-500`
-      return 'text-white-500'
+      return 'text-white'
     },
 
     borderClasses() {
@@ -143,7 +143,7 @@ export default {
       if (this.flat && this.color === 'black') return 'gray-900'
       if (this.color === 'gray' && (this.flat || this.outline)) return 'gray-600'
       if (this.flat || this.outline) return `${this.color}-500`
-      return 'white-500'
+      return 'white'
     }
   }
 }

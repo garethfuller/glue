@@ -16,7 +16,7 @@
       <div
         ref="contents"
         v-show="showPopover"
-        :class="['g-popover-contents bg-white-500 absolute shadow-lg rounded mt-1', contentClasses]"
+        :class="['g-popover-contents bg-white absolute shadow-lg rounded mt-1', contentClasses]"
         :style="contentStyles"
         @mouseover="isOverContent=true"
         @mouseout="isOverContent=false">

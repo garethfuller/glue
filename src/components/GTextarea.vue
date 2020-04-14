@@ -105,12 +105,12 @@ export default {
     bgClasses() {
       if (this.hasError) return 'bg-red-100'
       if (this.focussed && !this.raised) return 'bg-gray-100'
-      if (this.raised) return 'bg-white-500'
+      if (this.raised) return 'bg-white'
       return 'bg-gray-300'
     },
 
     inputBorderClasses() {
-      if (this.raised) return 'border border-white-500'
+      if (this.raised) return 'border border-white'
       if (this.hasError) return 'border border-red-500'
       return 'border border-gray-300'
     },

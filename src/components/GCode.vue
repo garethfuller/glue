@@ -1,13 +1,13 @@
 <template lang="html">
   <div :class="['g-code', classes, shadow]">
-    <div class="header bg-black-500 w-full block rounded-t px-2 py-1">
+    <div class="header bg-black w-full block rounded-t px-2 py-1">
       <div class="contents flex justify-between">
         <div class="fake-controls">
           <g-dot color="red" class="mr-2" />
           <g-dot color="orange" class="mr-2" />
           <g-dot color="green" class="" />
         </div>
-        <div class="nav text-white-500">
+        <div class="nav text-white">
           <g-btn
             v-for="(lang, i) in langs"
             :key="i"
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="code-container bg-black-500 rounded-b">
+    <div class="code-container bg-black rounded-b">
       <pre v-highlightjs="selectedCodeSnippet"><code :class="internalLang" class="rounded-b p-4"></code></pre>
     </div>
   </div>

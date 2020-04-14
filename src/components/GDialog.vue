@@ -4,7 +4,7 @@
       <transition name="g-fullpage-dialog">
         <div
           v-if="show"
-          :class="[`g-dialog-fullpage fixed top-0 left-0 w-full h-full bg-white-500 shadow border-t-4 border-${borderColor}`]">
+          :class="[`g-dialog-fullpage fixed top-0 left-0 w-full h-full bg-white shadow border-t-4 border-${borderColor}`]">
           <div v-if="navbar" class="w-full">
             <div class="container mx-auto flex flex-wrap justify-between items-center h-20 px-mobile">
               <div>

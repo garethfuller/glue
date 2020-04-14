@@ -1,5 +1,5 @@
 <template lang="html">
-  <div :class="['g-card rounded shadow bg-white-500', classes]">
+  <div :class="['g-card rounded shadow bg-white', classes]">
     <div v-if="loading" class="h-24 flex items-center justify-center">
       <g-loading-animation />
     </div>
