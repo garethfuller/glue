@@ -42,6 +42,8 @@ export default {
         if (['g-checkbox', 'g-switch'].includes(input.$options._componentTag)) {
           input.validate(input.$props.checked)
           this.handleInputErrors(input.$data.errors)
+        // } else if (['g-select-input'].includes(input.$options._componentTag)) {
+        //   console.log(input);
         } else {
           input.validate(input.$props.value)
           this.handleInputErrors(input.$data.errors)

@@ -1,5 +1,5 @@
 export { default as GBtn } from './GBtn.vue';
-export { default as GTextField } from './GTextField.vue';
+export { default as GTextInput } from './GTextInput.vue';
 export { default as GCard } from './g_card/GCard.vue';
 export { default as GCardActions } from './g_card/GCardActions.vue';
 export { default as GCardContent } from './g_card/GCardContent.vue';
@@ -36,3 +36,4 @@ export { default as GCopyBtn } from './GCopyBtn.vue';
 export { default as GVertNav } from './g_vert_nav/GVertNav.vue';
 export { default as GVertNavItem } from './g_vert_nav/GVertNavItem.vue';
 export { default as GCircle } from './GCircle.vue';
+export { default as GSelectInput } from './GSelectInput.vue';

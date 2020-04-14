@@ -16,11 +16,11 @@ export default {
 
   props: {
     tag: { type: String, default: 'button' },
-    color: { type: String, default: 'primary' },
+    color: { type: String, default: 'black' },
     size: {
       type: String,
-      default: 'medium',
-      validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1,
+      default: 'md',
+      validator: value => ['sm', 'md', 'lg'].indexOf(value) !== -1,
     },
     outline: { type: Boolean, default: false },
     flat: { type: Boolean, default: false },
@@ -62,21 +62,21 @@ export default {
     sizeClasses() {
       if (this.circle) {
         switch (this.size) {
-          case 'large':
+          case 'lg':
             return 'w-12 h-12 text-2xl'
-          case 'small':
+          case 'sm':
             return 'w-6 h-6 text-xs'
           default:
             return 'w-8 h-8 text-base'
         }
       } else {
         switch (this.size) {
-          case 'large':
-            return 'h-16 px-6 text-2xl'
-          case 'small':
-            return 'h-8 px-2 text-sm'
+          case 'lg':
+            return 'h-12 px-6 text-2xl'
+          case 'sm':
+            return 'h-6 px-2 text-xs'
           default:
-            return 'h-12 px-4 text-base'
+            return 'h-10 px-4 text-base'
         }
       }
     },
@@ -89,6 +89,8 @@ export default {
     bgClasses() {
       if (this.flat) return `bg-${this.color}-100 hover:bg-${this.color}-200 active:bg-${this.color}-300`
       if (this.outline) return `bg-transparent hover:bg-${this.color}-100 active:bg-${this.color}-200`
+      if (this.color === 'white') return 'bg-white'
+      if (this.color === 'black') return 'bg-black'
       return `bg-${this.color}-500`
     },
 
@@ -127,11 +129,11 @@ export default {
 
     iconSize() {
       switch (this.size) {
-        case 'small':
+        case 'sm':
           return 'xs'
-        case 'medium':
+        case 'md':
           return 'sm'
-        case 'large':
+        case 'lg':
           return 'base'
         default:
           return 'sm'

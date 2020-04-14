@@ -1,5 +1,5 @@
-<template lang="html">
-  <div :class="[`g-grid-item sm:px-${spacing} px-0 mb-${vertSpacing} md:mb-${vertSpacing*2}`, classes]">
+<template>
+  <div :class="[`px-${this.spacing/2} pb-${this.vSpacing} w-${this.width}`]">
     <slot></slot>
   </div>
 </template>
@@ -9,25 +9,17 @@ export default {
   name: 'GGridItem',
 
   props: {
-    width: { type: String }
+    width: { type: String, default: '1/2' }
   },
 
   data() {
     return {
-      spacing: '2',
-      vertSpacing: '2'
-    }
-  },
-
-  computed: {
-    classes() {
-      return {
-        [`w-full sm:w-${this.width}`]: this.width
-      }
+      spacing: '4',
+      vSpacing: '4',
     }
   }
-};
+}
 </script>
 
-<style lang="css" scoped>
+<style scoped>
 </style>

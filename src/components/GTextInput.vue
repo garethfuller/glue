@@ -45,7 +45,7 @@
 
 <script>
 export default {
-  name: 'GTextField',
+  name: 'GTextInput',
 
   props: {
     type: { type: String, default: 'text' },
@@ -61,10 +61,11 @@ export default {
     rules: { type: Array },
     validateOn: { type: String, default: 'blur' },
     noMargin: { type: Boolean, default: false },
+    color: { type: String, default: 'gray-300' },
     size: {
       type: String,
-      default: 'medium',
-      validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1,
+      default: 'md',
+      validator: value => ['sm', 'md', 'lg'].indexOf(value) !== -1,
     },
   },
 
@@ -126,7 +127,7 @@ export default {
 
     prependClasses() {
       const borderClasses = 'border-t border-b border-l'
-      let borderColor = 'border-gray-300'
+      let borderColor = `border-gray-300 focus:border-${this.color}`
       if (this.raised) borderColor = 'border-white'
       if (this.hasError) borderColor = 'border-red-500'
 
@@ -141,7 +142,7 @@ export default {
 
     appendClasses() {
       const borderClasses = 'border-t border-b border-r'
-      let borderColor = 'border-gray-300'
+      let borderColor = `border-gray-300 focus:border-${this.color}`
       if (this.raised) borderColor = 'border-white'
       if (this.hasError) borderColor = 'border-red-500'
 
@@ -158,7 +159,7 @@ export default {
       if (this.hasError) return 'bg-red-100'
       if (this.focussed && !this.raised) return 'bg-gray-100'
       if (this.raised) return 'bg-white'
-      return 'bg-gray-300'
+      return 'bg-gray-200'
     },
 
     inputBorderClasses() {
@@ -169,10 +170,11 @@ export default {
         return 'border border-red-500'
       }
       if (this.raised) return 'border border-white'
-      if (this.prepend && this.append) return 'border-t border-b border-gray-300'
-      if (this.prepend) return 'border-t border-b border-r border-gray-300'
-      if (this.append) return 'border-t border-b border-l border-gray-300'
-      return 'border border-gray-300'
+
+      if (this.prepend && this.append) return `border-t border-b border-gray-200 focus:border-${this.color}`
+      if (this.prepend) return `border-t border-b border-r border-gray-200 focus:border-${this.color}`
+      if (this.append) return `border-t border-b border-l border-gray-200 focus:border-${this.color}`
+      return `border border-gray-200 focus:border-${this.color}`
     },
 
     shapeClasses() {
@@ -183,12 +185,12 @@ export default {
     },
 
     textColorClasses() {
+      if (this.disabled) return 'text-gray-600'
       if (this.hasError) return 'text-red-500'
-      return ''
+      return 'text-gray-700'
     },
 
     textClasses() {
-      if (this.disabled) return 'text-gray-600'
       if (this.uppercase) return 'uppercase'
       return ''
     },
@@ -205,9 +207,9 @@ export default {
 
     textSize() {
       switch (this.size) {
-        case 'large':
+        case 'lg':
           return 'text-lg'
-        case 'small':
+        case 'sm':
           return 'text-sm'
         default:
           return 'text-base'
@@ -216,9 +218,9 @@ export default {
 
     sizeClasses() {
       switch (this.size) {
-        case 'large':
+        case 'lg':
           return 'h-16 px-4'
-        case 'small':
+        case 'sm':
           return 'h-8 px-4'
         default:
           return 'h-12 px-4'
