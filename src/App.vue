@@ -10,7 +10,7 @@
         color="blue-500"
         :rules="[required('select')]"
       />
-      <g-btn type="submit">Submit</g-btn>
+      <g-btn type="submit" @click="loading = !loading" :loading="loading">Submit</g-btn>
     </g-form>
 
   </div>
@@ -24,6 +24,7 @@ export default {
 
   data() {
     return {
+      loading: false,
       select: '',
       options: [
         { label: 'Bananas', value: 'b' },

@@ -1,11 +1,13 @@
 <template>
   <component :is="tag" v-on="listeners" :class="['g-btn', ...classes]" v-bind="$attrs" :disabled="disabled">
     <div class="flex justify-center items-center w-full h-full">
-      <transition name="icon-switch" mode="out-in">
-        <g-block-spinner v-if="loading" key="loader" :size="size" :color="loadingColor" class="mr-2"/>
-        <g-icon v-if="!loading && icon" key="icon" :name="icon" :class="[textColorClasses, { 'mr-2': !circle }]" />
-      </transition>
-      <slot></slot>
+      <div class="absolute">
+        <g-loading-icon v-if="loading" key="loader" :size="size" :color="loadingColor" class="absolute"/>
+      </div>
+      <div :class="[{ 'invisible': loading }]">
+        <g-icon v-if="icon" key="icon" :name="icon" :class="[textColorClasses, { 'mr-2': !circle }]" />
+        <slot></slot>
+      </div>
     </div>
   </component>
 </template>
@@ -76,7 +78,7 @@ export default {
           case 'sm':
             return 'h-6 px-2 text-xs'
           default:
-            return 'h-10 px-4 text-base'
+            return 'h-12 px-5 text-base'
         }
       }
     },
