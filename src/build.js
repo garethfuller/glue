@@ -1,7 +1,6 @@
 import * as components from './components';
 import * as mixins from './mixins';
 import * as directives from './directives';
-import './assets/css/main.css';
 
 const Glue = {
   install(Vue) {
