@@ -8,6 +8,10 @@ const GFilters = {
       return str.toUpperCase();
     },
 
+    downcase(str) {
+      return str.toLowerCase();
+    },
+
     titleize(str) {
       return str.replace(
         /\w\S*/g,

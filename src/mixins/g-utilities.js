@@ -20,6 +20,24 @@ const GUtilities = {
         .toString(36)
         .substr(2, 10);
     },
+
+    gPoll(fn, {params=[], timeout=60000, interval=3000}={}) {
+      let endTime = Number(new Date()) + (timeout)
+
+      let checkCondition = async (resolve, reject) => {
+        let result = await fn(...params)
+
+        if (result) {
+          resolve(result)
+        } else if (Number(new Date()) < endTime) {
+          setTimeout(checkCondition, interval, resolve, reject)
+        } else {
+          reject(new Error('timed out for ' + fn + ': ' + arguments))
+        }
+      }
+
+      return new Promise(checkCondition)
+    }
   },
 };
 
