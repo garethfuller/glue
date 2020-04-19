@@ -1,5 +1,5 @@
 <template>
-  <div :class="`px-${spacing}`">
+  <div :class="`px-${spacing/2}`">
     <div :class="[`flex -mx-${this.spacing}`, { 'flex-wrap': !noWrap }]">
       <slot></slot>
     </div>
