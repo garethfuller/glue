@@ -5,6 +5,7 @@
     </label>
     <div class="relative">
       <select
+        :value="value"
         v-bind="$attrs"
         v-on="listeners"
         :name="name"
