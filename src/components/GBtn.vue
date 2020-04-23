@@ -74,7 +74,7 @@ export default {
       } else {
         switch (this.size) {
           case 'lg':
-            return 'h-12 px-6 text-2xl'
+            return 'h-12 px-6 text-xl'
           case 'sm':
             return 'h-6 px-2 text-xs'
           default:
@@ -105,6 +105,7 @@ export default {
 
     borderClasses() {
       if (this.flat) return 'border border-transparent'
+      if (['black', 'white'].includes(this.color)) return `border border-${this.color}`
       return `border border-${this.color}-500`
     },
 
