@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="g-tabs h-full w-full">
+  <div class="g-tabs w-full">
     <div class="tab-btns flex flex-col h-full">
       <div :class="['flex h-full', { 'justify-end': right }]">
         <component
@@ -11,7 +11,7 @@
           @click="clicked(tab)">
           <div class="h-1"></div>
           <div
-            class="g-tabs-label flex flex-col md:flex-row items-center justify-center md:justify-start pr-0 md:pr-12">
+            class="g-tabs-label flex flex-col md:flex-row items-center justify-center md:justify-start pr-0 md:pr-12 pb-4">
             <g-icon
               v-if="tab.icon"
               :name="tab.icon"
