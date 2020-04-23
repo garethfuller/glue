@@ -1,6 +1,6 @@
 <template lang="html">
   <div v-g-click-outside="closeItems">
-    <g-text-field
+    <g-text-input
       v-model="textInputValue"
       :label="label"
       :name="name"
@@ -17,7 +17,7 @@
       <div slot="append" class="block cursor-pointer px-4" @click="(!disabled) ? showItems = !showItems : null">
         <g-icon name="fas fa-chevron-down" :class="['chevron text-gray-600', chevronClasses]" />
       </div>
-    </g-text-field>
+    </g-text-input>
     <div class="relative">
       <transition name="fade-in-up">
         <div v-if="showItems" :ref="name" class="g-select-items rounded shadow-lg bg-white absolute w-full z-50 overflow-y-scroll -mt-6">
@@ -55,8 +55,8 @@ export default {
     validateOn: { type: String, default: 'blur' },
     size: {
       type: String,
-      default: 'medium',
-      validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1,
+      default: 'md',
+      validator: value => ['sm', 'md', 'lg'].indexOf(value) !== -1,
     },
   },
 

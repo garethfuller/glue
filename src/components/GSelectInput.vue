@@ -1,9 +1,13 @@
 <template>
   <div :class="[{ 'mb-6': !noMargin }]">
+    <label v-if="label" :for="name" :class="labelClasses">
+      {{ label }}
+    </label>
     <div class="relative">
       <select
         v-bind="$attrs"
         v-on="listeners"
+        :name="name"
         :class="selectClasses">
         <option v-if="defaultText" value="" hidden>{{ defaultText }}</option>
         <option
@@ -34,6 +38,8 @@ export default {
   props: {
     options: { type: Array, required: true },
     value: { type: [String, Number], default: '' },
+    label: { type: String, default: null },
+    name: { type: String, default: 'selectInput' },
     defaultText: { type: String },
     color: { type: String, default: 'gray-300' },
     rules: { type: Array },
@@ -74,6 +80,12 @@ export default {
         this.textClasses,
         this.bgClasses,
         this.sizeClasses,
+        this.textSize
+      ]
+    },
+
+    labelClasses() {
+      return [
         this.textSize
       ]
     },

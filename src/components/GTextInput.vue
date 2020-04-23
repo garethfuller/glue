@@ -127,7 +127,7 @@ export default {
 
     prependClasses() {
       const borderClasses = 'border-t border-b border-l'
-      let borderColor = `border-gray-300 focus:border-${this.color}`
+      let borderColor = `border-gray-200 focus:border-${this.color}`
       if (this.raised) borderColor = 'border-white'
       if (this.hasError) borderColor = 'border-red-500'
 
@@ -142,7 +142,7 @@ export default {
 
     appendClasses() {
       const borderClasses = 'border-t border-b border-r'
-      let borderColor = `border-gray-300 focus:border-${this.color}`
+      let borderColor = `border-gray-200 focus:border-${this.color}`
       if (this.raised) borderColor = 'border-white'
       if (this.hasError) borderColor = 'border-red-500'
 
