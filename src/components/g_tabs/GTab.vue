@@ -13,6 +13,7 @@ export default {
   name: 'GTab',
 
   props: {
+    tag: { type: String, default: 'div' },
     name: { type: String },
     path: { type: String },
     icon: { type: String },
