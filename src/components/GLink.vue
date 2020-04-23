@@ -1,7 +1,7 @@
 <template lang="html">
   <component
     :is="tag"
-    :class="`hover:underline cursor-pointer text-${color}-500 hover:text-${color}-400 text-${size}`"
+    :class="`g-link hover:underline cursor-pointer ${textColor} text-${size}`"
     v-bind="$attrs"
     v-on="listeners">
     <slot></slot>
@@ -21,7 +21,18 @@ export default {
   computed: {
     listeners() {
       return { ...this.$listeners }
+    },
+
+    textColor() {
+      if (this.color === 'black') return `text-gray-800 hover:text-${this.color}`
+      return `text-${this.color}-500 hover:text-${this.color}-400 `
     }
   }
 }
 </script>
+
+<style media="screen">
+.g-link {
+  transition: all .3s ease;
+}
+</style>
