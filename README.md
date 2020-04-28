@@ -1,4 +1,6 @@
 # Glue Vue
+![npm (scoped)](https://img.shields.io/npm/v/@garethfuller/glue)
+
 Glue Vue is a minimal [Vue](https://vuejs.org/) component library that uses [Tailwindcss](https://tailwindcss.com/) classes for customisation.
 
 ## Dependencies
