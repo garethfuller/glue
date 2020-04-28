@@ -1,21 +1,25 @@
 {
-  "name": "gluevue",
+  "name": "@garethfuller/glue",
   "version": "0.2.30",
-  "main": "./src/plugin.js",
-  "description": "Glue Vue is a minimal Vue component library that uses Tailwindcss classes for customisation.",
+  "main": "./src/plugin/index.js",
+  "description": "Glue is a minimal Vue component library that uses Tailwindcss classes for customisation.",
   "keywords": ["vue", "vuejs", "tailwindcss", "component library", "ui library"],
   "homepage": "https://github.com/garethfuller/glue#glue-vue",
   "bugs": {
     "url": "https://github.com/garethfuller/glue/issues",
     "email": "gareth@remotely.digital"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/garethfuller/glue.git"
+  },
   "license": "MIT",
   "files": [
-    "src/*"
+    "src/plugin/*"
   ],
   "scripts": {
     "serve": "vue-cli-service serve ./src/app.js",
-    "build": "vue-cli-service build --target lib --name glue ./src/index.js",
+    "build": "vue-cli-service build --target lib --name glue ./src/plugin/index.js",
     "publish": "npm publish --access public"
   },
   "dependencies": {
