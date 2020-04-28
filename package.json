@@ -1,7 +1,7 @@
 {
   "name": "gluevue",
   "version": "0.2.30",
-  "main": "./src/build.js",
+  "main": "./src/index.js",
   "files": [
     "dist/*",
     "src/*",
@@ -10,8 +10,8 @@
     "*.js"
   ],
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name glue ./src/build.js",
+    "serve": "vue-cli-service serve ./src/app.js",
+    "build": "vue-cli-service build --target lib --name glue ./src/index.js",
     "publish": "npm publish --access public"
   },
   "dependencies": {
