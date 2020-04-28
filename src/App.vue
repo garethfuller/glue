@@ -1,53 +1,12 @@
 <template>
-  <div id="app" class="p-24">
-    <g-form ref="form" @submit="submit">
-      <g-select-input
-        v-model="select"
-        :options="options"
-        default-text="Please select"
-        class="mb-4"
-        size="md"
-        color="blue-500"
-        :rules="[required('select')]"
-      />
-      <g-btn type="submit" @click="loading = !loading" :loading="loading">Submit</g-btn>
-    </g-form>
-
+  <div id="app" class="p-8 bg-gray-100">
   </div>
 </template>
 
 <script>
-import { required } from './lib/validations'
 
 export default {
-  name: 'app',
-
-  data() {
-    return {
-      loading: false,
-      select: '',
-      options: [
-        { label: 'Bananas', value: 'b' },
-        { label: 'Oranges', value: 'o' },
-        { label: 'Grapes', value: 'g' },
-      ],
-      text: ''
-    }
-  },
-
-  watch: {
-    select(newVal) {
-      console.log(newVal)
-    }
-  },
-
-  methods: {
-    required,
-
-    submit() {
-      this.$refs.form.validate()
-    }
-  }
+  name: 'app'
 }
 </script>
 
