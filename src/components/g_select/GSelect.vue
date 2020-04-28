@@ -19,7 +19,7 @@
       </div>
     </g-text-input>
     <div class="relative">
-      <transition name="fade-in-up">
+      <transition name="select-in-up">
         <div v-if="showItems" :ref="name" class="g-select-items rounded shadow-lg bg-white absolute w-full z-50 overflow-y-scroll -mt-6">
           <g-select-item
             v-for="(item, index) in _items"
@@ -220,5 +220,13 @@ export default {
   & .chevron {
     transform: rotateZ(90deg);
   }
+}
+
+.select-in-up-enter-active, .select-in-up-leave-active {
+  transition: all .3s ease;
+}
+.select-in-up-enter, .select-in-up-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 </style>
