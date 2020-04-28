@@ -3,15 +3,21 @@
   "version": "1.0.0",
   "main": "./src/plugin/index.js",
   "description": "Glue is a minimal Vue component library that uses Tailwindcss classes for customisation.",
-  "keywords": ["vue", "vuejs", "tailwindcss", "component library", "ui library"],
+  "keywords": [
+    "vue",
+    "vuejs",
+    "tailwindcss",
+    "component library",
+    "ui library"
+  ],
   "homepage": "https://github.com/garethfuller/glue#glue-vue",
   "bugs": {
     "url": "https://github.com/garethfuller/glue/issues",
     "email": "gareth@remotely.digital"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/garethfuller/glue.git"
+    "type": "git",
+    "url": "https://github.com/garethfuller/glue.git"
   },
   "license": "MIT",
   "files": [
@@ -20,7 +26,15 @@
   "scripts": {
     "serve": "vue-cli-service serve ./src/app.js",
     "build": "vue-cli-service build --target lib --name glue ./src/plugin/index.js",
-    "publish": "npm publish --access public"
+    "publish": "npm publish --access public",
+    "release": "release-it"
+  },
+  "release-it": {
+    "github": {
+      "release": true,
+      "releaseName": "Release %s",
+      "tokenRef": "GITHUB_TOKEN"
+    }
   },
   "dependencies": {
     "vue": "^2.5.17"
@@ -31,6 +45,7 @@
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.4.0",
+    "release-it": "^13.5.7",
     "tailwindcss": "^1.1.3",
     "vue-highlightjs": "^1.3.3",
     "vue-template-compiler": "^2.6.11"
