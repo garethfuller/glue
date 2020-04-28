@@ -48,7 +48,7 @@ export default {
     },
 
     cardIconSrc() {
-      return require(`../assets/images/credit_cards/dark/${this.cardBrand}.png`)
+      return require(`../../assets/images/credit_cards/dark/${this.cardBrand}.png`)
     },
 
     cardBrand() {

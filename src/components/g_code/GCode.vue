@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import GBtn from './GBtn.vue';
-import GDot from './GDot.vue';
+import GBtn from '../g_btn/GBtn.vue';
+import GDot from '../g_dot/GDot.vue';
 
 export default {
   name: 'GCode',
