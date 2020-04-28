@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
 import Glue from './plugin';
-import './plugins';
 
 import './assets/css/tailwind.css';
 
