@@ -37,3 +37,4 @@ export { default as GVertNav } from './g_vert_nav/GVertNav.vue';
 export { default as GVertNavItem } from './g_vert_nav/GVertNavItem.vue';
 export { default as GCircle } from './g_circle/GCircle.vue';
 export { default as GSelectInput } from './g_select_input/GSelectInput.vue';
+export { default as GLayoutSidebar } from './g_layouts/g_layout_sidebar/GLayoutSidebar.vue';
