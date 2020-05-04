@@ -15,8 +15,8 @@ export default {
     color: { type: String, default: 'gray' },
     size: {
       type: String,
-      default: 'medium',
-      validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1,
+      default: 'md',
+      validator: value => ['sm', 'md', 'lg'].indexOf(value) !== -1,
     },
     outline: { type: Boolean, default: false }
   },
@@ -32,9 +32,9 @@ export default {
 
     sizeClasses() {
       switch (this.size) {
-        case 'small':
+        case 'sm':
           return 'px-2 h-6 text-xs'
-        case 'large':
+        case 'lg':
           return 'px-4 h-10 text-base'
         default:
           return 'px-3 h-8 text-sm'
@@ -50,7 +50,7 @@ export default {
     textClasses() {
       if (this.color === 'gray' && !this.outline) return 'text-gray-700'
       if (this.outline) return `text-${this.color}-500`
-      return `text-${this.textColor}-500`
+      return `text-white`
     }
   }
 }

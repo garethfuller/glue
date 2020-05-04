@@ -31,8 +31,8 @@ export default {
     subtle: { type: Boolean, default: false },
     size: {
       type: String,
-      default: 'medium',
-      validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1,
+      default: 'md',
+      validator: value => ['sm', 'md', 'lg'].indexOf(value) !== -1,
     },
   },
 
@@ -54,11 +54,11 @@ export default {
 
     iconSize() {
       switch (this.size) {
-        case 'small':
+        case 'sm':
           return 'xs'
-        case 'medium':
+        case 'md':
           return 'small'
-        case 'large':
+        case 'lg':
           return 'medium'
         default:
           return 'small'

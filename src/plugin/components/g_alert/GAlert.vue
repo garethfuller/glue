@@ -2,7 +2,7 @@
   <div :class="`g-alert bg-white ${shadow} rounded border-l-4 border-${color}-500`">
     <div v-if="!persistent" class="relative">
       <div class="absolute right-0 mr-1 mt-1">
-        <g-btn flat circle @click.native="$emit('close')" size="small" color="gray">
+        <g-btn flat circle @click.native="$emit('close')" size="sm" color="gray">
           <g-icon name="fas fa-times" class="text-sm text-gray-600"></g-icon>
         </g-btn>
       </div>
