@@ -35,7 +35,7 @@
   "release-it": {
     "github": {
       "release": true,
-      "releaseName": "Release %s",
+      "releaseName": "Release ${version}",
       "tokenRef": "GITHUB_TOKEN"
     },
     "npm": {
