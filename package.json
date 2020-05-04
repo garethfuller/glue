@@ -29,6 +29,9 @@
     "publish": "npm publish --access public",
     "release": "release-it"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "release-it": {
     "github": {
       "release": true,
