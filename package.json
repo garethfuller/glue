@@ -39,7 +39,8 @@
       "tokenRef": "GITHUB_TOKEN"
     },
     "npm": {
-      "access": "public"
+      "access": "public",
+      "skipChecks": true
     }
   },
   "dependencies": {
