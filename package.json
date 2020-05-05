@@ -29,7 +29,7 @@
     "build": "vue-cli-service build --target lib --name glue ./src/plugin/index.js",
     "publish": "npm publish --access public",
     "release": "release-it",
-    "prepublish": "babel src/plugin --out-dir dist --copy-files"
+    "prepublish": "babel src/glue --out-dir dist --copy-files"
   },
   "publishConfig": {
     "access": "public"
