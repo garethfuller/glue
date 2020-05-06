@@ -19,7 +19,7 @@
     "url": "https://github.com/garethfuller/glue.git"
   },
   "license": "MIT",
-  "main": "dist/glue.ssr.js",
+  "main": "dist/glue.esm.js",
   "browser": "dist/glue.esm.js",
   "module": "dist/glue.esm.js",
   "unpkg": "dist/glue.min.js",

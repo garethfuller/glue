@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-import Glue from '../dist/glue.ssr';
+import Glue from '../dist/glue.esm';
 import router from './router'
 import './plugins'
 
