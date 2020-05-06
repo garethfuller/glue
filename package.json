@@ -27,7 +27,7 @@
 
   "files": [
     "dist/*",
-    "src/glue/**/*.vue"
+    "glue/**/*.vue"
   ],
 
   "scripts": {
