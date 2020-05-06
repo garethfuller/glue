@@ -1,6 +1,6 @@
 {
   "name": "@garethfuller/glue",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Glue is a minimal Vue component library that uses Tailwindcss classes for customisation.",
   "keywords": [
     "vue",
