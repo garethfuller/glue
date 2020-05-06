@@ -20,7 +20,7 @@ const argv = minimist(process.argv.slice(2));
 const projectRoot = path.resolve(__dirname, '..');
 
 const baseConfig = {
-  input: 'src/glue/index.js',
+  input: 'glue/index.js',
   plugins: {
     preVue: [
       alias({
