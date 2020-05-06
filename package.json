@@ -1,6 +1,6 @@
 {
   "name": "@garethfuller/glue",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Glue is a minimal Vue component library that uses Tailwindcss classes for customisation.",
   "keywords": [
     "vue",
@@ -19,17 +19,14 @@
     "url": "https://github.com/garethfuller/glue.git"
   },
   "license": "MIT",
-
   "main": "dist/glue.ssr.js",
   "browser": "dist/glue.esm.js",
   "module": "dist/glue.esm.js",
   "unpkg": "dist/glue.min.js",
-
   "files": [
     "dist/*",
     "glue/**/*.vue"
   ],
-
   "scripts": {
     "dev": "vue-cli-service serve src/app.js",
     "build": "cross-env NODE_ENV=production rollup --config rollup.config.js",
@@ -38,7 +35,6 @@
     "build:unpkg": "cross-env NODE_ENV=production rollup --config rollup.config.js --format iife",
     "release": "release-it"
   },
-
   "publishConfig": {
     "access": "public"
   },
@@ -53,10 +49,7 @@
       "skipChecks": true
     }
   },
-
-  "dependencies": {
-  },
-
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
