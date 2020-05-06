@@ -4991,7 +4991,52 @@ var __vue_is_functional_template__$C = false;
 var __vue_component__$C = normalizeComponent({
   render: __vue_render__$C,
   staticRenderFns: __vue_staticRenderFns__$C
-}, __vue_inject_styles__$C, __vue_script__$C, __vue_scope_id__$C, __vue_is_functional_template__$C, __vue_module_identifier__$C, false, undefined, undefined, undefined);var components=/*#__PURE__*/Object.freeze({__proto__:null,GBtn: __vue_component__,GTextInput: __vue_component__$1,GCard: __vue_component__$2,GCardActions: __vue_component__$3,GCardContent: __vue_component__$4,GCardTitle: __vue_component__$5,GLoadingIcon: __vue_component__$6,GChip: __vue_component__$7,GDot: __vue_component__$8,GCopyAndPaste: __vue_component__$9,GTooltip: __vue_component__$a,GIcon: __vue_component__$b,GDialog: __vue_component__$c,GForm: __vue_component__$d,GGrid: __vue_component__$e,GGridItem: __vue_component__$f,GMenu: __vue_component__$g,GMenuItem: __vue_component__$h,GPopover: __vue_component__$i,GSnackbar: __vue_component__$j,GSnackbarList: __vue_component__$k,GSelect: __vue_component__$l,GSelectItem: __vue_component__$m,GSwitch: __vue_component__$n,GCode: __vue_component__$o,GLink: __vue_component__$p,GTabs: __vue_component__$q,GTab: __vue_component__$r,GCheckbox: __vue_component__$s,GImg: __vue_component__$t,GBlockSpinner: __vue_component__$u,GTextarea: __vue_component__$v,GAlert: __vue_component__$w,GCopyBtn: __vue_component__$x,GVertNav: __vue_component__$y,GVertNavItem: __vue_component__$z,GCircle: __vue_component__$A,GSelectInput: __vue_component__$B,GLayoutSidebar: __vue_component__$C});var install = function installGlue(Vue) {
+}, __vue_inject_styles__$C, __vue_script__$C, __vue_scope_id__$C, __vue_is_functional_template__$C, __vue_module_identifier__$C, false, undefined, undefined, undefined);var components=/*#__PURE__*/Object.freeze({__proto__:null,GBtn: __vue_component__,GTextInput: __vue_component__$1,GCard: __vue_component__$2,GCardActions: __vue_component__$3,GCardContent: __vue_component__$4,GCardTitle: __vue_component__$5,GLoadingIcon: __vue_component__$6,GChip: __vue_component__$7,GDot: __vue_component__$8,GCopyAndPaste: __vue_component__$9,GTooltip: __vue_component__$a,GIcon: __vue_component__$b,GDialog: __vue_component__$c,GForm: __vue_component__$d,GGrid: __vue_component__$e,GGridItem: __vue_component__$f,GMenu: __vue_component__$g,GMenuItem: __vue_component__$h,GPopover: __vue_component__$i,GSnackbar: __vue_component__$j,GSnackbarList: __vue_component__$k,GSelect: __vue_component__$l,GSelectItem: __vue_component__$m,GSwitch: __vue_component__$n,GCode: __vue_component__$o,GLink: __vue_component__$p,GTabs: __vue_component__$q,GTab: __vue_component__$r,GCheckbox: __vue_component__$s,GImg: __vue_component__$t,GBlockSpinner: __vue_component__$u,GTextarea: __vue_component__$v,GAlert: __vue_component__$w,GCopyBtn: __vue_component__$x,GVertNav: __vue_component__$y,GVertNavItem: __vue_component__$z,GCircle: __vue_component__$A,GSelectInput: __vue_component__$B,GLayoutSidebar: __vue_component__$C});var forms = {
+  methods: {
+    handleServerErrors: function handleServerErrors(serverErrors) {
+      var _this = this;
+
+      Object.keys(serverErrors).forEach(function (key) {
+        _this.$refs[key].errors.push(serverErrors[key][0]);
+      });
+    }
+  }
+};var mixins=/*#__PURE__*/Object.freeze({__proto__:null,Forms: forms});var gClickOutside = {
+  name: 'g-click-outside',
+  directive: {
+    bind: function bind(el, binding, vNode) {
+      // Provided expression must evaluate to a function.
+      if (typeof binding.value !== 'function') {
+        var compName = vNode.context.name;
+        var warn = "[Vue-g-click-outside:] provided expression '".concat(binding.expression, "' is not a function, but has to be");
+
+        if (compName) {
+          warn += "Found in component '".concat(compName, "'");
+        }
+
+        console.warn(warn);
+      } // Define Handler and cache it on the element
+
+
+      var bubble = binding.modifiers.bubble;
+
+      var handler = function handler(e) {
+        if (bubble || !el.contains(e.target) && el !== e.target) {
+          binding.value(e);
+        }
+      };
+
+      el.__vueGClickOutside__ = handler; // add Event Listeners
+
+      document.addEventListener('click', handler);
+    },
+    unbind: function unbind(el, binding) {
+      // Remove Event Listeners
+      document.removeEventListener('click', el.__vueGClickOutside__);
+      el.__vueGClickOutside__ = null;
+    }
+  }
+};var directives=/*#__PURE__*/Object.freeze({__proto__:null,GClickOutside: gClickOutside});var install = function installGlue(Vue) {
   if (install.installed) return;
   install.installed = true;
   Object.entries(components).forEach(function (_ref) {
@@ -5000,6 +5045,12 @@ var __vue_component__$C = normalizeComponent({
         component = _ref2[1];
 
     Vue.component(componentName, component);
+  });
+  Object.keys(mixins).forEach(function (mixin) {
+    Vue.mixin(mixins[mixin]);
+  });
+  Object.keys(directives).forEach(function (directive) {
+    Vue.directive(directives[directive].name, directives[directive].directive);
   });
 }; // Create module definition for Vue.use()
 

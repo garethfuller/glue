@@ -1,5 +1,7 @@
 // Import vue components
 import * as components from './components/index';
+import * as mixins from './mixins';
+import * as directives from './directives';
 
 // install function executed by Vue.use()
 const install = function installGlue(Vue) {
@@ -7,6 +9,14 @@ const install = function installGlue(Vue) {
   install.installed = true;
   Object.entries(components).forEach(([componentName, component]) => {
     Vue.component(componentName, component);
+  });
+
+  Object.keys(mixins).forEach((mixin) => {
+    Vue.mixin(mixins[mixin]);
+  });
+
+  Object.keys(directives).forEach((directive) => {
+    Vue.directive(directives[directive].name, directives[directive].directive);
   });
 };
 

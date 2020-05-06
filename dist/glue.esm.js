@@ -5514,6 +5514,66 @@ var components = /*#__PURE__*/Object.freeze({
   GLayoutSidebar: __vue_component__$C
 });
 
+var forms = {
+  methods: {
+    handleServerErrors(serverErrors) {
+      Object.keys(serverErrors).forEach(key => {
+        this.$refs[key].errors.push(serverErrors[key][0]);
+      });
+    }
+
+  }
+};
+
+var mixins = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  Forms: forms
+});
+
+var gClickOutside = {
+  name: 'g-click-outside',
+  directive: {
+    bind(el, binding, vNode) {
+      // Provided expression must evaluate to a function.
+      if (typeof binding.value !== 'function') {
+        const compName = vNode.context.name;
+        let warn = `[Vue-g-click-outside:] provided expression '${binding.expression}' is not a function, but has to be`;
+
+        if (compName) {
+          warn += `Found in component '${compName}'`;
+        }
+
+        console.warn(warn);
+      } // Define Handler and cache it on the element
+
+
+      const bubble = binding.modifiers.bubble;
+
+      const handler = e => {
+        if (bubble || !el.contains(e.target) && el !== e.target) {
+          binding.value(e);
+        }
+      };
+
+      el.__vueGClickOutside__ = handler; // add Event Listeners
+
+      document.addEventListener('click', handler);
+    },
+
+    unbind(el, binding) {
+      // Remove Event Listeners
+      document.removeEventListener('click', el.__vueGClickOutside__);
+      el.__vueGClickOutside__ = null;
+    }
+
+  }
+};
+
+var directives = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  GClickOutside: gClickOutside
+});
+
 // Import vue components
 
 const install = function installGlue(Vue) {
@@ -5521,6 +5581,12 @@ const install = function installGlue(Vue) {
   install.installed = true;
   Object.entries(components).forEach(([componentName, component]) => {
     Vue.component(componentName, component);
+  });
+  Object.keys(mixins).forEach(mixin => {
+    Vue.mixin(mixins[mixin]);
+  });
+  Object.keys(directives).forEach(directive => {
+    Vue.directive(directives[directive].name, directives[directive].directive);
   });
 }; // Create module definition for Vue.use()
 
