@@ -28,7 +28,7 @@
     "glue/**/*.vue"
   ],
   "scripts": {
-    "dev": "vue-cli-service serve src/app.js",
+    "serve": "vue-cli-service serve src/app.js",
     "build": "cross-env NODE_ENV=production rollup --config rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config rollup.config.js --format es",
