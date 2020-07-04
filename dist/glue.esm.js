@@ -21,7 +21,7 @@ var script = {
     },
     color: {
       type: String,
-      default: 'black'
+      default: 'primary'
     },
     size: {
       type: String,
@@ -109,14 +109,22 @@ var script = {
     },
 
     bgClasses() {
+      if (this.isBaseColor) {
+        if (this.flat) return `bg-${this.color} bg-opacity-25`;
+        return `bg-${this.color}`;
+      }
+
       if (this.flat) return `bg-${this.color}-100 hover:bg-${this.color}-200 active:bg-${this.color}-300`;
       if (this.outline) return `bg-transparent hover:bg-${this.color}-100 active:bg-${this.color}-200`;
-      if (this.color === 'white') return 'bg-white';
-      if (this.color === 'black') return 'bg-black';
       return `bg-${this.color}-500`;
     },
 
     textColorClasses() {
+      if (this.isBaseColor) {
+        if (this.flat) return `text-${this.color}`;
+        return this.color === 'white' ? 'text-gray-900' : 'text-white';
+      }
+
       if (this.color === 'white' && !this.flat) return this.textColor || 'text-gray-900';
       if (this.color === 'gray' && (this.flat || this.outline)) return 'text-gray-600';
       if (this.flat || this.outline) return `text-${this.color}-500`;
@@ -125,7 +133,7 @@ var script = {
 
     borderClasses() {
       if (this.flat) return 'border border-transparent';
-      if (['black', 'white'].includes(this.color)) return `border border-${this.color}`;
+      if (this.isBaseColor) return `border border-${this.color}`;
       return `border border-${this.color}-500`;
     },
 
@@ -172,6 +180,10 @@ var script = {
       if (this.color === 'gray' && (this.flat || this.outline)) return 'gray-600';
       if (this.flat || this.outline) return `${this.color}-500`;
       return 'white';
+    },
+
+    isBaseColor() {
+      return ['black', 'white'].includes(this.color);
     }
 
   }
@@ -353,8 +365,8 @@ var __vue_staticRenderFns__ = [];
 
 const __vue_inject_styles__ = function (inject) {
   if (!inject) return;
-  inject("data-v-7e2fcc03_0", {
-    source: ".g-btn[data-v-7e2fcc03]{transition:all .2s ease;-webkit-transition:all .2s ease;-moz-transition:all .2s ease;-o-transition:all .2s ease;-ms-transition:all .2s ease;text-decoration:none!important}.g-btn[data-v-7e2fcc03]:active,.g-btn[data-v-7e2fcc03]:focus{outline:0}.g-btn-dynamic[data-v-7e2fcc03]:hover{transform:translateY(-1px)}.g-btn-dynamic[data-v-7e2fcc03]:active{transform:translateY(.5px);@apply shadow-none;}.g-btn-disabled[data-v-7e2fcc03]:hover{transform:translateY(0)}.g-btn-disabled[data-v-7e2fcc03]:active{transform:translateY(0)}",
+  inject("data-v-5ae7e1fa_0", {
+    source: ".g-btn[data-v-5ae7e1fa]{transition:all .2s ease;-webkit-transition:all .2s ease;-moz-transition:all .2s ease;-o-transition:all .2s ease;-ms-transition:all .2s ease;text-decoration:none!important}.g-btn[data-v-5ae7e1fa]:active,.g-btn[data-v-5ae7e1fa]:focus{outline:0}.g-btn-dynamic[data-v-5ae7e1fa]:hover{transform:translateY(-1px)}.g-btn-dynamic[data-v-5ae7e1fa]:active{transform:translateY(.5px);@apply shadow-none;}.g-btn-disabled[data-v-5ae7e1fa]:hover{transform:translateY(0)}.g-btn-disabled[data-v-5ae7e1fa]:active{transform:translateY(0)}",
     map: undefined,
     media: undefined
   });
@@ -362,7 +374,7 @@ const __vue_inject_styles__ = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__ = "data-v-7e2fcc03";
+const __vue_scope_id__ = "data-v-5ae7e1fa";
 /* module identifier */
 
 const __vue_module_identifier__ = undefined;
@@ -2745,14 +2757,14 @@ var script$l = {
       type: String,
       default: ''
     },
-    items: {
+    options: {
       type: Array
     },
-    itemText: {
+    optionText: {
       type: String,
-      default: 'text'
+      default: 'label'
     },
-    itemValue: {
+    optionValue: {
       type: String,
       default: 'value'
     },
@@ -2794,7 +2806,7 @@ var script$l = {
     return {
       inputValue: '',
       textInputValue: '',
-      showItems: false
+      showOptions: false
     };
   },
 
@@ -2805,11 +2817,11 @@ var script$l = {
       this.validate(newVal);
     },
 
-    showItems(newVal) {
+    showOptions(newVal) {
       if (newVal) {
         this.adjustScrollPosition();
       } else {
-        this.clearIfNotItem();
+        this.clearIfNotOption();
         this.validate(this.textInputValue);
       }
     }
@@ -2824,70 +2836,70 @@ var script$l = {
   computed: {
     chevronClasses() {
       return {
-        'chevron-active': this.showItems
+        'chevron-active': this.showOptions
       };
     },
 
     inputLabel() {
       if (!this.value) return '';
-      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return this.value;
-      const selectedItem = this.items.find(item => item[this.itemValue] === this.inputValue);
+      if (typeof this.options[0] === 'string' || this.options[0] instanceof String) return this.value;
+      const selectedOption = this.options.find(option => option[this.optionValue] === this.inputValue);
 
-      if (selectedItem) {
-        return selectedItem[this.itemText];
+      if (selectedOption) {
+        return selectedOption[this.optionText];
       } else {
         return this.value;
       }
     },
 
-    _items() {
+    _options() {
       if (this.filterable) {
-        if (typeof this.items[0] === 'string' || this.items[0] instanceof String) {
-          return this.items.filter(text => text.includes(this.value));
+        if (typeof this.options[0] === 'string' || this.options[0] instanceof String) {
+          return this.options.filter(text => text.includes(this.value));
         } else {
-          const filteredTexts = this.items.map(item => item[this.itemText].toLowerCase()).filter(text => text.includes(this.textInputValue.toLowerCase()));
-          return this.items.filter(item => filteredTexts.includes(item[this.itemText].toLowerCase()));
+          const filteredTexts = this.options.map(options => options[this.optionText].toLowerCase()).filter(text => text.includes(this.textInputValue.toLowerCase()));
+          return this.options.filter(option => filteredTexts.includes(option[this.optionText].toLowerCase()));
         }
       } else {
-        return this.items;
+        return this.options;
       }
     }
 
   },
   methods: {
-    itemSelected(item) {
-      this.$emit('input', this.valueFor(item));
-      this.showItems = false;
+    optionSelected(option) {
+      this.$emit('input', this.valueFor(option));
+      this.showOptions = false;
     },
 
-    textFor(item) {
-      if (typeof item === 'string' || item instanceof String) return item;
-      return item[this.itemText];
+    textFor(option) {
+      if (typeof option === 'string' || option instanceof String) return option;
+      return option[this.optionText];
     },
 
     labelFor(value) {
       if (!this.value) return '';
-      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return value;
-      const selectedItem = this.items.find(item => item[this.itemValue] === value);
+      if (typeof this.options[0] === 'string' || this.options[0] instanceof String) return value;
+      const selectedOption = this.options.find(option => option[this.optionValue] === value);
 
-      if (selectedItem) {
-        return selectedItem[this.itemText];
+      if (selectedOption) {
+        return selectedOption[this.optionText];
       } else {
         return value;
       }
     },
 
-    valueFor(item) {
-      if (typeof item === 'string' || item instanceof String) return item;
-      return item[this.itemValue];
+    valueFor(option) {
+      if (typeof option === 'string' || option instanceof String) return option;
+      return option[this.optionValue];
     },
 
-    closeItems() {
-      this.showItems = false;
+    closeOptions() {
+      this.showOptions = false;
     },
 
     focusHandler() {
-      this.showItems = true;
+      this.showOptions = true;
       this.$emit('focus');
     },
 
@@ -2905,11 +2917,11 @@ var script$l = {
       });
     },
 
-    clearIfNotItem() {
-      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) {
-        if (!this.items.includes(this.value)) this.value = '';
+    clearIfNotOption() {
+      if (typeof this.options[0] === 'string' || this.options[0] instanceof String) {
+        if (!this.options.includes(this.value)) this.value = '';
       } else {
-        if (!this.items.map(item => item[this.itemValue]).includes(this.value)) {
+        if (!this.options.map(option => option[this.optionValue]).includes(this.value)) {
           this.inputValue = '';
           this.textInputValue = '';
         }
@@ -2942,8 +2954,8 @@ var __vue_render__$l = function () {
     directives: [{
       name: "g-click-outside",
       rawName: "v-g-click-outside",
-      value: _vm.closeItems,
-      expression: "closeItems"
+      value: _vm.closeOptions,
+      expression: "closeOptions"
     }]
   }, [_c('g-text-input', {
     staticClass: "g-select-input",
@@ -2976,7 +2988,7 @@ var __vue_render__$l = function () {
     },
     on: {
       "click": function ($event) {
-        !_vm.disabled ? _vm.showItems = !_vm.showItems : null;
+        !_vm.disabled ? _vm.showOptions = !_vm.showOptions : null;
       }
     },
     slot: "append"
@@ -2991,23 +3003,23 @@ var __vue_render__$l = function () {
     attrs: {
       "name": "select-in-up"
     }
-  }, [_vm.showItems ? _c('div', {
+  }, [_vm.showOptions ? _c('div', {
     ref: _vm.name,
-    staticClass: "g-select-items rounded shadow-lg bg-white absolute w-full z-50 overflow-y-scroll -mt-6"
-  }, _vm._l(_vm._items, function (item, index) {
-    return _c('g-select-item', {
+    staticClass: "g-select-options rounded shadow-lg bg-white absolute w-full z-50 overflow-y-scroll -mt-6"
+  }, _vm._l(_vm._options, function (option, index) {
+    return _c('g-select-option', {
       key: index,
       attrs: {
-        "text": _vm.textFor(item),
+        "text": _vm.textFor(option),
         "size": _vm.size
       },
       nativeOn: {
         "click": function ($event) {
-          return _vm.itemSelected(item);
+          return _vm.optionSelected(option);
         }
       }
     });
-  }), 1) : _vm._e()]), _vm._v(" "), _vm.showItems ? _c('div', {
+  }), 1) : _vm._e()]), _vm._v(" "), _vm.showOptions ? _c('div', {
     staticClass: "g-select-spacer w-full absolute"
   }) : _vm._e()], 1)], 1);
 };
@@ -3017,8 +3029,8 @@ var __vue_staticRenderFns__$l = [];
 
 const __vue_inject_styles__$l = function (inject) {
   if (!inject) return;
-  inject("data-v-c5a87e26_0", {
-    source: ".g-select-items[data-v-c5a87e26]{max-height:250px}.g-select-spacer[data-v-c5a87e26]{height:300px}.chevron[data-v-c5a87e26]{transition:transform .2s ease-in-out}.chevron-active[data-v-c5a87e26]{transform:rotateZ(180deg)}.select-in-up-leave-active[data-v-c5a87e26]{transition:all .3s ease}.select-in-up-enter[data-v-c5a87e26],.select-in-up-leave-to[data-v-c5a87e26]{opacity:0;transform:translateY(-10px)}",
+  inject("data-v-3da4b9ac_0", {
+    source: ".g-select-options[data-v-3da4b9ac]{max-height:250px}.g-select-spacer[data-v-3da4b9ac]{height:300px}.chevron[data-v-3da4b9ac]{transition:transform .2s ease-in-out}.chevron-active[data-v-3da4b9ac]{transform:rotateZ(180deg)}.select-in-up-leave-active[data-v-3da4b9ac]{transition:all .3s ease}.select-in-up-enter[data-v-3da4b9ac],.select-in-up-leave-to[data-v-3da4b9ac]{opacity:0;transform:translateY(-10px)}",
     map: undefined,
     media: undefined
   });
@@ -3026,7 +3038,7 @@ const __vue_inject_styles__$l = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__$l = "data-v-c5a87e26";
+const __vue_scope_id__$l = "data-v-3da4b9ac";
 /* module identifier */
 
 const __vue_module_identifier__$l = undefined;
@@ -3054,7 +3066,7 @@ const __vue_component__$l = normalizeComponent({
 //
 //
 var script$m = {
-  name: 'GSelectItem',
+  name: 'GSelectOption',
   props: {
     icon: {
       type: String
@@ -3099,7 +3111,7 @@ var __vue_render__$m = function () {
   var _c = _vm._self._c || _h;
 
   return _c('div', {
-    class: ['g-select-item text-gray-900 no-underline block cursor-pointer hover:bg-gray-100', _vm.classes]
+    class: ['g-select-option text-gray-900 no-underline block cursor-pointer hover:bg-gray-100', _vm.classes]
   }, [_c('div', {
     staticClass: "flex items-center"
   }, [_vm.icon ? _c('div', {
@@ -3117,8 +3129,8 @@ var __vue_staticRenderFns__$m = [];
 
 const __vue_inject_styles__$m = function (inject) {
   if (!inject) return;
-  inject("data-v-e677ef6e_0", {
-    source: ".g-select-item[data-v-e677ef6e]{transition:background .4s ease}",
+  inject("data-v-5dd2240d_0", {
+    source: ".g-select-option[data-v-5dd2240d]{transition:background .4s ease}",
     map: undefined,
     media: undefined
   });
@@ -3126,7 +3138,7 @@ const __vue_inject_styles__$m = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__$m = "data-v-e677ef6e";
+const __vue_scope_id__$m = "data-v-5dd2240d";
 /* module identifier */
 
 const __vue_module_identifier__$m = undefined;
@@ -3196,8 +3208,8 @@ var script$n = {
     },
     size: {
       type: String,
-      default: 'medium',
-      validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1
+      default: 'md',
+      validator: value => ['sm', 'md', 'lg'].indexOf(value) !== -1
     }
   },
 
@@ -3280,8 +3292,8 @@ var __vue_staticRenderFns__$n = [];
 
 const __vue_inject_styles__$n = function (inject) {
   if (!inject) return;
-  inject("data-v-75cce7f4_0", {
-    source: ".g-switch[data-v-75cce7f4]{position:relative;display:inline-block}.g-switch input[data-v-75cce7f4]{opacity:0;width:0;height:0}.slider[data-v-75cce7f4]{@apply bg-gray-300;position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;-webkit-transition:.4s;transition:.4s}.slider[data-v-75cce7f4]:before{@apply bg-white;position:absolute;content:\"\";-webkit-transition:.4s;transition:.4s}.slider.round[data-v-75cce7f4]:before{border-radius:50%}input:checked+.slider-blue[data-v-75cce7f4]{@apply bg-blue-500;}input:focus+.slider-blue[data-v-75cce7f4]{box-shadow:0 0 1px theme('colors.blue-500')}input:checked+.slider-red[data-v-75cce7f4]{@apply bg-red-500;}input:focus+.slider-red[data-v-75cce7f4]{box-shadow:0 0 1px theme('colors.red-500')}input:checked+.slider-green[data-v-75cce7f4]{@apply bg-green-500;}input:focus+.slider-green[data-v-75cce7f4]{box-shadow:0 0 1px theme('colors.green-500')}input:checked+.slider-orange[data-v-75cce7f4]{@apply bg-orange-500;}input:focus+.slider-orange[data-v-75cce7f4]{box-shadow:0 0 1px theme('colors.orange-500')}input:checked+.slider-gray[data-v-75cce7f4]{@apply bg-gray-900;}input:focus+.slider-gray[data-v-75cce7f4]{box-shadow:0 0 1px theme('colors.gray-900')}.g-switch-small[data-v-75cce7f4]{width:30px;height:20px}.slider-small[data-v-75cce7f4]:before{height:12px;width:12px;left:4px;bottom:4px}.slider-small.round[data-v-75cce7f4]{border-radius:20px}input:checked+.slider-small[data-v-75cce7f4]:before{-webkit-transform:translateX(10px);-ms-transform:translateX(10px);transform:translateX(10px)}.g-switch-medium[data-v-75cce7f4]{width:50px;height:30px}.slider-medium[data-v-75cce7f4]:before{height:22px;width:22px;left:4px;bottom:4px}.slider-medium.round[data-v-75cce7f4]{border-radius:30px}input:checked+.slider-medium[data-v-75cce7f4]:before{-webkit-transform:translateX(20px);-ms-transform:translateX(20px);transform:translateX(20px)}.g-switch-large[data-v-75cce7f4]{width:70px;height:40px}.slider-large[data-v-75cce7f4]:before{height:32px;width:32px;left:4px;bottom:4px}.slider-large.round[data-v-75cce7f4]{border-radius:40px}input:checked+.slider-large[data-v-75cce7f4]:before{-webkit-transform:translateX(30px);-ms-transform:translateX(30px);transform:translateX(30px)}",
+  inject("data-v-35f8e4f9_0", {
+    source: ".g-switch[data-v-35f8e4f9]{position:relative;display:inline-block}.g-switch input[data-v-35f8e4f9]{opacity:0;width:0;height:0}.slider[data-v-35f8e4f9]{@apply bg-gray-300;position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;-webkit-transition:.4s;transition:.4s}.slider[data-v-35f8e4f9]:before{@apply bg-white;position:absolute;content:\"\";-webkit-transition:.4s;transition:.4s}.slider.round[data-v-35f8e4f9]:before{border-radius:50%}input:checked+.slider-blue[data-v-35f8e4f9]{@apply bg-blue-500;}input:focus+.slider-blue[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.blue-500')}input:checked+.slider-red[data-v-35f8e4f9]{@apply bg-red-500;}input:focus+.slider-red[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.red-500')}input:checked+.slider-green[data-v-35f8e4f9]{@apply bg-green-500;}input:focus+.slider-green[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.green-500')}input:checked+.slider-orange[data-v-35f8e4f9]{@apply bg-orange-500;}input:focus+.slider-orange[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.orange-500')}input:checked+.slider-gray[data-v-35f8e4f9]{@apply bg-gray-900;}input:focus+.slider-gray[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.gray-900')}input:checked+.slider-primary[data-v-35f8e4f9]{@apply bg-primary-500;}input:focus+.slider-primary[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.primary-500')}input:checked+.slider-black[data-v-35f8e4f9]{@apply bg-black;}input:focus+.slider-black[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.black')}.g-switch-sm[data-v-35f8e4f9]{width:30px;height:20px}.slider-sm[data-v-35f8e4f9]:before{height:12px;width:12px;left:4px;bottom:4px}.slider-sm.round[data-v-35f8e4f9]{border-radius:20px}input:checked+.slider-sm[data-v-35f8e4f9]:before{-webkit-transform:translateX(10px);-ms-transform:translateX(10px);transform:translateX(10px)}.g-switch-md[data-v-35f8e4f9]{width:50px;height:30px}.slider-md[data-v-35f8e4f9]:before{height:22px;width:22px;left:4px;bottom:4px}.slider-md.round[data-v-35f8e4f9]{border-radius:30px}input:checked+.slider-md[data-v-35f8e4f9]:before{-webkit-transform:translateX(20px);-ms-transform:translateX(20px);transform:translateX(20px)}.g-switch-lg[data-v-35f8e4f9]{width:70px;height:40px}.slider-lg[data-v-35f8e4f9]:before{height:32px;width:32px;left:4px;bottom:4px}.slider-lg.round[data-v-35f8e4f9]{border-radius:40px}input:checked+.slider-lg[data-v-35f8e4f9]:before{-webkit-transform:translateX(30px);-ms-transform:translateX(30px);transform:translateX(30px)}",
     map: undefined,
     media: undefined
   });
@@ -3289,7 +3301,7 @@ const __vue_inject_styles__$n = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__$n = "data-v-75cce7f4";
+const __vue_scope_id__$n = "data-v-35f8e4f9";
 /* module identifier */
 
 const __vue_module_identifier__$n = undefined;
@@ -5495,7 +5507,7 @@ var components = /*#__PURE__*/Object.freeze({
   GSnackbar: __vue_component__$j,
   GSnackbarList: __vue_component__$k,
   GSelect: __vue_component__$l,
-  GSelectItem: __vue_component__$m,
+  GSelectOption: __vue_component__$m,
   GSwitch: __vue_component__$n,
   GCode: __vue_component__$o,
   GLink: __vue_component__$p,
@@ -5596,4 +5608,4 @@ const plugin = {
 }; // To auto-install on non-es builds, when vue is found
 
 export default plugin;
-export { __vue_component__$w as GAlert, __vue_component__$u as GBlockSpinner, __vue_component__ as GBtn, __vue_component__$2 as GCard, __vue_component__$3 as GCardActions, __vue_component__$4 as GCardContent, __vue_component__$5 as GCardTitle, __vue_component__$s as GCheckbox, __vue_component__$7 as GChip, __vue_component__$A as GCircle, __vue_component__$o as GCode, __vue_component__$9 as GCopyAndPaste, __vue_component__$x as GCopyBtn, __vue_component__$c as GDialog, __vue_component__$8 as GDot, __vue_component__$d as GForm, __vue_component__$e as GGrid, __vue_component__$f as GGridItem, __vue_component__$b as GIcon, __vue_component__$t as GImg, __vue_component__$C as GLayoutSidebar, __vue_component__$p as GLink, __vue_component__$6 as GLoadingIcon, __vue_component__$g as GMenu, __vue_component__$h as GMenuItem, __vue_component__$i as GPopover, __vue_component__$l as GSelect, __vue_component__$B as GSelectInput, __vue_component__$m as GSelectItem, __vue_component__$j as GSnackbar, __vue_component__$k as GSnackbarList, __vue_component__$n as GSwitch, __vue_component__$r as GTab, __vue_component__$q as GTabs, __vue_component__$1 as GTextInput, __vue_component__$v as GTextarea, __vue_component__$a as GTooltip, __vue_component__$y as GVertNav, __vue_component__$z as GVertNavItem };
+export { __vue_component__$w as GAlert, __vue_component__$u as GBlockSpinner, __vue_component__ as GBtn, __vue_component__$2 as GCard, __vue_component__$3 as GCardActions, __vue_component__$4 as GCardContent, __vue_component__$5 as GCardTitle, __vue_component__$s as GCheckbox, __vue_component__$7 as GChip, __vue_component__$A as GCircle, __vue_component__$o as GCode, __vue_component__$9 as GCopyAndPaste, __vue_component__$x as GCopyBtn, __vue_component__$c as GDialog, __vue_component__$8 as GDot, __vue_component__$d as GForm, __vue_component__$e as GGrid, __vue_component__$f as GGridItem, __vue_component__$b as GIcon, __vue_component__$t as GImg, __vue_component__$C as GLayoutSidebar, __vue_component__$p as GLink, __vue_component__$6 as GLoadingIcon, __vue_component__$g as GMenu, __vue_component__$h as GMenuItem, __vue_component__$i as GPopover, __vue_component__$l as GSelect, __vue_component__$B as GSelectInput, __vue_component__$m as GSelectOption, __vue_component__$j as GSnackbar, __vue_component__$k as GSnackbarList, __vue_component__$n as GSwitch, __vue_component__$r as GTab, __vue_component__$q as GTabs, __vue_component__$1 as GTextInput, __vue_component__$v as GTextarea, __vue_component__$a as GTooltip, __vue_component__$y as GVertNav, __vue_component__$z as GVertNavItem };

@@ -140,7 +140,7 @@ var script = {
     },
     color: {
       type: String,
-      default: 'black'
+      default: 'primary'
     },
     size: {
       type: String,
@@ -221,13 +221,21 @@ var script = {
       return 'rounded';
     },
     bgClasses: function bgClasses() {
+      if (this.isBaseColor) {
+        if (this.flat) return "bg-".concat(this.color, " bg-opacity-25");
+        return "bg-".concat(this.color);
+      }
+
       if (this.flat) return "bg-".concat(this.color, "-100 hover:bg-").concat(this.color, "-200 active:bg-").concat(this.color, "-300");
       if (this.outline) return "bg-transparent hover:bg-".concat(this.color, "-100 active:bg-").concat(this.color, "-200");
-      if (this.color === 'white') return 'bg-white';
-      if (this.color === 'black') return 'bg-black';
       return "bg-".concat(this.color, "-500");
     },
     textColorClasses: function textColorClasses() {
+      if (this.isBaseColor) {
+        if (this.flat) return "text-".concat(this.color);
+        return this.color === 'white' ? 'text-gray-900' : 'text-white';
+      }
+
       if (this.color === 'white' && !this.flat) return this.textColor || 'text-gray-900';
       if (this.color === 'gray' && (this.flat || this.outline)) return 'text-gray-600';
       if (this.flat || this.outline) return "text-".concat(this.color, "-500");
@@ -235,7 +243,7 @@ var script = {
     },
     borderClasses: function borderClasses() {
       if (this.flat) return 'border border-transparent';
-      if (['black', 'white'].includes(this.color)) return "border border-".concat(this.color);
+      if (this.isBaseColor) return "border border-".concat(this.color);
       return "border border-".concat(this.color, "-500");
     },
     shadowClasses: function shadowClasses() {
@@ -276,6 +284,9 @@ var script = {
       if (this.color === 'gray' && (this.flat || this.outline)) return 'gray-600';
       if (this.flat || this.outline) return "".concat(this.color, "-500");
       return 'white';
+    },
+    isBaseColor: function isBaseColor() {
+      return ['black', 'white'].includes(this.color);
     }
   }
 };function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
@@ -439,8 +450,8 @@ var __vue_staticRenderFns__ = [];
 
 var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-7e2fcc03_0", {
-    source: ".g-btn[data-v-7e2fcc03]{transition:all .2s ease;-webkit-transition:all .2s ease;-moz-transition:all .2s ease;-o-transition:all .2s ease;-ms-transition:all .2s ease;text-decoration:none!important}.g-btn[data-v-7e2fcc03]:active,.g-btn[data-v-7e2fcc03]:focus{outline:0}.g-btn-dynamic[data-v-7e2fcc03]:hover{transform:translateY(-1px)}.g-btn-dynamic[data-v-7e2fcc03]:active{transform:translateY(.5px);@apply shadow-none;}.g-btn-disabled[data-v-7e2fcc03]:hover{transform:translateY(0)}.g-btn-disabled[data-v-7e2fcc03]:active{transform:translateY(0)}",
+  inject("data-v-5ae7e1fa_0", {
+    source: ".g-btn[data-v-5ae7e1fa]{transition:all .2s ease;-webkit-transition:all .2s ease;-moz-transition:all .2s ease;-o-transition:all .2s ease;-ms-transition:all .2s ease;text-decoration:none!important}.g-btn[data-v-5ae7e1fa]:active,.g-btn[data-v-5ae7e1fa]:focus{outline:0}.g-btn-dynamic[data-v-5ae7e1fa]:hover{transform:translateY(-1px)}.g-btn-dynamic[data-v-5ae7e1fa]:active{transform:translateY(.5px);@apply shadow-none;}.g-btn-disabled[data-v-5ae7e1fa]:hover{transform:translateY(0)}.g-btn-disabled[data-v-5ae7e1fa]:active{transform:translateY(0)}",
     map: undefined,
     media: undefined
   });
@@ -448,10 +459,10 @@ var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__ = "data-v-7e2fcc03";
+var __vue_scope_id__ = "data-v-5ae7e1fa";
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-7e2fcc03";
+var __vue_module_identifier__ = "data-v-5ae7e1fa";
 /* functional template */
 
 var __vue_is_functional_template__ = false;
@@ -2601,14 +2612,14 @@ var script$l = {
       type: String,
       default: ''
     },
-    items: {
+    options: {
       type: Array
     },
-    itemText: {
+    optionText: {
       type: String,
-      default: 'text'
+      default: 'label'
     },
-    itemValue: {
+    optionValue: {
       type: String,
       default: 'value'
     },
@@ -2651,7 +2662,7 @@ var script$l = {
     return {
       inputValue: '',
       textInputValue: '',
-      showItems: false
+      showOptions: false
     };
   },
   watch: {
@@ -2660,11 +2671,11 @@ var script$l = {
       this.textInputValue = this.labelFor(newVal);
       this.validate(newVal);
     },
-    showItems: function showItems(newVal) {
+    showOptions: function showOptions(newVal) {
       if (newVal) {
         this.adjustScrollPosition();
       } else {
-        this.clearIfNotItem();
+        this.clearIfNotOption();
         this.validate(this.textInputValue);
       }
     }
@@ -2676,80 +2687,80 @@ var script$l = {
   computed: {
     chevronClasses: function chevronClasses() {
       return {
-        'chevron-active': this.showItems
+        'chevron-active': this.showOptions
       };
     },
     inputLabel: function inputLabel() {
       var _this = this;
 
       if (!this.value) return '';
-      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return this.value;
-      var selectedItem = this.items.find(function (item) {
-        return item[_this.itemValue] === _this.inputValue;
+      if (typeof this.options[0] === 'string' || this.options[0] instanceof String) return this.value;
+      var selectedOption = this.options.find(function (option) {
+        return option[_this.optionValue] === _this.inputValue;
       });
 
-      if (selectedItem) {
-        return selectedItem[this.itemText];
+      if (selectedOption) {
+        return selectedOption[this.optionText];
       } else {
         return this.value;
       }
     },
-    _items: function _items() {
+    _options: function _options() {
       var _this2 = this;
 
       if (this.filterable) {
-        if (typeof this.items[0] === 'string' || this.items[0] instanceof String) {
-          return this.items.filter(function (text) {
+        if (typeof this.options[0] === 'string' || this.options[0] instanceof String) {
+          return this.options.filter(function (text) {
             return text.includes(_this2.value);
           });
         } else {
-          var filteredTexts = this.items.map(function (item) {
-            return item[_this2.itemText].toLowerCase();
+          var filteredTexts = this.options.map(function (options) {
+            return options[_this2.optionText].toLowerCase();
           }).filter(function (text) {
             return text.includes(_this2.textInputValue.toLowerCase());
           });
-          return this.items.filter(function (item) {
-            return filteredTexts.includes(item[_this2.itemText].toLowerCase());
+          return this.options.filter(function (option) {
+            return filteredTexts.includes(option[_this2.optionText].toLowerCase());
           });
         }
       } else {
-        return this.items;
+        return this.options;
       }
     }
   },
   methods: {
-    itemSelected: function itemSelected(item) {
-      this.$emit('input', this.valueFor(item));
-      this.showItems = false;
+    optionSelected: function optionSelected(option) {
+      this.$emit('input', this.valueFor(option));
+      this.showOptions = false;
     },
-    textFor: function textFor(item) {
-      if (typeof item === 'string' || item instanceof String) return item;
-      return item[this.itemText];
+    textFor: function textFor(option) {
+      if (typeof option === 'string' || option instanceof String) return option;
+      return option[this.optionText];
     },
     labelFor: function labelFor(value) {
       var _this3 = this;
 
       if (!this.value) return '';
-      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return value;
-      var selectedItem = this.items.find(function (item) {
-        return item[_this3.itemValue] === value;
+      if (typeof this.options[0] === 'string' || this.options[0] instanceof String) return value;
+      var selectedOption = this.options.find(function (option) {
+        return option[_this3.optionValue] === value;
       });
 
-      if (selectedItem) {
-        return selectedItem[this.itemText];
+      if (selectedOption) {
+        return selectedOption[this.optionText];
       } else {
         return value;
       }
     },
-    valueFor: function valueFor(item) {
-      if (typeof item === 'string' || item instanceof String) return item;
-      return item[this.itemValue];
+    valueFor: function valueFor(option) {
+      if (typeof option === 'string' || option instanceof String) return option;
+      return option[this.optionValue];
     },
-    closeItems: function closeItems() {
-      this.showItems = false;
+    closeOptions: function closeOptions() {
+      this.showOptions = false;
     },
     focusHandler: function focusHandler() {
-      this.showItems = true;
+      this.showOptions = true;
       this.$emit('focus');
     },
     adjustScrollPosition: function adjustScrollPosition() {
@@ -2767,14 +2778,14 @@ var script$l = {
         }
       });
     },
-    clearIfNotItem: function clearIfNotItem() {
+    clearIfNotOption: function clearIfNotOption() {
       var _this5 = this;
 
-      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) {
-        if (!this.items.includes(this.value)) this.value = '';
+      if (typeof this.options[0] === 'string' || this.options[0] instanceof String) {
+        if (!this.options.includes(this.value)) this.value = '';
       } else {
-        if (!this.items.map(function (item) {
-          return item[_this5.itemValue];
+        if (!this.options.map(function (option) {
+          return option[_this5.optionValue];
         }).includes(this.value)) {
           this.inputValue = '';
           this.textInputValue = '';
@@ -2804,8 +2815,8 @@ var __vue_render__$l = function __vue_render__() {
     directives: [{
       name: "g-click-outside",
       rawName: "v-g-click-outside",
-      value: _vm.closeItems,
-      expression: "closeItems"
+      value: _vm.closeOptions,
+      expression: "closeOptions"
     }]
   }, [_c('g-text-input', {
     staticClass: "g-select-input",
@@ -2838,7 +2849,7 @@ var __vue_render__$l = function __vue_render__() {
     },
     on: {
       "click": function click($event) {
-        !_vm.disabled ? _vm.showItems = !_vm.showItems : null;
+        !_vm.disabled ? _vm.showOptions = !_vm.showOptions : null;
       }
     },
     slot: "append"
@@ -2851,23 +2862,23 @@ var __vue_render__$l = function __vue_render__() {
     attrs: {
       "name": "select-in-up"
     }
-  }, [_vm.showItems ? _c('div', {
+  }, [_vm.showOptions ? _c('div', {
     ref: _vm.name,
-    staticClass: "g-select-items rounded shadow-lg bg-white absolute w-full z-50 overflow-y-scroll -mt-6"
-  }, _vm._l(_vm._items, function (item, index) {
-    return _c('g-select-item', {
+    staticClass: "g-select-options rounded shadow-lg bg-white absolute w-full z-50 overflow-y-scroll -mt-6"
+  }, _vm._l(_vm._options, function (option, index) {
+    return _c('g-select-option', {
       key: index,
       attrs: {
-        "text": _vm.textFor(item),
+        "text": _vm.textFor(option),
         "size": _vm.size
       },
       nativeOn: {
         "click": function click($event) {
-          return _vm.itemSelected(item);
+          return _vm.optionSelected(option);
         }
       }
     });
-  }), 1) : _vm._e()]), _vm._ssrNode(" " + (_vm.showItems ? "<div class=\"g-select-spacer w-full absolute\"></div>" : "<!---->"))], 2)], 2);
+  }), 1) : _vm._e()]), _vm._ssrNode(" " + (_vm.showOptions ? "<div class=\"g-select-spacer w-full absolute\"></div>" : "<!---->"))], 2)], 2);
 };
 
 var __vue_staticRenderFns__$l = [];
@@ -2875,8 +2886,8 @@ var __vue_staticRenderFns__$l = [];
 
 var __vue_inject_styles__$l = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-c5a87e26_0", {
-    source: ".g-select-items[data-v-c5a87e26]{max-height:250px}.g-select-spacer[data-v-c5a87e26]{height:300px}.chevron[data-v-c5a87e26]{transition:transform .2s ease-in-out}.chevron-active[data-v-c5a87e26]{transform:rotateZ(180deg)}.select-in-up-leave-active[data-v-c5a87e26]{transition:all .3s ease}.select-in-up-enter[data-v-c5a87e26],.select-in-up-leave-to[data-v-c5a87e26]{opacity:0;transform:translateY(-10px)}",
+  inject("data-v-3da4b9ac_0", {
+    source: ".g-select-options[data-v-3da4b9ac]{max-height:250px}.g-select-spacer[data-v-3da4b9ac]{height:300px}.chevron[data-v-3da4b9ac]{transition:transform .2s ease-in-out}.chevron-active[data-v-3da4b9ac]{transform:rotateZ(180deg)}.select-in-up-leave-active[data-v-3da4b9ac]{transition:all .3s ease}.select-in-up-enter[data-v-3da4b9ac],.select-in-up-leave-to[data-v-3da4b9ac]{opacity:0;transform:translateY(-10px)}",
     map: undefined,
     media: undefined
   });
@@ -2884,10 +2895,10 @@ var __vue_inject_styles__$l = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$l = "data-v-c5a87e26";
+var __vue_scope_id__$l = "data-v-3da4b9ac";
 /* module identifier */
 
-var __vue_module_identifier__$l = "data-v-c5a87e26";
+var __vue_module_identifier__$l = "data-v-3da4b9ac";
 /* functional template */
 
 var __vue_is_functional_template__$l = false;
@@ -2908,7 +2919,7 @@ var __vue_component__$l = normalizeComponent({
 //
 //
 var script$m = {
-  name: 'GSelectItem',
+  name: 'GSelectOption',
   props: {
     icon: {
       type: String
@@ -2949,7 +2960,7 @@ var __vue_render__$m = function __vue_render__() {
   var _c = _vm._self._c || _h;
 
   return _c('div', {
-    class: ['g-select-item text-gray-900 no-underline block cursor-pointer hover:bg-gray-100', _vm.classes]
+    class: ['g-select-option text-gray-900 no-underline block cursor-pointer hover:bg-gray-100', _vm.classes]
   }, [_vm._ssrNode("<div class=\"flex items-center\">", "</div>", [_vm.icon ? _vm._ssrNode("<div class=\"w-8\">", "</div>", [_c('g-icon', {
     staticClass: "text-lg",
     attrs: {
@@ -2963,8 +2974,8 @@ var __vue_staticRenderFns__$m = [];
 
 var __vue_inject_styles__$m = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-e677ef6e_0", {
-    source: ".g-select-item[data-v-e677ef6e]{transition:background .4s ease}",
+  inject("data-v-5dd2240d_0", {
+    source: ".g-select-option[data-v-5dd2240d]{transition:background .4s ease}",
     map: undefined,
     media: undefined
   });
@@ -2972,10 +2983,10 @@ var __vue_inject_styles__$m = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$m = "data-v-e677ef6e";
+var __vue_scope_id__$m = "data-v-5dd2240d";
 /* module identifier */
 
-var __vue_module_identifier__$m = "data-v-e677ef6e";
+var __vue_module_identifier__$m = "data-v-5dd2240d";
 /* functional template */
 
 var __vue_is_functional_template__$m = false;
@@ -3038,9 +3049,9 @@ var script$n = {
     },
     size: {
       type: String,
-      default: 'medium',
+      default: 'md',
       validator: function validator(value) {
-        return ['small', 'medium', 'large'].indexOf(value) !== -1;
+        return ['sm', 'md', 'lg'].indexOf(value) !== -1;
       }
     }
   },
@@ -3103,8 +3114,8 @@ var __vue_staticRenderFns__$n = [];
 
 var __vue_inject_styles__$n = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-75cce7f4_0", {
-    source: ".g-switch[data-v-75cce7f4]{position:relative;display:inline-block}.g-switch input[data-v-75cce7f4]{opacity:0;width:0;height:0}.slider[data-v-75cce7f4]{@apply bg-gray-300;position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;-webkit-transition:.4s;transition:.4s}.slider[data-v-75cce7f4]:before{@apply bg-white;position:absolute;content:\"\";-webkit-transition:.4s;transition:.4s}.slider.round[data-v-75cce7f4]:before{border-radius:50%}input:checked+.slider-blue[data-v-75cce7f4]{@apply bg-blue-500;}input:focus+.slider-blue[data-v-75cce7f4]{box-shadow:0 0 1px theme('colors.blue-500')}input:checked+.slider-red[data-v-75cce7f4]{@apply bg-red-500;}input:focus+.slider-red[data-v-75cce7f4]{box-shadow:0 0 1px theme('colors.red-500')}input:checked+.slider-green[data-v-75cce7f4]{@apply bg-green-500;}input:focus+.slider-green[data-v-75cce7f4]{box-shadow:0 0 1px theme('colors.green-500')}input:checked+.slider-orange[data-v-75cce7f4]{@apply bg-orange-500;}input:focus+.slider-orange[data-v-75cce7f4]{box-shadow:0 0 1px theme('colors.orange-500')}input:checked+.slider-gray[data-v-75cce7f4]{@apply bg-gray-900;}input:focus+.slider-gray[data-v-75cce7f4]{box-shadow:0 0 1px theme('colors.gray-900')}.g-switch-small[data-v-75cce7f4]{width:30px;height:20px}.slider-small[data-v-75cce7f4]:before{height:12px;width:12px;left:4px;bottom:4px}.slider-small.round[data-v-75cce7f4]{border-radius:20px}input:checked+.slider-small[data-v-75cce7f4]:before{-webkit-transform:translateX(10px);-ms-transform:translateX(10px);transform:translateX(10px)}.g-switch-medium[data-v-75cce7f4]{width:50px;height:30px}.slider-medium[data-v-75cce7f4]:before{height:22px;width:22px;left:4px;bottom:4px}.slider-medium.round[data-v-75cce7f4]{border-radius:30px}input:checked+.slider-medium[data-v-75cce7f4]:before{-webkit-transform:translateX(20px);-ms-transform:translateX(20px);transform:translateX(20px)}.g-switch-large[data-v-75cce7f4]{width:70px;height:40px}.slider-large[data-v-75cce7f4]:before{height:32px;width:32px;left:4px;bottom:4px}.slider-large.round[data-v-75cce7f4]{border-radius:40px}input:checked+.slider-large[data-v-75cce7f4]:before{-webkit-transform:translateX(30px);-ms-transform:translateX(30px);transform:translateX(30px)}",
+  inject("data-v-35f8e4f9_0", {
+    source: ".g-switch[data-v-35f8e4f9]{position:relative;display:inline-block}.g-switch input[data-v-35f8e4f9]{opacity:0;width:0;height:0}.slider[data-v-35f8e4f9]{@apply bg-gray-300;position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;-webkit-transition:.4s;transition:.4s}.slider[data-v-35f8e4f9]:before{@apply bg-white;position:absolute;content:\"\";-webkit-transition:.4s;transition:.4s}.slider.round[data-v-35f8e4f9]:before{border-radius:50%}input:checked+.slider-blue[data-v-35f8e4f9]{@apply bg-blue-500;}input:focus+.slider-blue[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.blue-500')}input:checked+.slider-red[data-v-35f8e4f9]{@apply bg-red-500;}input:focus+.slider-red[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.red-500')}input:checked+.slider-green[data-v-35f8e4f9]{@apply bg-green-500;}input:focus+.slider-green[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.green-500')}input:checked+.slider-orange[data-v-35f8e4f9]{@apply bg-orange-500;}input:focus+.slider-orange[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.orange-500')}input:checked+.slider-gray[data-v-35f8e4f9]{@apply bg-gray-900;}input:focus+.slider-gray[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.gray-900')}input:checked+.slider-primary[data-v-35f8e4f9]{@apply bg-primary-500;}input:focus+.slider-primary[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.primary-500')}input:checked+.slider-black[data-v-35f8e4f9]{@apply bg-black;}input:focus+.slider-black[data-v-35f8e4f9]{box-shadow:0 0 1px theme('colors.black')}.g-switch-sm[data-v-35f8e4f9]{width:30px;height:20px}.slider-sm[data-v-35f8e4f9]:before{height:12px;width:12px;left:4px;bottom:4px}.slider-sm.round[data-v-35f8e4f9]{border-radius:20px}input:checked+.slider-sm[data-v-35f8e4f9]:before{-webkit-transform:translateX(10px);-ms-transform:translateX(10px);transform:translateX(10px)}.g-switch-md[data-v-35f8e4f9]{width:50px;height:30px}.slider-md[data-v-35f8e4f9]:before{height:22px;width:22px;left:4px;bottom:4px}.slider-md.round[data-v-35f8e4f9]{border-radius:30px}input:checked+.slider-md[data-v-35f8e4f9]:before{-webkit-transform:translateX(20px);-ms-transform:translateX(20px);transform:translateX(20px)}.g-switch-lg[data-v-35f8e4f9]{width:70px;height:40px}.slider-lg[data-v-35f8e4f9]:before{height:32px;width:32px;left:4px;bottom:4px}.slider-lg.round[data-v-35f8e4f9]{border-radius:40px}input:checked+.slider-lg[data-v-35f8e4f9]:before{-webkit-transform:translateX(30px);-ms-transform:translateX(30px);transform:translateX(30px)}",
     map: undefined,
     media: undefined
   });
@@ -3112,10 +3123,10 @@ var __vue_inject_styles__$n = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$n = "data-v-75cce7f4";
+var __vue_scope_id__$n = "data-v-35f8e4f9";
 /* module identifier */
 
-var __vue_module_identifier__$n = "data-v-75cce7f4";
+var __vue_module_identifier__$n = "data-v-35f8e4f9";
 /* functional template */
 
 var __vue_is_functional_template__$n = false;
@@ -4991,7 +5002,7 @@ var __vue_is_functional_template__$C = false;
 var __vue_component__$C = normalizeComponent({
   render: __vue_render__$C,
   staticRenderFns: __vue_staticRenderFns__$C
-}, __vue_inject_styles__$C, __vue_script__$C, __vue_scope_id__$C, __vue_is_functional_template__$C, __vue_module_identifier__$C, false, undefined, undefined, undefined);var components=/*#__PURE__*/Object.freeze({__proto__:null,GBtn: __vue_component__,GTextInput: __vue_component__$1,GCard: __vue_component__$2,GCardActions: __vue_component__$3,GCardContent: __vue_component__$4,GCardTitle: __vue_component__$5,GLoadingIcon: __vue_component__$6,GChip: __vue_component__$7,GDot: __vue_component__$8,GCopyAndPaste: __vue_component__$9,GTooltip: __vue_component__$a,GIcon: __vue_component__$b,GDialog: __vue_component__$c,GForm: __vue_component__$d,GGrid: __vue_component__$e,GGridItem: __vue_component__$f,GMenu: __vue_component__$g,GMenuItem: __vue_component__$h,GPopover: __vue_component__$i,GSnackbar: __vue_component__$j,GSnackbarList: __vue_component__$k,GSelect: __vue_component__$l,GSelectItem: __vue_component__$m,GSwitch: __vue_component__$n,GCode: __vue_component__$o,GLink: __vue_component__$p,GTabs: __vue_component__$q,GTab: __vue_component__$r,GCheckbox: __vue_component__$s,GImg: __vue_component__$t,GBlockSpinner: __vue_component__$u,GTextarea: __vue_component__$v,GAlert: __vue_component__$w,GCopyBtn: __vue_component__$x,GVertNav: __vue_component__$y,GVertNavItem: __vue_component__$z,GCircle: __vue_component__$A,GSelectInput: __vue_component__$B,GLayoutSidebar: __vue_component__$C});var forms = {
+}, __vue_inject_styles__$C, __vue_script__$C, __vue_scope_id__$C, __vue_is_functional_template__$C, __vue_module_identifier__$C, false, undefined, undefined, undefined);var components=/*#__PURE__*/Object.freeze({__proto__:null,GBtn: __vue_component__,GTextInput: __vue_component__$1,GCard: __vue_component__$2,GCardActions: __vue_component__$3,GCardContent: __vue_component__$4,GCardTitle: __vue_component__$5,GLoadingIcon: __vue_component__$6,GChip: __vue_component__$7,GDot: __vue_component__$8,GCopyAndPaste: __vue_component__$9,GTooltip: __vue_component__$a,GIcon: __vue_component__$b,GDialog: __vue_component__$c,GForm: __vue_component__$d,GGrid: __vue_component__$e,GGridItem: __vue_component__$f,GMenu: __vue_component__$g,GMenuItem: __vue_component__$h,GPopover: __vue_component__$i,GSnackbar: __vue_component__$j,GSnackbarList: __vue_component__$k,GSelect: __vue_component__$l,GSelectOption: __vue_component__$m,GSwitch: __vue_component__$n,GCode: __vue_component__$o,GLink: __vue_component__$p,GTabs: __vue_component__$q,GTab: __vue_component__$r,GCheckbox: __vue_component__$s,GImg: __vue_component__$t,GBlockSpinner: __vue_component__$u,GTextarea: __vue_component__$v,GAlert: __vue_component__$w,GCopyBtn: __vue_component__$x,GVertNav: __vue_component__$y,GVertNavItem: __vue_component__$z,GCircle: __vue_component__$A,GSelectInput: __vue_component__$B,GLayoutSidebar: __vue_component__$C});var forms = {
   methods: {
     handleServerErrors: function handleServerErrors(serverErrors) {
       var _this = this;
@@ -5075,4 +5086,4 @@ var plugin = {
     GlobalVue.use(plugin);
   }
 } // Default export is library as a whole, registered via Vue.use()
-exports.GAlert=__vue_component__$w;exports.GBlockSpinner=__vue_component__$u;exports.GBtn=__vue_component__;exports.GCard=__vue_component__$2;exports.GCardActions=__vue_component__$3;exports.GCardContent=__vue_component__$4;exports.GCardTitle=__vue_component__$5;exports.GCheckbox=__vue_component__$s;exports.GChip=__vue_component__$7;exports.GCircle=__vue_component__$A;exports.GCode=__vue_component__$o;exports.GCopyAndPaste=__vue_component__$9;exports.GCopyBtn=__vue_component__$x;exports.GDialog=__vue_component__$c;exports.GDot=__vue_component__$8;exports.GForm=__vue_component__$d;exports.GGrid=__vue_component__$e;exports.GGridItem=__vue_component__$f;exports.GIcon=__vue_component__$b;exports.GImg=__vue_component__$t;exports.GLayoutSidebar=__vue_component__$C;exports.GLink=__vue_component__$p;exports.GLoadingIcon=__vue_component__$6;exports.GMenu=__vue_component__$g;exports.GMenuItem=__vue_component__$h;exports.GPopover=__vue_component__$i;exports.GSelect=__vue_component__$l;exports.GSelectInput=__vue_component__$B;exports.GSelectItem=__vue_component__$m;exports.GSnackbar=__vue_component__$j;exports.GSnackbarList=__vue_component__$k;exports.GSwitch=__vue_component__$n;exports.GTab=__vue_component__$r;exports.GTabs=__vue_component__$q;exports.GTextInput=__vue_component__$1;exports.GTextarea=__vue_component__$v;exports.GTooltip=__vue_component__$a;exports.GVertNav=__vue_component__$y;exports.GVertNavItem=__vue_component__$z;exports.default=plugin;
+exports.GAlert=__vue_component__$w;exports.GBlockSpinner=__vue_component__$u;exports.GBtn=__vue_component__;exports.GCard=__vue_component__$2;exports.GCardActions=__vue_component__$3;exports.GCardContent=__vue_component__$4;exports.GCardTitle=__vue_component__$5;exports.GCheckbox=__vue_component__$s;exports.GChip=__vue_component__$7;exports.GCircle=__vue_component__$A;exports.GCode=__vue_component__$o;exports.GCopyAndPaste=__vue_component__$9;exports.GCopyBtn=__vue_component__$x;exports.GDialog=__vue_component__$c;exports.GDot=__vue_component__$8;exports.GForm=__vue_component__$d;exports.GGrid=__vue_component__$e;exports.GGridItem=__vue_component__$f;exports.GIcon=__vue_component__$b;exports.GImg=__vue_component__$t;exports.GLayoutSidebar=__vue_component__$C;exports.GLink=__vue_component__$p;exports.GLoadingIcon=__vue_component__$6;exports.GMenu=__vue_component__$g;exports.GMenuItem=__vue_component__$h;exports.GPopover=__vue_component__$i;exports.GSelect=__vue_component__$l;exports.GSelectInput=__vue_component__$B;exports.GSelectOption=__vue_component__$m;exports.GSnackbar=__vue_component__$j;exports.GSnackbarList=__vue_component__$k;exports.GSwitch=__vue_component__$n;exports.GTab=__vue_component__$r;exports.GTabs=__vue_component__$q;exports.GTextInput=__vue_component__$1;exports.GTextarea=__vue_component__$v;exports.GTooltip=__vue_component__$a;exports.GVertNav=__vue_component__$y;exports.GVertNavItem=__vue_component__$z;exports.default=plugin;
