@@ -18,7 +18,7 @@ export default {
 
   props: {
     tag: { type: String, default: 'button' },
-    color: { type: String, default: 'black' },
+    color: { type: String, default: 'primary' },
     size: {
       type: String,
       default: 'md',
@@ -89,14 +89,20 @@ export default {
     },
 
     bgClasses() {
+      if (this.isBaseColor) {
+        if (this.flat) return `bg-${this.color} bg-opacity-25`
+        return `bg-${this.color}`
+      }
       if (this.flat) return `bg-${this.color}-100 hover:bg-${this.color}-200 active:bg-${this.color}-300`
       if (this.outline) return `bg-transparent hover:bg-${this.color}-100 active:bg-${this.color}-200`
-      if (this.color === 'white') return 'bg-white'
-      if (this.color === 'black') return 'bg-black'
       return `bg-${this.color}-500`
     },
 
     textColorClasses() {
+      if (this.isBaseColor) {
+        if (this.flat) return `text-${this.color}`
+        return this.color === 'white' ? 'text-gray-900' : 'text-white'
+      }
       if (this.color === 'white' && !this.flat) return this.textColor || 'text-gray-900'
       if (this.color === 'gray' && (this.flat || this.outline)) return 'text-gray-600'
       if (this.flat || this.outline) return `text-${this.color}-500`
@@ -105,7 +111,7 @@ export default {
 
     borderClasses() {
       if (this.flat) return 'border border-transparent'
-      if (['black', 'white'].includes(this.color)) return `border border-${this.color}`
+      if (this.isBaseColor) return `border border-${this.color}`
       return `border border-${this.color}-500`
     },
 
@@ -149,6 +155,10 @@ export default {
       if (this.color === 'gray' && (this.flat || this.outline)) return 'gray-600'
       if (this.flat || this.outline) return `${this.color}-500`
       return 'white'
+    },
+
+    isBaseColor() {
+      return ['black', 'white'].includes(this.color)
     }
   }
 }

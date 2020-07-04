@@ -36,8 +36,8 @@ export default {
     noMargin: { type: Boolean, default: false },
     size: {
       type: String,
-      default: 'medium',
-      validator: value => ['small', 'medium', 'large'].indexOf(value) !== -1,
+      default: 'md',
+      validator: value => ['sm', 'md', 'lg'].indexOf(value) !== -1,
     },
   },
 
@@ -141,60 +141,72 @@ input:checked + .slider-gray {
 input:focus + .slider-gray {
   box-shadow: 0 0 1px theme('colors.gray-900');
 }
+input:checked + .slider-primary {
+  @apply bg-primary-500;
+}
+input:focus + .slider-primary {
+  box-shadow: 0 0 1px theme('colors.primary-500');
+}
+input:checked + .slider-black {
+  @apply bg-black;
+}
+input:focus + .slider-black {
+  box-shadow: 0 0 1px theme('colors.black');
+}
 
 /* SIZES */
-.g-switch-small {
+.g-switch-sm {
   width: 30px;
   height: 20px;
 }
-.slider-small:before {
+.slider-sm:before {
   height: 12px;
   width: 12px;
   left: 4px;
   bottom: 4px;
 }
-.slider-small.round {
+.slider-sm.round {
   border-radius: 20px;
 }
-input:checked + .slider-small:before {
+input:checked + .slider-sm:before {
   -webkit-transform: translateX(10px);
   -ms-transform: translateX(10px);
   transform: translateX(10px);
 }
 
-.g-switch-medium {
+.g-switch-md {
   width: 50px;
   height: 30px;
 }
-.slider-medium:before {
+.slider-md:before {
   height: 22px;
   width: 22px;
   left: 4px;
   bottom: 4px;
 }
-.slider-medium.round {
+.slider-md.round {
   border-radius: 30px;
 }
-input:checked + .slider-medium:before {
+input:checked + .slider-md:before {
   -webkit-transform: translateX(20px);
   -ms-transform: translateX(20px);
   transform: translateX(20px);
 }
 
-.g-switch-large {
+.g-switch-lg {
   width: 70px;
   height: 40px;
 }
-.slider-large:before {
+.slider-lg:before {
   height: 32px;
   width: 32px;
   left: 4px;
   bottom: 4px;
 }
-.slider-large.round {
+.slider-lg.round {
   border-radius: 40px;
 }
-input:checked + .slider-large:before {
+input:checked + .slider-lg:before {
   -webkit-transform: translateX(30px);
   -ms-transform: translateX(30px);
   transform: translateX(30px);

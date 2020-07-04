@@ -1,5 +1,5 @@
 <template>
-  <div v-g-click-outside="closeItems">
+  <div v-g-click-outside="closeOptions">
     <g-text-input
       v-model="textInputValue"
       :label="label"
@@ -14,23 +14,23 @@
       class="g-select-input"
       @focus="focusHandler"
       append>
-      <div slot="append" class="block cursor-pointer px-4" @click="(!disabled) ? showItems = !showItems : null">
+      <div slot="append" class="block cursor-pointer px-4" @click="(!disabled) ? showOptions = !showOptions : null">
         <g-icon name="fas fa-chevron-down" :class="['chevron text-gray-600', chevronClasses]" />
       </div>
     </g-text-input>
     <div class="relative">
       <transition name="select-in-up">
-        <div v-if="showItems" :ref="name" class="g-select-items rounded shadow-lg bg-white absolute w-full z-50 overflow-y-scroll -mt-6">
-          <g-select-item
-            v-for="(item, index) in _items"
-            :text="textFor(item)"
+        <div v-if="showOptions" :ref="name" class="g-select-options rounded shadow-lg bg-white absolute w-full z-50 overflow-y-scroll -mt-6">
+          <g-select-option
+            v-for="(option, index) in _options"
+            :text="textFor(option)"
             :key="index"
             :size="size"
-            @click.native="itemSelected(item)"
+            @click.native="optionSelected(option)"
           />
         </div>
       </transition>
-      <div v-if="showItems" class="g-select-spacer w-full absolute" />
+      <div v-if="showOptions" class="g-select-spacer w-full absolute" />
     </div>
   </div>
 </template>
@@ -43,9 +43,9 @@ export default {
     value: { type: String },
     label: { type: String, default: null },
     name: { type: String, default: '' },
-    items: { type: Array },
-    itemText: { type: String, default: 'text' },
-    itemValue: { type: String, default: 'value' },
+    options: { type: Array },
+    optionText: { type: String, default: 'label' },
+    optionValue: { type: String, default: 'value' },
     filterable: { type: Boolean, default: false },
     raised: { type: Boolean, default: false },
     horizontal: { type: Boolean, default: false },
@@ -64,7 +64,7 @@ export default {
     return {
       inputValue: '',
       textInputValue: '',
-      showItems: false
+      showOptions: false
     };
   },
 
@@ -75,11 +75,11 @@ export default {
       this.validate(newVal)
     },
 
-    showItems(newVal) {
+    showOptions(newVal) {
       if (newVal) {
         this.adjustScrollPosition()
       } else {
-        this.clearIfNotItem()
+        this.clearIfNotOption()
         this.validate(this.textInputValue)
       }
     }
@@ -93,74 +93,74 @@ export default {
   computed: {
     chevronClasses() {
       return {
-        'chevron-active': this.showItems,
+        'chevron-active': this.showOptions,
       };
     },
 
     inputLabel() {
       if (!this.value) return ''
-      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return this.value
+      if (typeof this.options[0] === 'string' || this.options[0] instanceof String) return this.value
 
-      const selectedItem = this.items.find(item => item[this.itemValue] === this.inputValue)
-      if (selectedItem) {
-        return selectedItem[this.itemText]
+      const selectedOption = this.options.find(option => option[this.optionValue] === this.inputValue)
+      if (selectedOption) {
+        return selectedOption[this.optionText]
       } else {
         return this.value
       }
     },
 
-    _items() {
+    _options() {
       if (this.filterable) {
-        if (typeof this.items[0] === 'string' || this.items[0] instanceof String) {
-          return this.items.filter(text => text.includes(this.value))
+        if (typeof this.options[0] === 'string' || this.options[0] instanceof String) {
+          return this.options.filter(text => text.includes(this.value))
         } else {
-          const filteredTexts = this.items
-            .map(item => item[this.itemText].toLowerCase())
+          const filteredTexts = this.options
+            .map(options => options[this.optionText].toLowerCase())
             .filter(text => text.includes(this.textInputValue.toLowerCase()))
 
-          return this.items.filter(item => filteredTexts.includes(item[this.itemText].toLowerCase()))
+          return this.options.filter(option => filteredTexts.includes(option[this.optionText].toLowerCase()))
         }
       } else {
-        return this.items
+        return this.options
       }
     }
   },
 
   methods: {
-    itemSelected(item) {
-      this.$emit('input', this.valueFor(item))
-      this.showItems = false
+    optionSelected(option) {
+      this.$emit('input', this.valueFor(option))
+      this.showOptions = false
     },
 
-    textFor(item) {
-      if (typeof item === 'string' || item instanceof String) return item
-      return item[this.itemText];
+    textFor(option) {
+      if (typeof option === 'string' || option instanceof String) return option
+      return option[this.optionText];
     },
 
     labelFor(value) {
       if (!this.value) return ''
-      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) return value
+      if (typeof this.options[0] === 'string' || this.options[0] instanceof String) return value
 
-      const selectedItem = this.items.find(item => item[this.itemValue] === value)
+      const selectedOption = this.options.find(option => option[this.optionValue] === value)
 
-      if (selectedItem) {
-        return selectedItem[this.itemText]
+      if (selectedOption) {
+        return selectedOption[this.optionText]
       } else {
         return value
       }
     },
 
-    valueFor(item) {
-      if (typeof item === 'string' || item instanceof String) return item;
-      return item[this.itemValue];
+    valueFor(option) {
+      if (typeof option === 'string' || option instanceof String) return option;
+      return option[this.optionValue];
     },
 
-    closeItems() {
-      this.showItems = false;
+    closeOptions() {
+      this.showOptions = false;
     },
 
     focusHandler() {
-      this.showItems = true
+      this.showOptions = true
       this.$emit('focus')
     },
 
@@ -177,11 +177,11 @@ export default {
       })
     },
 
-    clearIfNotItem() {
-      if (typeof this.items[0] === 'string' || this.items[0] instanceof String) {
-        if (!this.items.includes(this.value)) this.value = ''
+    clearIfNotOption() {
+      if (typeof this.options[0] === 'string' || this.options[0] instanceof String) {
+        if (!this.options.includes(this.value)) this.value = ''
       } else {
-        if(!this.items.map(item => item[this.itemValue]).includes(this.value)) {
+        if(!this.options.map(option => option[this.optionValue]).includes(this.value)) {
           this.inputValue = ''
           this.textInputValue = ''
         }
@@ -200,7 +200,7 @@ export default {
 </script>
 
 <style scoped>
-.g-select-items {
+.g-select-options {
   max-height: 250px;
 }
 

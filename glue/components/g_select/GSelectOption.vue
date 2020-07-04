@@ -1,5 +1,5 @@
 <template>
-  <div :class="['g-select-item text-gray-900 no-underline block cursor-pointer hover:bg-gray-100', classes]">
+  <div :class="['g-select-option text-gray-900 no-underline block cursor-pointer hover:bg-gray-100', classes]">
     <div class="flex items-center">
       <div v-if="icon" class="w-8">
         <g-icon :name="icon" class="text-lg" />
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'GSelectItem',
+  name: 'GSelectOption',
 
   props: {
     icon: { type: String },
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-.g-select-item{
+.g-select-option{
   transition: background .4s ease;
 }
 </style>

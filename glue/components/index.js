@@ -20,7 +20,7 @@ export { default as GPopover } from './g_popover/GPopover.vue';
 export { default as GSnackbar } from './g_snackbar/GSnackbar.vue';
 export { default as GSnackbarList } from './g_snackbar/GSnackbarList.vue';
 export { default as GSelect } from './g_select/GSelect.vue';
-export { default as GSelectItem } from './g_select/GSelectItem.vue';
+export { default as GSelectOption } from './g_select/GSelectOption.vue';
 export { default as GSwitch } from './g_switch/GSwitch.vue';
 export { default as GCode } from './g_code/GCode.vue';
 export { default as GLink } from './g_link/GLink.vue';
