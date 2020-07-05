@@ -20,8 +20,14 @@
 </template>
 
 <script>
+import GTooltip from '../g_tooltip/GTooltip.vue'
+
 export default {
   name: 'GCopyBtn',
+
+  components: {
+    GTooltip
+  },
 
   props: {
     text: { type: String, required: true },
