@@ -21,8 +21,13 @@
         </div>
       </div>
     </div>
-    <div class="code-container bg-black rounded-b">
+    <div class="code-container bg-black">
       <pre v-highlightjs="selectedCodeSnippet"><code :class="[internalLang, 'rounded p-4']"></code></pre>
+    </div>
+    <div class="footer w-full bg-black rounded-b">
+      <div class="flex items-center justify-end p-2">
+        <g-copy-btn size="sm" flat :text="selectedCodeSnippet" class="relative bottom-0 right-0" />  
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +35,7 @@
 <script>
 import GBtn from '../g_btn/GBtn.vue';
 import GDot from '../g_dot/GDot.vue';
+import GCopyBtn from '../g_copy_btn/GCopyBtn.vue'
 
 export default {
   name: 'GCode',
@@ -37,6 +43,7 @@ export default {
   components: {
     GBtn,
     GDot,
+    GCopyBtn
   },
 
   props: {

@@ -68,10 +68,16 @@ export default {
 
   methods: {
     copyToClipboard() {
-      this.$refs.contents.select();
-      document.execCommand('copy');
-      this.tooltipText = 'Copied!';
+      let textarea = document.createElement('textarea')
+      textarea.textContent = this.text
+      document.body.appendChild(textarea)
+      textarea.select()
+    
+      document.execCommand('cut')
+      document.body.removeChild(textarea)
+      
       this.copied = true
+      this.tooltipText = 'Copied!'
       this.gSleep(2000).then(() => {
         this.tooltipText = 'Copy'
         this.copied = false
