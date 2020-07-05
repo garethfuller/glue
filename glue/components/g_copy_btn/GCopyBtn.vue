@@ -1,7 +1,6 @@
 <template>
   <div>
-    <g-tooltip :text="tooltipText" :width="70">
-      <g-btn
+    <g-btn
         circle
         :flat="flat"
         :outline="outline"
@@ -14,20 +13,13 @@
           <g-icon v-else key="copy" name="far fa-clone" :size="iconSize" :color="iconColor"/>
         </transition>
       </g-btn>
-    </g-tooltip>
     <textarea name="text" ref="contents" class="input -ml-2 absolute" :value="text"></textarea>
   </div>
 </template>
 
 <script>
-import GTooltip from '../g_tooltip/GTooltip.vue'
-
 export default {
   name: 'GCopyBtn',
-
-  components: {
-    GTooltip
-  },
 
   props: {
     text: { type: String, required: true },
@@ -44,7 +36,6 @@ export default {
 
   data () {
     return {
-      tooltipText: 'Copy',
       copied: false
     }
   },
@@ -83,9 +74,7 @@ export default {
       document.body.removeChild(textarea)
       
       this.copied = true
-      this.tooltipText = 'Copied!'
       this.gSleep(2000).then(() => {
-        this.tooltipText = 'Copy'
         this.copied = false
       })
     }
