@@ -3318,11 +3318,26 @@ const __vue_component__$n = normalizeComponent({
 }, __vue_inject_styles__$n, __vue_script__$n, __vue_scope_id__$n, __vue_is_functional_template__$n, __vue_module_identifier__$n, false, createInjector, undefined, undefined);
 
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var script$o = {
   name: 'GCopyBtn',
-  components: {
-    GTooltip: __vue_component__$a
-  },
   props: {
     text: {
       type: String,
@@ -3353,7 +3368,6 @@ var script$o = {
 
   data() {
     return {
-      tooltipText: 'Copy',
       copied: false
     };
   },
@@ -3393,9 +3407,7 @@ var script$o = {
       document.execCommand('cut');
       document.body.removeChild(textarea);
       this.copied = true;
-      this.tooltipText = 'Copied!';
       this.gSleep(2000).then(() => {
-        this.tooltipText = 'Copy';
         this.copied = false;
       });
     }
@@ -3414,12 +3426,7 @@ var __vue_render__$o = function () {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', [_c('g-tooltip', {
-    attrs: {
-      "text": _vm.tooltipText,
-      "width": 70
-    }
-  }, [_c('g-btn', {
+  return _c('div', [_c('g-btn', {
     attrs: {
       "circle": "",
       "flat": _vm.flat,
@@ -3452,7 +3459,7 @@ var __vue_render__$o = function () {
       "size": _vm.iconSize,
       "color": _vm.iconColor
     }
-  })], 1)], 1)], 1), _vm._v(" "), _c('textarea', {
+  })], 1)], 1), _vm._v(" "), _c('textarea', {
     ref: "contents",
     staticClass: "input -ml-2 absolute",
     attrs: {
@@ -3469,8 +3476,8 @@ var __vue_staticRenderFns__$o = [];
 
 const __vue_inject_styles__$o = function (inject) {
   if (!inject) return;
-  inject("data-v-12d98238_0", {
-    source: ".switch-enter-active[data-v-12d98238],.switch-leave-active[data-v-12d98238]{transition:all .1s}.switch-enter[data-v-12d98238],.switch-leave-to[data-v-12d98238]{opacity:0;transform:scale(0)}.input[data-v-12d98238]{width:0;height:0;resize:none;border:none;outline:0}",
+  inject("data-v-2b3fe192_0", {
+    source: ".switch-enter-active[data-v-2b3fe192],.switch-leave-active[data-v-2b3fe192]{transition:all .1s}.switch-enter[data-v-2b3fe192],.switch-leave-to[data-v-2b3fe192]{opacity:0;transform:scale(0)}.input[data-v-2b3fe192]{width:0;height:0;resize:none;border:none;outline:0}",
     map: undefined,
     media: undefined
   });
@@ -3478,7 +3485,7 @@ const __vue_inject_styles__$o = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__$o = "data-v-12d98238";
+const __vue_scope_id__$o = "data-v-2b3fe192";
 /* module identifier */
 
 const __vue_module_identifier__$o = undefined;
