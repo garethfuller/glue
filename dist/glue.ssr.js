@@ -3136,11 +3136,190 @@ var __vue_component__$n = normalizeComponent({
   render: __vue_render__$n,
   staticRenderFns: __vue_staticRenderFns__$n
 }, __vue_inject_styles__$n, __vue_script__$n, __vue_scope_id__$n, __vue_is_functional_template__$n, __vue_module_identifier__$n, false, undefined, createInjectorSSR, undefined);//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var script$o = {
+  name: 'GCopyBtn',
+  props: {
+    text: {
+      type: String,
+      required: true
+    },
+    color: {
+      type: String,
+      default: 'white'
+    },
+    flat: {
+      type: Boolean,
+      default: false
+    },
+    outline: {
+      type: Boolean,
+      default: false
+    },
+    subtle: {
+      type: Boolean,
+      default: false
+    },
+    size: {
+      type: String,
+      default: 'md',
+      validator: function validator(value) {
+        return ['sm', 'md', 'lg'].indexOf(value) !== -1;
+      }
+    }
+  },
+  data: function data() {
+    return {
+      tooltipText: 'Copy',
+      copied: false
+    };
+  },
+  computed: {
+    iconColor: function iconColor() {
+      if (this.color === 'white' && !this.flat) return 'black';
+      if (this.flat && this.color === 'black') return 'black';
+      if (this.color === 'gray' && (this.flat || this.outline)) return 'gray-600';
+      if (this.flat || this.outline) return this.color;
+      return 'white';
+    },
+    iconSize: function iconSize() {
+      switch (this.size) {
+        case 'sm':
+          return 'xs';
+
+        case 'md':
+          return 'small';
+
+        case 'lg':
+          return 'medium';
+
+        default:
+          return 'small';
+      }
+    }
+  },
+  methods: {
+    copyToClipboard: function copyToClipboard() {
+      var _this = this;
+
+      var textarea = document.createElement('textarea');
+      textarea.textContent = this.text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('cut');
+      document.body.removeChild(textarea);
+      this.copied = true;
+      this.tooltipText = 'Copied!';
+      this.gSleep(2000).then(function () {
+        _this.tooltipText = 'Copy';
+        _this.copied = false;
+      });
+    }
+  }
+};/* script */
+var __vue_script__$o = script$o;
+/* template */
+
+var __vue_render__$o = function __vue_render__() {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
+  return _c('div', [_c('g-tooltip', {
+    attrs: {
+      "text": _vm.tooltipText,
+      "width": 70
+    }
+  }, [_c('g-btn', {
+    attrs: {
+      "circle": "",
+      "flat": _vm.flat,
+      "outline": _vm.outline,
+      "color": _vm.color,
+      "size": _vm.size,
+      "subtle": _vm.subtle
+    },
+    nativeOn: {
+      "click": function click($event) {
+        return _vm.copyToClipboard($event);
+      }
+    }
+  }, [_c('transition', {
+    attrs: {
+      "name": "switch",
+      "mode": "out-in"
+    }
+  }, [_vm.copied ? _c('g-icon', {
+    key: "check",
+    attrs: {
+      "name": "fas fa-check-circle",
+      "size": _vm.iconSize,
+      "color": _vm.iconColor
+    }
+  }) : _c('g-icon', {
+    key: "copy",
+    attrs: {
+      "name": "far fa-clone",
+      "size": _vm.iconSize,
+      "color": _vm.iconColor
+    }
+  })], 1)], 1)], 1), _vm._ssrNode(" <textarea name=\"text\"" + _vm._ssrAttr("value", _vm.text) + " class=\"input -ml-2 absolute\"></textarea>")], 2);
+};
+
+var __vue_staticRenderFns__$o = [];
+/* style */
+
+var __vue_inject_styles__$o = function __vue_inject_styles__(inject) {
+  if (!inject) return;
+  inject("data-v-3dcbb73e_0", {
+    source: ".switch-enter-active[data-v-3dcbb73e],.switch-leave-active[data-v-3dcbb73e]{transition:all .1s}.switch-enter[data-v-3dcbb73e],.switch-leave-to[data-v-3dcbb73e]{opacity:0;transform:scale(0)}.input[data-v-3dcbb73e]{width:0;height:0;resize:none;border:none;outline:0}",
+    map: undefined,
+    media: undefined
+  });
+};
+/* scoped */
+
+
+var __vue_scope_id__$o = "data-v-3dcbb73e";
+/* module identifier */
+
+var __vue_module_identifier__$o = "data-v-3dcbb73e";
+/* functional template */
+
+var __vue_is_functional_template__$o = false;
+/* style inject shadow dom */
+
+var __vue_component__$o = normalizeComponent({
+  render: __vue_render__$o,
+  staticRenderFns: __vue_staticRenderFns__$o
+}, __vue_inject_styles__$o, __vue_script__$o, __vue_scope_id__$o, __vue_is_functional_template__$o, __vue_module_identifier__$o, false, undefined, createInjectorSSR, undefined);//
+var script$p = {
   name: 'GCode',
   components: {
     GBtn: __vue_component__,
-    GDot: __vue_component__$8
+    GDot: __vue_component__$8,
+    GCopyBtn: __vue_component__$o
   },
   props: {
     langs: {
@@ -3197,10 +3376,10 @@ var script$o = {
     }
   }
 };/* script */
-var __vue_script__$o = script$o;
+var __vue_script__$p = script$p;
 /* template */
 
-var __vue_render__$o = function __vue_render__() {
+var __vue_render__$p = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -3240,22 +3419,29 @@ var __vue_render__$o = function __vue_render__() {
         }
       }
     }, [_vm._v("\n          " + _vm._s(_vm.labelFor(lang)) + "\n        ")]);
-  }), 1)], 2)]), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"code-container bg-black rounded-b\">", "</div>", [_c('pre', {
+  }), 1)], 2)]), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"code-container bg-black\">", "</div>", [_c('pre', {
     directives: [{
       name: "highlightjs",
       rawName: "v-highlightjs",
       value: _vm.selectedCodeSnippet,
       expression: "selectedCodeSnippet"
     }]
-  }, [_vm._ssrNode("<code" + _vm._ssrClass(null, [_vm.internalLang, 'rounded p-4']) + "></code>")])])], 2);
+  }, [_vm._ssrNode("<code" + _vm._ssrClass(null, [_vm.internalLang, 'rounded p-4']) + "></code>")])]), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"footer w-full bg-black rounded-b\">", "</div>", [_vm._ssrNode("<div class=\"flex items-center justify-end p-2\">", "</div>", [_c('g-copy-btn', {
+    staticClass: "relative bottom-0 right-0",
+    attrs: {
+      "size": "sm",
+      "flat": "",
+      "text": _vm.selectedCodeSnippet
+    }
+  })], 1)])], 2);
 };
 
-var __vue_staticRenderFns__$o = [];
+var __vue_staticRenderFns__$p = [];
 /* style */
 
-var __vue_inject_styles__$o = function __vue_inject_styles__(inject) {
+var __vue_inject_styles__$p = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-fa7fba26_0", {
+  inject("data-v-39340214_0", {
     source: ".code-is-active{border:1px solid rgba(255,255,255,.5)}.code-container{width:100%;min-height:100px}code{@apply .text-sm;overflow:hidden;white-space:pre-wrap;background:0 0}.hljs{display:block;overflow-x:auto;color:#abb2bf}.hljs-comment,.hljs-quote{color:#5c6370;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#c678dd}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#e06c75}.hljs-literal{color:#56b6c2}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#98c379}.hljs-built_in,.hljs-class .hljs-title{color:#e6c07b}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#d19a66}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#61aeee}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}",
     map: undefined,
     media: undefined
@@ -3264,19 +3450,19 @@ var __vue_inject_styles__$o = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$o = undefined;
+var __vue_scope_id__$p = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$o = "data-v-fa7fba26";
+var __vue_module_identifier__$p = "data-v-39340214";
 /* functional template */
 
-var __vue_is_functional_template__$o = false;
+var __vue_is_functional_template__$p = false;
 /* style inject shadow dom */
 
-var __vue_component__$o = normalizeComponent({
-  render: __vue_render__$o,
-  staticRenderFns: __vue_staticRenderFns__$o
-}, __vue_inject_styles__$o, __vue_script__$o, __vue_scope_id__$o, __vue_is_functional_template__$o, __vue_module_identifier__$o, false, undefined, createInjectorSSR, undefined);//
+var __vue_component__$p = normalizeComponent({
+  render: __vue_render__$p,
+  staticRenderFns: __vue_staticRenderFns__$p
+}, __vue_inject_styles__$p, __vue_script__$p, __vue_scope_id__$p, __vue_is_functional_template__$p, __vue_module_identifier__$p, false, undefined, createInjectorSSR, undefined);//
 //
 //
 //
@@ -3286,7 +3472,7 @@ var __vue_component__$o = normalizeComponent({
 //
 //
 //
-var script$p = {
+var script$q = {
   name: 'GLink',
   props: {
     color: {
@@ -3312,10 +3498,10 @@ var script$p = {
     }
   }
 };/* script */
-var __vue_script__$p = script$p;
+var __vue_script__$q = script$q;
 /* template */
 
-var __vue_render__$p = function __vue_render__() {
+var __vue_render__$q = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -3328,10 +3514,10 @@ var __vue_render__$p = function __vue_render__() {
   }, 'component', _vm.$attrs, false), _vm.listeners), [_vm._t("default")], 2);
 };
 
-var __vue_staticRenderFns__$p = [];
+var __vue_staticRenderFns__$q = [];
 /* style */
 
-var __vue_inject_styles__$p = function __vue_inject_styles__(inject) {
+var __vue_inject_styles__$q = function __vue_inject_styles__(inject) {
   if (!inject) return;
   inject("data-v-67a69141_0", {
     source: ".g-link{transition:all .3s ease}",
@@ -3342,19 +3528,19 @@ var __vue_inject_styles__$p = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$p = undefined;
+var __vue_scope_id__$q = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$p = "data-v-67a69141";
+var __vue_module_identifier__$q = "data-v-67a69141";
 /* functional template */
 
-var __vue_is_functional_template__$p = false;
+var __vue_is_functional_template__$q = false;
 /* style inject shadow dom */
 
-var __vue_component__$p = normalizeComponent({
-  render: __vue_render__$p,
-  staticRenderFns: __vue_staticRenderFns__$p
-}, __vue_inject_styles__$p, __vue_script__$p, __vue_scope_id__$p, __vue_is_functional_template__$p, __vue_module_identifier__$p, false, undefined, createInjectorSSR, undefined);//
+var __vue_component__$q = normalizeComponent({
+  render: __vue_render__$q,
+  staticRenderFns: __vue_staticRenderFns__$q
+}, __vue_inject_styles__$q, __vue_script__$q, __vue_scope_id__$q, __vue_is_functional_template__$q, __vue_module_identifier__$q, false, undefined, createInjectorSSR, undefined);//
 //
 //
 //
@@ -3386,7 +3572,7 @@ var __vue_component__$p = normalizeComponent({
 //
 //
 //
-var script$q = {
+var script$r = {
   name: 'GTabs',
   props: {
     right: {
@@ -3452,10 +3638,10 @@ var script$q = {
     }
   }
 };/* script */
-var __vue_script__$q = script$q;
+var __vue_script__$r = script$r;
 /* template */
 
-var __vue_render__$q = function __vue_render__() {
+var __vue_render__$r = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -3494,10 +3680,10 @@ var __vue_render__$q = function __vue_render__() {
   }), 1)]), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"tab-panels\">", "</div>", [_vm._t("default")], 2)], 2);
 };
 
-var __vue_staticRenderFns__$q = [];
+var __vue_staticRenderFns__$r = [];
 /* style */
 
-var __vue_inject_styles__$q = function __vue_inject_styles__(inject) {
+var __vue_inject_styles__$r = function __vue_inject_styles__(inject) {
   if (!inject) return;
   inject("data-v-b78dd494_0", {
     source: ".g-tabs-label[data-v-b78dd494]{transition:color .3s ease}",
@@ -3508,19 +3694,19 @@ var __vue_inject_styles__$q = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$q = "data-v-b78dd494";
+var __vue_scope_id__$r = "data-v-b78dd494";
 /* module identifier */
 
-var __vue_module_identifier__$q = "data-v-b78dd494";
+var __vue_module_identifier__$r = "data-v-b78dd494";
 /* functional template */
 
-var __vue_is_functional_template__$q = false;
+var __vue_is_functional_template__$r = false;
 /* style inject shadow dom */
 
-var __vue_component__$q = normalizeComponent({
-  render: __vue_render__$q,
-  staticRenderFns: __vue_staticRenderFns__$q
-}, __vue_inject_styles__$q, __vue_script__$q, __vue_scope_id__$q, __vue_is_functional_template__$q, __vue_module_identifier__$q, false, undefined, createInjectorSSR, undefined);//
+var __vue_component__$r = normalizeComponent({
+  render: __vue_render__$r,
+  staticRenderFns: __vue_staticRenderFns__$r
+}, __vue_inject_styles__$r, __vue_script__$r, __vue_scope_id__$r, __vue_is_functional_template__$r, __vue_module_identifier__$r, false, undefined, createInjectorSSR, undefined);//
 //
 //
 //
@@ -3530,7 +3716,7 @@ var __vue_component__$q = normalizeComponent({
 //
 //
 //
-var script$r = {
+var script$s = {
   name: 'GTab',
   props: {
     tag: {
@@ -3572,10 +3758,10 @@ var script$r = {
     this.isActive = this.active;
   }
 };/* script */
-var __vue_script__$r = script$r;
+var __vue_script__$s = script$s;
 /* template */
 
-var __vue_render__$r = function __vue_render__() {
+var __vue_render__$s = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -3588,29 +3774,29 @@ var __vue_render__$r = function __vue_render__() {
   }, 'component', _vm.$attrs, false), [_vm._t("default")], 2) : _vm._e();
 };
 
-var __vue_staticRenderFns__$r = [];
+var __vue_staticRenderFns__$s = [];
 /* style */
 
-var __vue_inject_styles__$r = undefined;
+var __vue_inject_styles__$s = undefined;
 /* scoped */
 
-var __vue_scope_id__$r = "data-v-ec0e3f38";
+var __vue_scope_id__$s = "data-v-ec0e3f38";
 /* module identifier */
 
-var __vue_module_identifier__$r = "data-v-ec0e3f38";
+var __vue_module_identifier__$s = "data-v-ec0e3f38";
 /* functional template */
 
-var __vue_is_functional_template__$r = false;
+var __vue_is_functional_template__$s = false;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-var __vue_component__$r = normalizeComponent({
-  render: __vue_render__$r,
-  staticRenderFns: __vue_staticRenderFns__$r
-}, __vue_inject_styles__$r, __vue_script__$r, __vue_scope_id__$r, __vue_is_functional_template__$r, __vue_module_identifier__$r, false, undefined, undefined, undefined);//
+var __vue_component__$s = normalizeComponent({
+  render: __vue_render__$s,
+  staticRenderFns: __vue_staticRenderFns__$s
+}, __vue_inject_styles__$s, __vue_script__$s, __vue_scope_id__$s, __vue_is_functional_template__$s, __vue_module_identifier__$s, false, undefined, undefined, undefined);//
 //
 //
 //
@@ -3632,7 +3818,7 @@ var __vue_component__$r = normalizeComponent({
 //
 //
 //
-var script$s = {
+var script$t = {
   name: 'GCheckbox',
   model: {
     prop: 'checked',
@@ -3719,10 +3905,10 @@ var script$s = {
     }
   }
 };/* script */
-var __vue_script__$s = script$s;
+var __vue_script__$t = script$t;
 /* template */
 
-var __vue_render__$s = function __vue_render__() {
+var __vue_render__$t = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -3738,10 +3924,10 @@ var __vue_render__$s = function __vue_render__() {
   }) + ">" + _vm._ssrEscape("\n    " + _vm._s(_vm.errors[0]) + "\n  ") + "</div>")], 2);
 };
 
-var __vue_staticRenderFns__$s = [];
+var __vue_staticRenderFns__$t = [];
 /* style */
 
-var __vue_inject_styles__$s = function __vue_inject_styles__(inject) {
+var __vue_inject_styles__$t = function __vue_inject_styles__(inject) {
   if (!inject) return;
   inject("data-v-76b9f181_0", {
     source: ".g-checkbox[data-v-76b9f181]{display:block;position:relative;padding-left:35px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.g-checkbox-small[data-v-76b9f181]{@apply text-sm;}.g-checkbox-medium[data-v-76b9f181]{@apply text-base;}.g-checkbox-large[data-v-76b9f181]{@apply text-lg;}.g-checkbox input[data-v-76b9f181]{position:absolute;opacity:0;cursor:pointer;height:0;width:0}.checkmark[data-v-76b9f181]{@apply rounded;position:absolute;top:0;left:0}.g-checkbox-small[data-v-76b9f181]{height:20px}.g-checkmark-small[data-v-76b9f181]{height:20px;width:20px}.g-checkbox-medium[data-v-76b9f181]{height:25px}.g-checkmark-medium[data-v-76b9f181]{height:25px;width:25px}.checkmark[data-v-76b9f181]:after{content:\"\";position:absolute;display:none}.g-checkbox input:checked~.checkmark[data-v-76b9f181]:after{display:block}.g-checkbox-medium .checkmark[data-v-76b9f181]:after{left:7.5px;top:3.5px;width:10px;height:15px;border:solid #fff;border-width:0 5px 5px 0;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.g-checkbox-small .checkmark[data-v-76b9f181]:after{left:6.5px;top:3px;width:7px;height:12px;border:solid #fff;border-width:0 3.5px 3.5px 0;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}",
@@ -3752,19 +3938,19 @@ var __vue_inject_styles__$s = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$s = "data-v-76b9f181";
+var __vue_scope_id__$t = "data-v-76b9f181";
 /* module identifier */
 
-var __vue_module_identifier__$s = "data-v-76b9f181";
+var __vue_module_identifier__$t = "data-v-76b9f181";
 /* functional template */
 
-var __vue_is_functional_template__$s = false;
+var __vue_is_functional_template__$t = false;
 /* style inject shadow dom */
 
-var __vue_component__$s = normalizeComponent({
-  render: __vue_render__$s,
-  staticRenderFns: __vue_staticRenderFns__$s
-}, __vue_inject_styles__$s, __vue_script__$s, __vue_scope_id__$s, __vue_is_functional_template__$s, __vue_module_identifier__$s, false, undefined, createInjectorSSR, undefined);//
+var __vue_component__$t = normalizeComponent({
+  render: __vue_render__$t,
+  staticRenderFns: __vue_staticRenderFns__$t
+}, __vue_inject_styles__$t, __vue_script__$t, __vue_scope_id__$t, __vue_is_functional_template__$t, __vue_module_identifier__$t, false, undefined, createInjectorSSR, undefined);//
 //
 //
 //
@@ -3773,7 +3959,7 @@ var __vue_component__$s = normalizeComponent({
 //
 //
 //
-var script$t = {
+var script$u = {
   name: 'GImg',
   props: {
     src: {
@@ -3791,10 +3977,10 @@ var script$t = {
     }
   }
 };/* script */
-var __vue_script__$t = script$t;
+var __vue_script__$u = script$u;
 /* template */
 
-var __vue_render__$t = function __vue_render__() {
+var __vue_render__$u = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -3812,29 +3998,29 @@ var __vue_render__$t = function __vue_render__() {
   }, []);
 };
 
-var __vue_staticRenderFns__$t = [];
+var __vue_staticRenderFns__$u = [];
 /* style */
 
-var __vue_inject_styles__$t = undefined;
+var __vue_inject_styles__$u = undefined;
 /* scoped */
 
-var __vue_scope_id__$t = "data-v-ee2d7148";
+var __vue_scope_id__$u = "data-v-ee2d7148";
 /* module identifier */
 
-var __vue_module_identifier__$t = "data-v-ee2d7148";
+var __vue_module_identifier__$u = "data-v-ee2d7148";
 /* functional template */
 
-var __vue_is_functional_template__$t = false;
+var __vue_is_functional_template__$u = false;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-var __vue_component__$t = normalizeComponent({
-  render: __vue_render__$t,
-  staticRenderFns: __vue_staticRenderFns__$t
-}, __vue_inject_styles__$t, __vue_script__$t, __vue_scope_id__$t, __vue_is_functional_template__$t, __vue_module_identifier__$t, false, undefined, undefined, undefined);//
+var __vue_component__$u = normalizeComponent({
+  render: __vue_render__$u,
+  staticRenderFns: __vue_staticRenderFns__$u
+}, __vue_inject_styles__$u, __vue_script__$u, __vue_scope_id__$u, __vue_is_functional_template__$u, __vue_module_identifier__$u, false, undefined, undefined, undefined);//
 //
 //
 //
@@ -3848,7 +4034,7 @@ var __vue_component__$t = normalizeComponent({
 //
 //
 //
-var script$u = {
+var script$v = {
   name: 'GBlockSpinner',
   props: {
     color: {
@@ -3900,10 +4086,10 @@ var script$u = {
     }
   }
 };/* script */
-var __vue_script__$u = script$u;
+var __vue_script__$v = script$v;
 /* template */
 
-var __vue_render__$u = function __vue_render__() {
+var __vue_render__$v = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -3916,10 +4102,10 @@ var __vue_render__$u = function __vue_render__() {
   }, [_vm._ssrNode("<div" + _vm._ssrClass(null, ["square bg-" + _vm.color]) + _vm._ssrStyle(null, _vm.squareStyles, null) + "></div> <div" + _vm._ssrClass(null, ["square bg-" + _vm.color]) + _vm._ssrStyle(null, _vm.squareStyles, null) + "></div> <div" + _vm._ssrClass(null, ["square bg-" + _vm.color]) + _vm._ssrStyle(null, _vm.squareStyles, null) + "></div> <div" + _vm._ssrClass(null, ["square clear bg-" + _vm.color]) + _vm._ssrStyle(null, _vm.squareStyles, null) + "></div> <div" + _vm._ssrClass(null, ["square bg-" + _vm.color]) + _vm._ssrStyle(null, _vm.squareStyles, null) + "></div> <div" + _vm._ssrClass(null, ["square bg-" + _vm.color]) + _vm._ssrStyle(null, _vm.squareStyles, null) + "></div> <div" + _vm._ssrClass(null, ["square clear bg-" + _vm.color]) + _vm._ssrStyle(null, _vm.squareStyles, null) + "></div> <div" + _vm._ssrClass(null, ["square bg-" + _vm.color]) + _vm._ssrStyle(null, _vm.squareStyles, null) + "></div> <div" + _vm._ssrClass(null, ["square bg-" + _vm.color]) + _vm._ssrStyle(null, _vm.squareStyles, null) + "></div>")]);
 };
 
-var __vue_staticRenderFns__$u = [];
+var __vue_staticRenderFns__$v = [];
 /* style */
 
-var __vue_inject_styles__$u = function __vue_inject_styles__(inject) {
+var __vue_inject_styles__$v = function __vue_inject_styles__(inject) {
   if (!inject) return;
   inject("data-v-56d72917_0", {
     source: ".self-building-square-spinner[data-v-56d72917],.self-building-square-spinner *[data-v-56d72917]{box-sizing:border-box}.self-building-square-spinner .square[data-v-56d72917]{float:left;position:relative;opacity:0;animation:self-building-square-spinner-data-v-56d72917 6s infinite}.self-building-square-spinner .square[data-v-56d72917]:nth-child(1){animation-delay:calc(200ms * 6)}.self-building-square-spinner .square[data-v-56d72917]:nth-child(2){animation-delay:calc(200ms * 7)}.self-building-square-spinner .square[data-v-56d72917]:nth-child(3){animation-delay:calc(200ms * 8)}.self-building-square-spinner .square[data-v-56d72917]:nth-child(4){animation-delay:calc(200ms * 3)}.self-building-square-spinner .square[data-v-56d72917]:nth-child(5){animation-delay:calc(200ms * 4)}.self-building-square-spinner .square[data-v-56d72917]:nth-child(6){animation-delay:calc(200ms * 5)}.self-building-square-spinner .square[data-v-56d72917]:nth-child(7){animation-delay:calc(200ms * 0)}.self-building-square-spinner .square[data-v-56d72917]:nth-child(8){animation-delay:calc(200ms * 1)}.self-building-square-spinner .square[data-v-56d72917]:nth-child(9){animation-delay:calc(200ms * 2)}.self-building-square-spinner .clear[data-v-56d72917]{clear:both}@keyframes self-building-square-spinner-data-v-56d72917{0%{opacity:0}5%{opacity:1;top:0}50.9%{opacity:1;top:0}55.9%{opacity:0;top:inherit}}",
@@ -3930,19 +4116,19 @@ var __vue_inject_styles__$u = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$u = "data-v-56d72917";
+var __vue_scope_id__$v = "data-v-56d72917";
 /* module identifier */
 
-var __vue_module_identifier__$u = "data-v-56d72917";
+var __vue_module_identifier__$v = "data-v-56d72917";
 /* functional template */
 
-var __vue_is_functional_template__$u = false;
+var __vue_is_functional_template__$v = false;
 /* style inject shadow dom */
 
-var __vue_component__$u = normalizeComponent({
-  render: __vue_render__$u,
-  staticRenderFns: __vue_staticRenderFns__$u
-}, __vue_inject_styles__$u, __vue_script__$u, __vue_scope_id__$u, __vue_is_functional_template__$u, __vue_module_identifier__$u, false, undefined, createInjectorSSR, undefined);//
+var __vue_component__$v = normalizeComponent({
+  render: __vue_render__$v,
+  staticRenderFns: __vue_staticRenderFns__$v
+}, __vue_inject_styles__$v, __vue_script__$v, __vue_scope_id__$v, __vue_is_functional_template__$v, __vue_module_identifier__$v, false, undefined, createInjectorSSR, undefined);//
 //
 //
 //
@@ -3973,7 +4159,7 @@ var __vue_component__$u = normalizeComponent({
 //
 //
 //
-var script$v = {
+var script$w = {
   name: 'GTextarea',
   props: {
     value: {
@@ -4130,10 +4316,10 @@ var script$v = {
     }
   }
 };/* script */
-var __vue_script__$v = script$v;
+var __vue_script__$w = script$w;
 /* template */
 
-var __vue_render__$v = function __vue_render__() {
+var __vue_render__$w = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -4149,10 +4335,10 @@ var __vue_render__$v = function __vue_render__() {
   }) + ">" + _vm._ssrEscape("\n        " + _vm._s(_vm.errors[0]) + "\n      ") + "</div></div>")], 2)]);
 };
 
-var __vue_staticRenderFns__$v = [];
+var __vue_staticRenderFns__$w = [];
 /* style */
 
-var __vue_inject_styles__$v = function __vue_inject_styles__(inject) {
+var __vue_inject_styles__$w = function __vue_inject_styles__(inject) {
   if (!inject) return;
   inject("data-v-46d9d076_0", {
     source: "textarea[data-v-46d9d076]{transition:all .3s ease;-webkit-appearance:none;-moz-appearance:none;appearance:none;box-shadow:none}textarea[data-v-46d9d076]:focus{outline:0}",
@@ -4163,19 +4349,19 @@ var __vue_inject_styles__$v = function __vue_inject_styles__(inject) {
 /* scoped */
 
 
-var __vue_scope_id__$v = "data-v-46d9d076";
+var __vue_scope_id__$w = "data-v-46d9d076";
 /* module identifier */
 
-var __vue_module_identifier__$v = "data-v-46d9d076";
+var __vue_module_identifier__$w = "data-v-46d9d076";
 /* functional template */
 
-var __vue_is_functional_template__$v = false;
+var __vue_is_functional_template__$w = false;
 /* style inject shadow dom */
 
-var __vue_component__$v = normalizeComponent({
-  render: __vue_render__$v,
-  staticRenderFns: __vue_staticRenderFns__$v
-}, __vue_inject_styles__$v, __vue_script__$v, __vue_scope_id__$v, __vue_is_functional_template__$v, __vue_module_identifier__$v, false, undefined, createInjectorSSR, undefined);//
+var __vue_component__$w = normalizeComponent({
+  render: __vue_render__$w,
+  staticRenderFns: __vue_staticRenderFns__$w
+}, __vue_inject_styles__$w, __vue_script__$w, __vue_scope_id__$w, __vue_is_functional_template__$w, __vue_module_identifier__$w, false, undefined, createInjectorSSR, undefined);//
 //
 //
 //
@@ -4203,7 +4389,7 @@ var __vue_component__$v = normalizeComponent({
 //
 //
 //
-var script$w = {
+var script$x = {
   name: 'GAlert',
   props: {
     title: {
@@ -4226,10 +4412,10 @@ var script$w = {
     }
   }
 };/* script */
-var __vue_script__$w = script$w;
+var __vue_script__$x = script$x;
 /* template */
 
-var __vue_render__$w = function __vue_render__() {
+var __vue_render__$x = function __vue_render__() {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -4265,203 +4451,29 @@ var __vue_render__$w = function __vue_render__() {
   }]) + ">", "</div>", [_vm._ssrNode("<h3 class=\"font-medium text-lg mb-0\">", "</h3>", [_vm._t("title", [_vm._v("\n          " + _vm._s(_vm.title) + "\n        ")])], 2), _vm._ssrNode(" "), _vm._ssrNode("<div class=\"text-gray-700\">", "</div>", [_vm._t("default")], 2)], 2)], 2)], 2);
 };
 
-var __vue_staticRenderFns__$w = [];
+var __vue_staticRenderFns__$x = [];
 /* style */
 
-var __vue_inject_styles__$w = undefined;
+var __vue_inject_styles__$x = undefined;
 /* scoped */
 
-var __vue_scope_id__$w = "data-v-c5019222";
+var __vue_scope_id__$x = "data-v-c5019222";
 /* module identifier */
 
-var __vue_module_identifier__$w = "data-v-c5019222";
+var __vue_module_identifier__$x = "data-v-c5019222";
 /* functional template */
 
-var __vue_is_functional_template__$w = false;
+var __vue_is_functional_template__$x = false;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-var __vue_component__$w = normalizeComponent({
-  render: __vue_render__$w,
-  staticRenderFns: __vue_staticRenderFns__$w
-}, __vue_inject_styles__$w, __vue_script__$w, __vue_scope_id__$w, __vue_is_functional_template__$w, __vue_module_identifier__$w, false, undefined, undefined, undefined);//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var script$x = {
-  name: 'GCopyBtn',
-  props: {
-    text: {
-      type: String,
-      required: true
-    },
-    color: {
-      type: String,
-      default: 'white'
-    },
-    flat: {
-      type: Boolean,
-      default: false
-    },
-    outline: {
-      type: Boolean,
-      default: false
-    },
-    subtle: {
-      type: Boolean,
-      default: false
-    },
-    size: {
-      type: String,
-      default: 'md',
-      validator: function validator(value) {
-        return ['sm', 'md', 'lg'].indexOf(value) !== -1;
-      }
-    }
-  },
-  data: function data() {
-    return {
-      tooltipText: 'Copy',
-      copied: false
-    };
-  },
-  computed: {
-    iconColor: function iconColor() {
-      if (this.color === 'white' && !this.flat) return 'black';
-      if (this.flat && this.color === 'black') return 'black';
-      if (this.color === 'gray' && (this.flat || this.outline)) return 'gray-600';
-      if (this.flat || this.outline) return this.color;
-      return 'white';
-    },
-    iconSize: function iconSize() {
-      switch (this.size) {
-        case 'sm':
-          return 'xs';
-
-        case 'md':
-          return 'small';
-
-        case 'lg':
-          return 'medium';
-
-        default:
-          return 'small';
-      }
-    }
-  },
-  methods: {
-    copyToClipboard: function copyToClipboard() {
-      var _this = this;
-
-      this.$refs.contents.select();
-      document.execCommand('copy');
-      this.tooltipText = 'Copied!';
-      this.copied = true;
-      this.gSleep(2000).then(function () {
-        _this.tooltipText = 'Copy';
-        _this.copied = false;
-      });
-    }
-  }
-};/* script */
-var __vue_script__$x = script$x;
-/* template */
-
-var __vue_render__$x = function __vue_render__() {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('div', [_c('g-tooltip', {
-    attrs: {
-      "text": _vm.tooltipText,
-      "width": 70
-    }
-  }, [_c('g-btn', {
-    attrs: {
-      "circle": "",
-      "flat": _vm.flat,
-      "outline": _vm.outline,
-      "color": _vm.color,
-      "size": _vm.size,
-      "subtle": _vm.subtle
-    },
-    nativeOn: {
-      "click": function click($event) {
-        return _vm.copyToClipboard($event);
-      }
-    }
-  }, [_c('transition', {
-    attrs: {
-      "name": "switch",
-      "mode": "out-in"
-    }
-  }, [_vm.copied ? _c('g-icon', {
-    key: "check",
-    attrs: {
-      "name": "fas fa-check-circle",
-      "size": _vm.iconSize,
-      "color": _vm.iconColor
-    }
-  }) : _c('g-icon', {
-    key: "copy",
-    attrs: {
-      "name": "far fa-clone",
-      "size": _vm.iconSize,
-      "color": _vm.iconColor
-    }
-  })], 1)], 1)], 1), _vm._ssrNode(" <textarea name=\"text\"" + _vm._ssrAttr("value", _vm.text) + " class=\"input -ml-2 absolute\"></textarea>")], 2);
-};
-
-var __vue_staticRenderFns__$x = [];
-/* style */
-
-var __vue_inject_styles__$x = function __vue_inject_styles__(inject) {
-  if (!inject) return;
-  inject("data-v-68c68150_0", {
-    source: ".switch-enter-active[data-v-68c68150],.switch-leave-active[data-v-68c68150]{transition:all .1s}.switch-enter[data-v-68c68150],.switch-leave-to[data-v-68c68150]{opacity:0;transform:scale(0)}.input[data-v-68c68150]{width:0;height:0;resize:none;border:none;outline:0}",
-    map: undefined,
-    media: undefined
-  });
-};
-/* scoped */
-
-
-var __vue_scope_id__$x = "data-v-68c68150";
-/* module identifier */
-
-var __vue_module_identifier__$x = "data-v-68c68150";
-/* functional template */
-
-var __vue_is_functional_template__$x = false;
-/* style inject shadow dom */
-
 var __vue_component__$x = normalizeComponent({
   render: __vue_render__$x,
   staticRenderFns: __vue_staticRenderFns__$x
-}, __vue_inject_styles__$x, __vue_script__$x, __vue_scope_id__$x, __vue_is_functional_template__$x, __vue_module_identifier__$x, false, undefined, createInjectorSSR, undefined);//
+}, __vue_inject_styles__$x, __vue_script__$x, __vue_scope_id__$x, __vue_is_functional_template__$x, __vue_module_identifier__$x, false, undefined, undefined, undefined);//
 //
 //
 //
@@ -5002,7 +5014,7 @@ var __vue_is_functional_template__$C = false;
 var __vue_component__$C = normalizeComponent({
   render: __vue_render__$C,
   staticRenderFns: __vue_staticRenderFns__$C
-}, __vue_inject_styles__$C, __vue_script__$C, __vue_scope_id__$C, __vue_is_functional_template__$C, __vue_module_identifier__$C, false, undefined, undefined, undefined);var components=/*#__PURE__*/Object.freeze({__proto__:null,GBtn: __vue_component__,GTextInput: __vue_component__$1,GCard: __vue_component__$2,GCardActions: __vue_component__$3,GCardContent: __vue_component__$4,GCardTitle: __vue_component__$5,GLoadingIcon: __vue_component__$6,GChip: __vue_component__$7,GDot: __vue_component__$8,GCopyAndPaste: __vue_component__$9,GTooltip: __vue_component__$a,GIcon: __vue_component__$b,GDialog: __vue_component__$c,GForm: __vue_component__$d,GGrid: __vue_component__$e,GGridItem: __vue_component__$f,GMenu: __vue_component__$g,GMenuItem: __vue_component__$h,GPopover: __vue_component__$i,GSnackbar: __vue_component__$j,GSnackbarList: __vue_component__$k,GSelect: __vue_component__$l,GSelectOption: __vue_component__$m,GSwitch: __vue_component__$n,GCode: __vue_component__$o,GLink: __vue_component__$p,GTabs: __vue_component__$q,GTab: __vue_component__$r,GCheckbox: __vue_component__$s,GImg: __vue_component__$t,GBlockSpinner: __vue_component__$u,GTextarea: __vue_component__$v,GAlert: __vue_component__$w,GCopyBtn: __vue_component__$x,GVertNav: __vue_component__$y,GVertNavItem: __vue_component__$z,GCircle: __vue_component__$A,GSelectInput: __vue_component__$B,GLayoutSidebar: __vue_component__$C});var forms = {
+}, __vue_inject_styles__$C, __vue_script__$C, __vue_scope_id__$C, __vue_is_functional_template__$C, __vue_module_identifier__$C, false, undefined, undefined, undefined);var components=/*#__PURE__*/Object.freeze({__proto__:null,GBtn: __vue_component__,GTextInput: __vue_component__$1,GCard: __vue_component__$2,GCardActions: __vue_component__$3,GCardContent: __vue_component__$4,GCardTitle: __vue_component__$5,GLoadingIcon: __vue_component__$6,GChip: __vue_component__$7,GDot: __vue_component__$8,GCopyAndPaste: __vue_component__$9,GTooltip: __vue_component__$a,GIcon: __vue_component__$b,GDialog: __vue_component__$c,GForm: __vue_component__$d,GGrid: __vue_component__$e,GGridItem: __vue_component__$f,GMenu: __vue_component__$g,GMenuItem: __vue_component__$h,GPopover: __vue_component__$i,GSnackbar: __vue_component__$j,GSnackbarList: __vue_component__$k,GSelect: __vue_component__$l,GSelectOption: __vue_component__$m,GSwitch: __vue_component__$n,GCode: __vue_component__$p,GLink: __vue_component__$q,GTabs: __vue_component__$r,GTab: __vue_component__$s,GCheckbox: __vue_component__$t,GImg: __vue_component__$u,GBlockSpinner: __vue_component__$v,GTextarea: __vue_component__$w,GAlert: __vue_component__$x,GCopyBtn: __vue_component__$o,GVertNav: __vue_component__$y,GVertNavItem: __vue_component__$z,GCircle: __vue_component__$A,GSelectInput: __vue_component__$B,GLayoutSidebar: __vue_component__$C});var forms = {
   methods: {
     handleServerErrors: function handleServerErrors(serverErrors) {
       var _this = this;
@@ -5012,7 +5024,15 @@ var __vue_component__$C = normalizeComponent({
       });
     }
   }
-};var mixins=/*#__PURE__*/Object.freeze({__proto__:null,Forms: forms});var gClickOutside = {
+};var utils = {
+  methods: {
+    gSleep: function gSleep(ms) {
+      return new Promise(function (resolve) {
+        return setTimeout(resolve, ms);
+      });
+    }
+  }
+};var mixins=/*#__PURE__*/Object.freeze({__proto__:null,Forms: forms,Utils: utils});var gClickOutside = {
   name: 'g-click-outside',
   directive: {
     bind: function bind(el, binding, vNode) {
@@ -5086,4 +5106,4 @@ var plugin = {
     GlobalVue.use(plugin);
   }
 } // Default export is library as a whole, registered via Vue.use()
-exports.GAlert=__vue_component__$w;exports.GBlockSpinner=__vue_component__$u;exports.GBtn=__vue_component__;exports.GCard=__vue_component__$2;exports.GCardActions=__vue_component__$3;exports.GCardContent=__vue_component__$4;exports.GCardTitle=__vue_component__$5;exports.GCheckbox=__vue_component__$s;exports.GChip=__vue_component__$7;exports.GCircle=__vue_component__$A;exports.GCode=__vue_component__$o;exports.GCopyAndPaste=__vue_component__$9;exports.GCopyBtn=__vue_component__$x;exports.GDialog=__vue_component__$c;exports.GDot=__vue_component__$8;exports.GForm=__vue_component__$d;exports.GGrid=__vue_component__$e;exports.GGridItem=__vue_component__$f;exports.GIcon=__vue_component__$b;exports.GImg=__vue_component__$t;exports.GLayoutSidebar=__vue_component__$C;exports.GLink=__vue_component__$p;exports.GLoadingIcon=__vue_component__$6;exports.GMenu=__vue_component__$g;exports.GMenuItem=__vue_component__$h;exports.GPopover=__vue_component__$i;exports.GSelect=__vue_component__$l;exports.GSelectInput=__vue_component__$B;exports.GSelectOption=__vue_component__$m;exports.GSnackbar=__vue_component__$j;exports.GSnackbarList=__vue_component__$k;exports.GSwitch=__vue_component__$n;exports.GTab=__vue_component__$r;exports.GTabs=__vue_component__$q;exports.GTextInput=__vue_component__$1;exports.GTextarea=__vue_component__$v;exports.GTooltip=__vue_component__$a;exports.GVertNav=__vue_component__$y;exports.GVertNavItem=__vue_component__$z;exports.default=plugin;
+exports.GAlert=__vue_component__$x;exports.GBlockSpinner=__vue_component__$v;exports.GBtn=__vue_component__;exports.GCard=__vue_component__$2;exports.GCardActions=__vue_component__$3;exports.GCardContent=__vue_component__$4;exports.GCardTitle=__vue_component__$5;exports.GCheckbox=__vue_component__$t;exports.GChip=__vue_component__$7;exports.GCircle=__vue_component__$A;exports.GCode=__vue_component__$p;exports.GCopyAndPaste=__vue_component__$9;exports.GCopyBtn=__vue_component__$o;exports.GDialog=__vue_component__$c;exports.GDot=__vue_component__$8;exports.GForm=__vue_component__$d;exports.GGrid=__vue_component__$e;exports.GGridItem=__vue_component__$f;exports.GIcon=__vue_component__$b;exports.GImg=__vue_component__$u;exports.GLayoutSidebar=__vue_component__$C;exports.GLink=__vue_component__$q;exports.GLoadingIcon=__vue_component__$6;exports.GMenu=__vue_component__$g;exports.GMenuItem=__vue_component__$h;exports.GPopover=__vue_component__$i;exports.GSelect=__vue_component__$l;exports.GSelectInput=__vue_component__$B;exports.GSelectOption=__vue_component__$m;exports.GSnackbar=__vue_component__$j;exports.GSnackbarList=__vue_component__$k;exports.GSwitch=__vue_component__$n;exports.GTab=__vue_component__$s;exports.GTabs=__vue_component__$r;exports.GTextInput=__vue_component__$1;exports.GTextarea=__vue_component__$w;exports.GTooltip=__vue_component__$a;exports.GVertNav=__vue_component__$y;exports.GVertNavItem=__vue_component__$z;exports.default=plugin;
