@@ -1467,7 +1467,7 @@ var __vue_render__$a = function () {
   return _c('div', {
     staticClass: "g-tooltip relative inline-block leading-none"
   }, [_vm._t("default"), _vm._v(" "), _c('span', {
-    staticClass: "g-tooltip-text text-xs flex items-center justify-center",
+    staticClass: "g-tooltip-text bg-gray-900 text-white text-center rounded px-2 py-2 text-xs flex items-center justify-center",
     style: _vm.textStyles
   }, [_vm._t("text", [_vm._v(_vm._s(_vm.text))])], 2)], 2);
 };
@@ -1477,8 +1477,8 @@ var __vue_staticRenderFns__$a = [];
 
 const __vue_inject_styles__$a = function (inject) {
   if (!inject) return;
-  inject("data-v-56501742_0", {
-    source: ".g-tooltip-text[data-v-56501742]{visibility:hidden;@apply bg-gray-900 text-white text-center rounded px-2 py-2;position:absolute;z-index:1;bottom:125%;left:50%;opacity:0;transition:opacity .5s}.g-tooltip .g-tooltip-text[data-v-56501742]::after{content:\"\";position:absolute;top:100%;left:50%;margin-left:-5px;border-width:5px;border-style:solid;border-color:theme('colors.black.5') transparent transparent transparent}.g-tooltip:hover .g-tooltip-text[data-v-56501742]{visibility:visible;opacity:1}",
+  inject("data-v-1553a229_0", {
+    source: ".g-tooltip-text[data-v-1553a229]{visibility:hidden;position:absolute;z-index:1;bottom:125%;left:50%;opacity:0;transition:opacity .5s}.g-tooltip .g-tooltip-text[data-v-1553a229]::after{content:\"\";position:absolute;top:100%;left:50%;margin-left:-5px;border-width:5px;border-style:solid;border-color:theme('colors.gray.9') transparent transparent transparent}.g-tooltip:hover .g-tooltip-text[data-v-1553a229]{visibility:visible;opacity:1}",
     map: undefined,
     media: undefined
   });
@@ -1486,7 +1486,7 @@ const __vue_inject_styles__$a = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__$a = "data-v-56501742";
+const __vue_scope_id__$a = "data-v-1553a229";
 /* module identifier */
 
 const __vue_module_identifier__$a = undefined;
@@ -3318,28 +3318,11 @@ const __vue_component__$n = normalizeComponent({
 }, __vue_inject_styles__$n, __vue_script__$n, __vue_scope_id__$n, __vue_is_functional_template__$n, __vue_module_identifier__$n, false, createInjector, undefined, undefined);
 
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var script$o = {
   name: 'GCopyBtn',
+  components: {
+    GTooltip: __vue_component__$a
+  },
   props: {
     text: {
       type: String,
@@ -3486,8 +3469,8 @@ var __vue_staticRenderFns__$o = [];
 
 const __vue_inject_styles__$o = function (inject) {
   if (!inject) return;
-  inject("data-v-3dcbb73e_0", {
-    source: ".switch-enter-active[data-v-3dcbb73e],.switch-leave-active[data-v-3dcbb73e]{transition:all .1s}.switch-enter[data-v-3dcbb73e],.switch-leave-to[data-v-3dcbb73e]{opacity:0;transform:scale(0)}.input[data-v-3dcbb73e]{width:0;height:0;resize:none;border:none;outline:0}",
+  inject("data-v-12d98238_0", {
+    source: ".switch-enter-active[data-v-12d98238],.switch-leave-active[data-v-12d98238]{transition:all .1s}.switch-enter[data-v-12d98238],.switch-leave-to[data-v-12d98238]{opacity:0;transform:scale(0)}.input[data-v-12d98238]{width:0;height:0;resize:none;border:none;outline:0}",
     map: undefined,
     media: undefined
   });
@@ -3495,7 +3478,7 @@ const __vue_inject_styles__$o = function (inject) {
 /* scoped */
 
 
-const __vue_scope_id__$o = "data-v-3dcbb73e";
+const __vue_scope_id__$o = "data-v-12d98238";
 /* module identifier */
 
 const __vue_module_identifier__$o = undefined;
